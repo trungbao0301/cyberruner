@@ -1,0 +1,54 @@
+running develop
+Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner-dreamer.egg-link (link to .)
+running egg_info
+writing ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/PKG-INFO
+writing dependency_links to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/dependency_links.txt
+writing entry points to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/entry_points.txt
+writing requirements to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/requires.txt
+writing top-level names to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/top_level.txt
+reading manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+writing manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/path.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/env.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/test_motors.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/train.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/eval.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/cyberrunner_layout.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/train_parallel.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+running install
+running install_lib
+creating /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/path.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/env.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/test_motors.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/train.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/eval.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/cyberrunner_layout.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer/train_parallel.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/path.py to path.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/env.py to env.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/test_motors.py to test_motors.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/train.py to train.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/eval.py to eval.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/cyberrunner_layout.py to cyberrunner_layout.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer/train_parallel.py to train_parallel.cpython-310.pyc
+running install_data
+copying resource/cyberrunner_dreamer -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/ament_index/resource_index/packages
+copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+copying data/path_0002_hard.pkl -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+running install_egg_info
+Copying ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer-0.0.0-py3.10.egg-info
+running install_scripts
+Installing eval script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing test script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing train script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing train_parallel script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/install.log'

@@ -1,0 +1,32 @@
+running develop
+Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner-hiwonder.egg-link (link to .)
+running egg_info
+writing ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/PKG-INFO
+writing dependency_links to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/dependency_links.txt
+writing entry points to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/entry_points.txt
+writing requirements to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/requires.txt
+writing top-level names to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/top_level.txt
+reading manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+writing manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+copying cyberrunner_hiwonder/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+copying cyberrunner_hiwonder/hiwonder_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+running install
+running install_lib
+creating /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder/hiwonder_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder/hiwonder_node.py to hiwonder_node.cpython-310.pyc
+running install_data
+copying resource/cyberrunner_hiwonder -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages
+copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder
+running install_egg_info
+Copying ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder-0.0.0-py3.10.egg-info
+running install_scripts
+Installing hiwonder_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder
+writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log'

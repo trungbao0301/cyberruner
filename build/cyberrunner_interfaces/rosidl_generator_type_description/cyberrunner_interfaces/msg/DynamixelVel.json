@@ -1,0 +1,36 @@
+{
+  "type_description_msg": {
+    "type_description": {
+      "type_name": "cyberrunner_interfaces/msg/DynamixelVel",
+      "fields": [
+        {
+          "name": "vel_1",
+          "type": {
+            "type_id": 11,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        },
+        {
+          "name": "vel_2",
+          "type": {
+            "type_id": 11,
+            "capacity": 0,
+            "string_capacity": 0,
+            "nested_type_name": ""
+          },
+          "default_value": ""
+        }
+      ]
+    },
+    "referenced_type_descriptions": []
+  },
+  "type_hashes": [
+    {
+      "type_name": "cyberrunner_interfaces/msg/DynamixelVel",
+      "hash_string": "RIHS01_d80c8c8479d133a0d2326918cdd704b46ee6d4d2134e7efd3ad8e6431516966c"
+    }
+  ]
+}

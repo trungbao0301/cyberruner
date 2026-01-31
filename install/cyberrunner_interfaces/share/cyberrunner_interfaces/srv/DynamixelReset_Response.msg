@@ -1,0 +1,1 @@
+/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_cmake/srv/DynamixelReset_Response.msg

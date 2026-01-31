@@ -1,0 +1,9 @@
+source;share/cyberrunner_hiwonder/hook/pythonpath.ps1
+source;share/cyberrunner_hiwonder/hook/pythonpath.dsv
+source;share/cyberrunner_hiwonder/hook/pythonpath.sh
+source;share/cyberrunner_hiwonder/hook/ament_prefix_path.ps1
+source;share/cyberrunner_hiwonder/hook/ament_prefix_path.dsv
+source;share/cyberrunner_hiwonder/hook/ament_prefix_path.sh
+source;../../build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.ps1
+source;../../build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.dsv
+source;../../build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.sh

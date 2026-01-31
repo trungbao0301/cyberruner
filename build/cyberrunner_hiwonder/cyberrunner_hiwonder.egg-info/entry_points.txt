@@ -1,0 +1,2 @@
+[console_scripts]
+hiwonder_node = cyberrunner_hiwonder.hiwonder_node:main
