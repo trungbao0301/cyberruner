@@ -11,14 +11,45 @@ from rclpy.node import Node
 
 from std_msgs.msg import Int32MultiArray
 from std_srvs.srv import Trigger
-
-from cv_bridge import CvBridge
 from ament_index_python.packages import get_package_share_directory
 
 from cyberrunner_dreamer import cyberrunner_layout
 from cyberrunner_dreamer.path import LinearPath
 from cyberrunner_interfaces.msg import StateEstimateSub
 
+
+
+import numpy as np
+
+def imgmsg_to_numpy(msg):
+    import numpy as np
+
+    enc = (msg.encoding or "").lower()
+    h, w = msg.height, msg.width
+
+    # 8-bit, 3 channel
+    if enc in ("bgr8", "rgb8", "8uc3"):
+        return np.frombuffer(msg.data, dtype=np.uint8).reshape(h, w, 3)
+
+    # 8-bit, 1 channel
+    if enc in ("mono8", "8uc1"):
+        return np.frombuffer(msg.data, dtype=np.uint8).reshape(h, w, 1)
+
+    raise ValueError(f"Unsupported image encoding: {msg.encoding}")
+
+
+    data = np.frombuffer(msg.data, dtype=np.uint8)
+    row_stride = int(msg.step)
+    needed = w * c
+
+    if row_stride == needed:
+        img = data.reshape((h, w, c))
+    else:
+        img = data.reshape((h, row_stride))[:, :needed].reshape((h, w, c))
+
+    if c == 1:
+        img = img[..., 0]
+    return img
 
 class CyberrunnerGym(gym.Env):
     """
@@ -83,8 +114,6 @@ class CyberrunnerGym(gym.Env):
             self._msg_to_obs,
             1,
         )
-
-        self.br = CvBridge()
         self.repeat = repeat
 
         # Path setup
@@ -300,7 +329,7 @@ class CyberrunnerGym(gym.Env):
             states = np.array([msg.state.alpha, msg.state.beta, msg.state.x_b, msg.state.y_b])
             states[2:] += self.offset
             rel_path = self.p.get_rel_path(states[2:], self.num_rel_path, 60).flat
-            img = self.br.imgmsg_to_cv2(msg.subimg).mean(axis=-1, keepdims=True)
+            img = imgmsg_to_numpy(msg.subimg).mean(axis=-1, keepdims=True)
             self.obs = {"states": states, "goal": rel_path, "image": img}
         self.new_obs = True
 

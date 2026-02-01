@@ -1,0 +1,4 @@
+Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera
+Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera

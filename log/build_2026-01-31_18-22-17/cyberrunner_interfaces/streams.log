@@ -1,0 +1,286 @@
+[0.007s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces
+[0.047s] -- The C compiler identification is GNU 11.4.0
+[0.083s] -- The CXX compiler identification is GNU 11.4.0
+[0.087s] -- Detecting C compiler ABI info
+[0.126s] -- Detecting C compiler ABI info - done
+[0.130s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.130s] -- Detecting C compile features
+[0.130s] -- Detecting C compile features - done
+[0.132s] -- Detecting CXX compiler ABI info
+[0.181s] -- Detecting CXX compiler ABI info - done
+[0.185s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.185s] -- Detecting CXX compile features
+[0.186s] -- Detecting CXX compile features - done
+[0.187s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.385s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.419s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.433s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.434s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.437s] -- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.455s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.473s] -- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)
+[0.686s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[0.844s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.042s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.056s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[1.058s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.073s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[1.073s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.073s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[1.073s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[1.084s] -- Found PythonExtra: .so  
+[1.123s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.135s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.136s] -- Added test 'lint_cmake' to check CMake code style
+[1.137s] -- Added test 'xmllint' to check XML markup files
+[1.138s] -- Configuring done
+[1.156s] -- Generating done
+[1.162s] -- Build files have been written to: /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces
+[1.168s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces
+[1.168s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces -- -j24 -l24
+[1.197s] [  1%] [34m[1mGenerating C code for ROS interfaces[0m
+[1.203s] [  3%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[1.206s] [  3%] Built target ament_cmake_python_symlink_cyberrunner_interfaces
+[1.310s] running egg_info
+[1.317s] creating cyberrunner_interfaces.egg-info
+[1.317s] writing cyberrunner_interfaces.egg-info/PKG-INFO
+[1.317s] writing dependency_links to cyberrunner_interfaces.egg-info/dependency_links.txt
+[1.317s] writing top-level names to cyberrunner_interfaces.egg-info/top_level.txt
+[1.317s] writing manifest file 'cyberrunner_interfaces.egg-info/SOURCES.txt'
+[1.337s] reading manifest file 'cyberrunner_interfaces.egg-info/SOURCES.txt'
+[1.337s] writing manifest file 'cyberrunner_interfaces.egg-info/SOURCES.txt'
+[1.354s] [  3%] Built target ament_cmake_python_build_cyberrunner_interfaces_egg
+[1.399s] [  3%] Built target cyberrunner_interfaces__cpp
+[1.404s] [  5%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_c.dir/rosidl_generator_c/cyberrunner_interfaces/msg/detail/dynamixel_vel__functions.c.o[0m
+[1.404s] [  7%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_c.dir/rosidl_generator_c/cyberrunner_interfaces/msg/detail/state_estimate__functions.c.o[0m
+[1.404s] [  9%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[1.404s] [ 10%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[1.405s] [ 12%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_c.dir/rosidl_generator_c/cyberrunner_interfaces/srv/detail/dynamixel_reset__functions.c.o[0m
+[1.405s] [ 14%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_c.dir/rosidl_generator_c/cyberrunner_interfaces/msg/detail/state_estimate_sub__functions.c.o[0m
+[1.406s] [ 16%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[1.445s] [ 18%] [32m[1mLinking C shared library libcyberrunner_interfaces__rosidl_generator_c.so[0m
+[1.468s] [ 18%] Built target cyberrunner_interfaces__rosidl_generator_c
+[1.475s] [ 20%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[1.475s] [ 23%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[1.475s] [ 23%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[1.553s] [ 25%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/cyberrunner_interfaces/msg/dynamixel_vel__type_support.cpp.o[0m
+[1.553s] [ 27%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/cyberrunner_interfaces/msg/state_estimate__type_support.cpp.o[0m
+[1.553s] [ 29%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/cyberrunner_interfaces/srv/dynamixel_reset__type_support.cpp.o[0m
+[1.555s] [ 30%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/cyberrunner_interfaces/msg/state_estimate_sub__type_support.cpp.o[0m
+[1.573s] [ 32%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/cyberrunner_interfaces/srv/detail/dynamixel_reset__type_support.cpp.o[0m
+[1.573s] [ 34%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/cyberrunner_interfaces/msg/detail/dynamixel_vel__type_support.cpp.o[0m
+[1.574s] [ 36%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/cyberrunner_interfaces/msg/detail/state_estimate__type_support.cpp.o[0m
+[1.574s] [ 38%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/cyberrunner_interfaces/msg/detail/state_estimate_sub__type_support.cpp.o[0m
+[1.594s] [ 41%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/cyberrunner_interfaces/msg/detail/dds_fastrtps/dynamixel_vel__type_support.cpp.o[0m
+[1.594s] [ 41%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/cyberrunner_interfaces/srv/detail/dds_fastrtps/dynamixel_reset__type_support.cpp.o[0m
+[1.594s] [ 43%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/cyberrunner_interfaces/msg/detail/dds_fastrtps/state_estimate__type_support.cpp.o[0m
+[1.595s] [ 45%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/cyberrunner_interfaces/msg/detail/dds_fastrtps/state_estimate_sub__type_support.cpp.o[0m
+[1.630s] [ 47%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/cyberrunner_interfaces/msg/state_estimate_sub__type_support.cpp.o[0m
+[1.632s] [ 49%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/cyberrunner_interfaces/srv/dynamixel_reset__type_support.cpp.o[0m
+[1.632s] [ 52%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/cyberrunner_interfaces/msg/state_estimate__type_support.cpp.o[0m
+[1.632s] [ 52%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/cyberrunner_interfaces/msg/dynamixel_vel__type_support.cpp.o[0m
+[1.655s] [ 54%] [32m[1mLinking CXX shared library libcyberrunner_interfaces__rosidl_typesupport_c.so[0m
+[1.673s] [ 56%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/cyberrunner_interfaces/msg/detail/dynamixel_vel__type_support_c.cpp.o[0m
+[1.673s] [ 58%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/cyberrunner_interfaces/srv/detail/dynamixel_reset__type_support_c.cpp.o[0m
+[1.673s] [ 60%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/cyberrunner_interfaces/msg/detail/state_estimate__type_support_c.cpp.o[0m
+[1.676s] [ 61%] [32mBuilding CXX object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/cyberrunner_interfaces/msg/detail/state_estimate_sub__type_support_c.cpp.o[0m
+[1.694s] [ 67%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/cyberrunner_interfaces/msg/detail/state_estimate__type_support.c.o[0m
+[1.694s] [ 67%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/cyberrunner_interfaces/msg/detail/dynamixel_vel__type_support.c.o[0m
+[1.694s] [ 67%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/cyberrunner_interfaces/msg/detail/state_estimate_sub__type_support.c.o[0m
+[1.695s] [ 69%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/cyberrunner_interfaces/srv/detail/dynamixel_reset__type_support.c.o[0m
+[1.696s] [ 69%] Built target cyberrunner_interfaces__rosidl_typesupport_c
+[1.726s] [ 70%] [32m[1mLinking C shared library libcyberrunner_interfaces__rosidl_typesupport_introspection_c.so[0m
+[1.745s] [ 70%] Built target cyberrunner_interfaces__rosidl_typesupport_introspection_c
+[1.810s] [ 72%] [32m[1mLinking CXX shared library libcyberrunner_interfaces__rosidl_typesupport_cpp.so[0m
+[1.841s] [ 72%] Built target cyberrunner_interfaces__rosidl_typesupport_cpp
+[1.850s] [ 74%] [32m[1mLinking CXX shared library libcyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.so[0m
+[1.895s] [ 74%] Built target cyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp
+[1.907s] [ 76%] [32m[1mLinking CXX shared library libcyberrunner_interfaces__rosidl_typesupport_introspection_cpp.so[0m
+[1.908s] [ 78%] [32m[1mLinking CXX shared library libcyberrunner_interfaces__rosidl_typesupport_fastrtps_c.so[0m
+[1.949s] [ 78%] Built target cyberrunner_interfaces__rosidl_typesupport_introspection_cpp
+[1.951s] [ 78%] Built target cyberrunner_interfaces__rosidl_typesupport_fastrtps_c
+[1.963s] [ 78%] Built target cyberrunner_interfaces
+[1.976s] [ 80%] [34m[1mGenerating Python code for ROS interfaces[0m
+[2.242s] [ 80%] Built target cyberrunner_interfaces__py
+[2.255s] [ 81%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_py.dir/rosidl_generator_py/cyberrunner_interfaces/srv/_dynamixel_reset_s.c.o[0m
+[2.255s] [ 83%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_py.dir/rosidl_generator_py/cyberrunner_interfaces/msg/_state_estimate_s.c.o[0m
+[2.255s] [ 85%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_py.dir/rosidl_generator_py/cyberrunner_interfaces/msg/_state_estimate_sub_s.c.o[0m
+[2.255s] [ 87%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_generator_py.dir/rosidl_generator_py/cyberrunner_interfaces/msg/_dynamixel_vel_s.c.o[0m
+[2.329s] [ 89%] [32m[1mLinking C shared library rosidl_generator_py/cyberrunner_interfaces/libcyberrunner_interfaces__rosidl_generator_py.so[0m
+[2.355s] [ 89%] Built target cyberrunner_interfaces__rosidl_generator_py
+[2.369s] [ 92%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[2.369s] [ 92%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[2.370s] [ 94%] [32mBuilding C object CMakeFiles/cyberrunner_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_c.c.o[0m
+[2.426s] [ 96%] [32m[1mLinking C shared library rosidl_generator_py/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.427s] [ 98%] [32m[1mLinking C shared library rosidl_generator_py/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.427s] [100%] [32m[1mLinking C shared library rosidl_generator_py/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[2.450s] [100%] Built target cyberrunner_interfaces__rosidl_typesupport_introspection_c__pyext
+[2.450s] [100%] Built target cyberrunner_interfaces__rosidl_typesupport_fastrtps_c__pyext
+[2.451s] [100%] Built target cyberrunner_interfaces__rosidl_typesupport_c__pyext
+[2.458s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces -- -j24 -l24
+[2.459s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces
+[2.465s] -- Install configuration: ""
+[2.465s] -- Execute custom install script
+[2.465s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/ament_index/resource_index/rosidl_interfaces/cyberrunner_interfaces
+[2.471s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__functions.h
+[2.475s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__struct.h
+[2.480s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__type_support.h
+[2.485s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__functions.h
+[2.489s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__struct.h
+[2.495s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__type_support.h
+[2.499s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__functions.h
+[2.504s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__struct.h
+[2.510s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__type_support.h
+[2.516s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/dynamixel_vel.h
+[2.520s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/rosidl_generator_c__visibility_control.h
+[2.524s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/state_estimate.h
+[2.529s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/state_estimate_sub.h
+[2.534s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__functions.h
+[2.540s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__struct.h
+[2.545s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__type_support.h
+[2.550s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/dynamixel_reset.h
+[2.555s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/library_path.sh
+[2.561s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/library_path.dsv
+[2.567s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__rosidl_typesupport_fastrtps_c.h
+[2.571s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__rosidl_typesupport_fastrtps_c.h
+[2.576s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__rosidl_typesupport_fastrtps_c.h
+[2.580s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[2.585s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__rosidl_typesupport_fastrtps_c.h
+[2.590s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__rosidl_typesupport_introspection_c.h
+[2.595s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__rosidl_typesupport_introspection_c.h
+[2.600s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__rosidl_typesupport_introspection_c.h
+[2.604s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[2.608s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__rosidl_typesupport_introspection_c.h
+[2.613s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__builder.hpp
+[2.618s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__struct.hpp
+[2.622s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__traits.hpp
+[2.627s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__type_support.hpp
+[2.632s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__builder.hpp
+[2.637s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__struct.hpp
+[2.642s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__traits.hpp
+[2.646s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__type_support.hpp
+[2.651s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__builder.hpp
+[2.656s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__struct.hpp
+[2.661s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__traits.hpp
+[2.665s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__type_support.hpp
+[2.669s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/dynamixel_vel.hpp
+[2.673s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/rosidl_generator_cpp__visibility_control.hpp
+[2.678s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/state_estimate.hpp
+[2.683s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/state_estimate_sub.hpp
+[2.688s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__builder.hpp
+[2.693s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__struct.hpp
+[2.697s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__traits.hpp
+[2.703s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__type_support.hpp
+[2.708s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/dynamixel_reset.hpp
+[2.714s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__rosidl_typesupport_fastrtps_cpp.hpp
+[2.718s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__rosidl_typesupport_fastrtps_cpp.hpp
+[2.724s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__rosidl_typesupport_fastrtps_cpp.hpp
+[2.728s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[2.734s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__rosidl_typesupport_fastrtps_cpp.hpp
+[2.739s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/dynamixel_vel__rosidl_typesupport_introspection_cpp.hpp
+[2.743s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate__rosidl_typesupport_introspection_cpp.hpp
+[2.748s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/msg/detail/state_estimate_sub__rosidl_typesupport_introspection_cpp.hpp
+[2.753s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/include/cyberrunner_interfaces/cyberrunner_interfaces/srv/detail/dynamixel_reset__rosidl_typesupport_introspection_cpp.hpp
+[2.757s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/pythonpath.sh
+[2.761s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/pythonpath.dsv
+[2.766s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info/PKG-INFO
+[2.770s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info/SOURCES.txt
+[2.774s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info/dependency_links.txt
+[2.778s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info/top_level.txt
+[2.784s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/__init__.py
+[2.789s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_c.c
+[2.793s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
+[2.797s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/_cyberrunner_interfaces_s.ep.rosidl_typesupport_introspection_c.c
+[2.801s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[2.806s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[2.811s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[2.816s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/libcyberrunner_interfaces__rosidl_generator_py.so
+[2.820s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/__init__.py
+[2.824s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_dynamixel_vel.py
+[2.828s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_dynamixel_vel_s.c
+[2.833s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate.py
+[2.838s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate_s.c
+[2.841s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate_sub.py
+[2.845s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate_sub_s.c
+[2.851s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv/__init__.py
+[2.856s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv/_dynamixel_reset.py
+[2.860s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv/_dynamixel_reset_s.c
+[2.864s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[2.864s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[2.864s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/cyberrunner_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[2.864s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/DynamixelVel.idl
+[2.868s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/StateEstimate.idl
+[2.873s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/StateEstimateSub.idl
+[2.878s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/srv/DynamixelReset.idl
+[2.884s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/DynamixelVel.msg
+[2.888s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/StateEstimate.msg
+[2.892s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/msg/StateEstimateSub.msg
+[2.896s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/srv/DynamixelReset.srv
+[2.901s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/srv/DynamixelReset_Request.msg
+[2.906s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/srv/DynamixelReset_Response.msg
+[2.911s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/ament_index/resource_index/package_run_dependencies/cyberrunner_interfaces
+[2.916s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/ament_index/resource_index/parent_prefix_path/cyberrunner_interfaces
+[2.920s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/ament_prefix_path.sh
+[2.926s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/ament_prefix_path.dsv
+[2.930s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/path.sh
+[2.935s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/environment/path.dsv
+[2.938s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/local_setup.bash
+[2.943s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/local_setup.sh
+[2.947s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/local_setup.zsh
+[2.952s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/local_setup.dsv
+[2.957s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.dsv
+[2.961s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/ament_index/resource_index/packages/cyberrunner_interfaces
+[2.967s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/rosidl_cmake-extras.cmake
+[2.971s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake
+[2.975s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake
+[2.979s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/ament_cmake_export_libraries-extras.cmake
+[2.984s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/ament_cmake_export_targets-extras.cmake
+[2.988s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[2.993s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[2.998s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfacesConfig.cmake
+[3.002s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfacesConfig-version.cmake
+[3.006s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.xml
+[3.010s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_generator_c.so
+[3.010s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_generator_c.so" to ""
+[3.010s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_fastrtps_c.so
+[3.010s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_fastrtps_c.so" to ""
+[3.010s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_introspection_c.so
+[3.010s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_introspection_c.so" to ""
+[3.010s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_c.so
+[3.010s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_c.so" to ""
+[3.011s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.so
+[3.011s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""
+[3.011s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_introspection_cpp.so
+[3.011s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_introspection_cpp.so" to ""
+[3.011s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_cpp.so
+[3.011s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_typesupport_cpp.so" to ""
+[3.030s] Listing '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/__init__.py'...
+[3.031s] Listing '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/__init__.py'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_dynamixel_vel.py'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate.py'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/msg/_state_estimate_sub.py'...
+[3.031s] Listing '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv/__init__.py'...
+[3.031s] Compiling '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces/srv/_dynamixel_reset.py'...
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_generator_py.so
+[3.033s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/libcyberrunner_interfaces__rosidl_generator_py.so" to ""
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_generator_cExport.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_generator_cExport-noconfig.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_typesupport_fastrtps_cExport.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_introspection_cExport.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[3.033s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_cExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_cExport-noconfig.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_generator_cppExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_introspection_cppExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_cppExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/cyberrunner_interfaces__rosidl_typesupport_cppExport-noconfig.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_generator_pyExport.cmake
+[3.034s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/cmake/export_cyberrunner_interfaces__rosidl_generator_pyExport-noconfig.cmake
+[3.035s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces

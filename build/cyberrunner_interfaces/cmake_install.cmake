@@ -211,7 +211,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   execute_process(
         COMMAND
         "/usr/bin/python3" "-m" "compileall"
-        "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/python3.12/site-packages/cyberrunner_interfaces"
+        "/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages/cyberrunner_interfaces"
       )
 endif()
 

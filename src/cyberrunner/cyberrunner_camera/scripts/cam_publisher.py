@@ -42,7 +42,7 @@ class CamPublisher(Node):
             if dur > 0.02:
                 print("publish image: {}".format(now - previous))
             previous = now
-            msg = self.br.cv2_to_imgmsg(frame)
+            msg = self.br.cv2_to_imgmsg(frame, encoding="bgr8")
             self.publisher.publish(msg)
 
             debug = True

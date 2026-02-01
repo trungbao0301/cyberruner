@@ -1,0 +1,23 @@
+[0.009s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+[0.037s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+[0.043s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera
+[0.048s] -- Install configuration: ""
+[0.048s] -- Execute custom install script
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/cyberrunner_camera/video_publisher.py
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/cyberrunner_camera/cam_publisher.py
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/package_run_dependencies/cyberrunner_camera
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/parent_prefix_path/cyberrunner_camera
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/ament_prefix_path.sh
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/ament_prefix_path.dsv
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/path.sh
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/path.dsv
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.bash
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.sh
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.zsh
+[0.048s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.dsv
+[0.048s] -- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.dsv
+[0.053s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/packages/cyberrunner_camera
+[0.054s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/cmake/cyberrunner_cameraConfig.cmake
+[0.054s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/cmake/cyberrunner_cameraConfig-version.cmake
+[0.054s] -- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.xml
+[0.055s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera

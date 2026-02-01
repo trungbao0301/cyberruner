@@ -343,19 +343,19 @@ ament_cmake_symlink_install_files("/home/trungbao/cyberrunner_ws/src/cyberrunner
 # install(FILES "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/cyberrunner_interfaces/environment")
 ament_cmake_symlink_install_files("/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces" FILES "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_environment_hooks/pythonpath.dsv" "DESTINATION" "share/cyberrunner_interfaces/environment")
 
-# install(DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_python/cyberrunner_interfaces/cyberrunner_interfaces.egg-info/" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces-0.0.0-py3.12.egg-info")
-ament_cmake_symlink_install_directory("/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces" DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_python/cyberrunner_interfaces/cyberrunner_interfaces.egg-info/" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces-0.0.0-py3.12.egg-info")
+# install(DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_python/cyberrunner_interfaces/cyberrunner_interfaces.egg-info/" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info")
+ament_cmake_symlink_install_directory("/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces" DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_python/cyberrunner_interfaces/cyberrunner_interfaces.egg-info/" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces-0.0.0-py3.10.egg-info")
 
-# install(DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_generator_py/cyberrunner_interfaces/" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
-ament_cmake_symlink_install_directory("/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces" DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_generator_py/cyberrunner_interfaces/" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
+# install(DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_generator_py/cyberrunner_interfaces/" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
+ament_cmake_symlink_install_directory("/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces" DIRECTORY "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_generator_py/cyberrunner_interfaces/" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces" "PATTERN_EXCLUDE" "*.pyc" "PATTERN_EXCLUDE" "__pycache__")
 
-# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_fastrtps_c__pyext" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces")
+# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_fastrtps_c__pyext" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces")
 include("/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
-# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_introspection_c__pyext" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces")
+# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_introspection_c__pyext" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces")
 include("/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_symlink_install_targets_1_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
-# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_c__pyext" "DESTINATION" "lib/python3.12/site-packages/cyberrunner_interfaces")
+# install("TARGETS" "cyberrunner_interfaces__rosidl_typesupport_c__pyext" "DESTINATION" "local/lib/python3.10/dist-packages/cyberrunner_interfaces")
 include("/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/ament_cmake_symlink_install_targets_2_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
 
 # install(FILES "/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces/rosidl_adapter/cyberrunner_interfaces/msg/DynamixelVel.idl" "DESTINATION" "share/cyberrunner_interfaces/msg")

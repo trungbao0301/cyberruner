@@ -1,0 +1,20 @@
+running develop
+running egg_info
+creating cyberrunner_hiwonder.egg-info
+writing cyberrunner_hiwonder.egg-info/PKG-INFO
+writing dependency_links to cyberrunner_hiwonder.egg-info/dependency_links.txt
+writing entry points to cyberrunner_hiwonder.egg-info/entry_points.txt
+writing requirements to cyberrunner_hiwonder.egg-info/requires.txt
+writing top-level names to cyberrunner_hiwonder.egg-info/top_level.txt
+writing manifest file 'cyberrunner_hiwonder.egg-info/SOURCES.txt'
+reading manifest file 'cyberrunner_hiwonder.egg-info/SOURCES.txt'
+writing manifest file 'cyberrunner_hiwonder.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner-hiwonder.egg-link (link to .)
+Installing hiwonder_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder
+
+Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder
+running symlink_data
+creating /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages
+symbolically linking /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/resource/cyberrunner_hiwonder -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages
+symbolically linking /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder

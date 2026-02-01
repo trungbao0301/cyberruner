@@ -1,4 +1,4 @@
-#!/home/trungbao/venvs/dreamer_ros/bin/python
+#!/usr/bin/python3
 # EASY-INSTALL-ENTRY-SCRIPT: 'cyberrunner-dreamer','console_scripts','test'
 import re
 import sys
