@@ -1,0 +1,19 @@
+[0.696s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data
+[0.877s] running develop
+[0.976s] running egg_info
+[0.982s] writing cyberrunner_pid.egg-info/PKG-INFO
+[0.982s] writing dependency_links to cyberrunner_pid.egg-info/dependency_links.txt
+[0.983s] writing entry points to cyberrunner_pid.egg-info/entry_points.txt
+[0.983s] writing requirements to cyberrunner_pid.egg-info/requires.txt
+[0.983s] writing top-level names to cyberrunner_pid.egg-info/top_level.txt
+[1.000s] reading manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[1.000s] writing manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[1.007s] running build_ext
+[1.007s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner-pid.egg-link (link to .)
+[1.008s] Installing click_target script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.009s] Installing pid_controller script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.009s] Installing route_wfocus_follow script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.009s] 
+[1.009s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_pid
+[1.009s] running symlink_data
+[1.041s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid' returned '0': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data

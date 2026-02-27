@@ -1,0 +1,19 @@
+[0.620s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data
+[0.793s] running develop
+[0.887s] running egg_info
+[0.894s] writing cyberrunner_pid.egg-info/PKG-INFO
+[0.894s] writing dependency_links to cyberrunner_pid.egg-info/dependency_links.txt
+[0.894s] writing entry points to cyberrunner_pid.egg-info/entry_points.txt
+[0.894s] writing requirements to cyberrunner_pid.egg-info/requires.txt
+[0.894s] writing top-level names to cyberrunner_pid.egg-info/top_level.txt
+[0.909s] reading manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[0.910s] writing manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[0.918s] running build_ext
+[0.918s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner-pid.egg-link (link to .)
+[0.919s] Installing click_target script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[0.919s] Installing pid_controller script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[0.919s] Installing route_wfocus_follow script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[0.919s] 
+[0.919s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_pid
+[0.919s] running symlink_data
+[0.939s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data

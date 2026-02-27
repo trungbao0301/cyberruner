@@ -1,0 +1,22 @@
+[0.981s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build --no-deps symlink_data
+[1.091s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.091s]   warnings.warn(msg)
+[1.180s] running develop
+[1.275s] running egg_info
+[1.282s] writing cyberrunner_dreamer.egg-info/PKG-INFO
+[1.283s] writing dependency_links to cyberrunner_dreamer.egg-info/dependency_links.txt
+[1.283s] writing entry points to cyberrunner_dreamer.egg-info/entry_points.txt
+[1.283s] writing requirements to cyberrunner_dreamer.egg-info/requires.txt
+[1.283s] writing top-level names to cyberrunner_dreamer.egg-info/top_level.txt
+[1.298s] reading manifest file 'cyberrunner_dreamer.egg-info/SOURCES.txt'
+[1.299s] writing manifest file 'cyberrunner_dreamer.egg-info/SOURCES.txt'
+[1.307s] running build_ext
+[1.307s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner-dreamer.egg-link (link to .)
+[1.308s] Installing eval script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.308s] Installing test script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.308s] Installing train script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.308s] Installing train_parallel script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.308s] 
+[1.308s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer
+[1.308s] running symlink_data
+[1.333s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer' returned '0': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build --no-deps symlink_data

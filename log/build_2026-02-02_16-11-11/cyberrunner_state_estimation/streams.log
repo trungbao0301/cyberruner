@@ -1,0 +1,21 @@
+[0.750s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data
+[0.831s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.831s]   warnings.warn(msg)
+[0.899s] running develop
+[0.984s] running egg_info
+[0.991s] writing cyberrunner_state_estimation.egg-info/PKG-INFO
+[0.991s] writing dependency_links to cyberrunner_state_estimation.egg-info/dependency_links.txt
+[0.991s] writing entry points to cyberrunner_state_estimation.egg-info/entry_points.txt
+[0.991s] writing requirements to cyberrunner_state_estimation.egg-info/requires.txt
+[0.991s] writing top-level names to cyberrunner_state_estimation.egg-info/top_level.txt
+[1.006s] reading manifest file 'cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.006s] writing manifest file 'cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.014s] running build_ext
+[1.014s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner-state-estimation.egg-link (link to .)
+[1.014s] Installing estimator script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.014s] Installing estimator_sub script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.014s] Installing select_markers script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.015s] 
+[1.015s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation
+[1.015s] running symlink_data
+[1.033s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation' returned '0': AMENT_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces LD_LIBRARY_PATH=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data

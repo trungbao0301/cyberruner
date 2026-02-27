@@ -1,0 +1,42 @@
+running develop
+Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner-pid.egg-link (link to .)
+running egg_info
+writing ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/PKG-INFO
+writing dependency_links to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/dependency_links.txt
+writing entry points to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/entry_points.txt
+writing requirements to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/requires.txt
+writing top-level names to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/top_level.txt
+reading manifest file '../../build/cyberrunner_pid/cyberrunner_pid.egg-info/SOURCES.txt'
+writing manifest file '../../build/cyberrunner_pid/cyberrunner_pid.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+copying cyberrunner_pid/click_target.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+copying cyberrunner_pid/route_wfocus_follow.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+copying cyberrunner_pid/pid_controller.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+copying cyberrunner_pid/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+copying cyberrunner_pid/maze_planner.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+running install
+running install_lib
+creating /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid/click_target.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid/route_wfocus_follow.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid/pid_controller.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+copying /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid/maze_planner.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid/click_target.py to click_target.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid/route_wfocus_follow.py to route_wfocus_follow.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid/pid_controller.py to pid_controller.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid/maze_planner.py to maze_planner.cpython-310.pyc
+running install_data
+copying resource/cyberrunner_pid -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/ament_index/resource_index/packages
+copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid
+running install_egg_info
+Copying ../../build/cyberrunner_pid/cyberrunner_pid.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid-0.0.0-py3.10.egg-info
+running install_scripts
+Installing click_target script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+Installing maze_planner script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+Installing pid_controller script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+Installing route_wfocus_follow script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/install.log'

@@ -25,6 +25,7 @@ setup(
             "estimator = cyberrunner_state_estimation.cyberrunner_state_estimation_node:main",
             "estimator_sub = cyberrunner_state_estimation.cyberrunner_state_estimation_subimg:main",
             "select_markers = cyberrunner_state_estimation.select_markers:main",
+ "state_estimation_node = cyberrunner_state_estimation.cyberrunner_state_estimation_node:main",
         ],
     },
 )
