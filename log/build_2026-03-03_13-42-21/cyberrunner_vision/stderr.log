@@ -1,0 +1,7 @@
+/home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+  File "/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/camera_node.py", line 126
+    f"  fx={fx}  fy={fy}")
+                         ^
+SyntaxError: f-string expression part cannot include a backslash
+
