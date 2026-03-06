@@ -24,6 +24,7 @@ setup(
             "path_node       = cyberrunner_vision.path_node:main",
             "marble_node     = cyberrunner_vision.marble_node:main",
             "controller_node = cyberrunner_vision.controller_node:main",
+            'tuner_node = cyberrunner_vision.tuner_node:main',
         ],
     },
 )

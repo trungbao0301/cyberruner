@@ -15,4 +15,12 @@ cyberrunner_vision/estimator_node.py
 cyberrunner_vision/marble_node.py
 cyberrunner_vision/ocam_params.py
 cyberrunner_vision/path_node.py
+cyberrunner_vision/tuner_node.py
+cyberrunner_vision.egg-info/PKG-INFO
+cyberrunner_vision.egg-info/SOURCES.txt
+cyberrunner_vision.egg-info/dependency_links.txt
+cyberrunner_vision.egg-info/entry_points.txt
+cyberrunner_vision.egg-info/requires.txt
+cyberrunner_vision.egg-info/top_level.txt
+cyberrunner_vision.egg-info/zip-safe
 resource/cyberrunner_vision

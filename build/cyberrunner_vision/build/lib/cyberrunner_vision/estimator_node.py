@@ -48,8 +48,8 @@ class EstimatorNode(Node):
 
         self.declare_parameter("config_path",
                                os.path.expanduser("~/cyberrunner_config.json"))
-        self.declare_parameter("board_width_mm",  400.0)
-        self.declare_parameter("board_height_mm", 400.0)
+        self.declare_parameter("board_width_mm",  320.0)
+        self.declare_parameter("board_height_mm", 295.0)
         self.declare_parameter("topdown_size",    1000)
         self.declare_parameter("show_window",     True)
 

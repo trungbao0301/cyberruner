@@ -1,0 +1,37 @@
+[0.581s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build
+[0.739s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.739s]   warnings.warn(msg)
+[0.844s] running develop
+[0.997s] Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner-hiwonder.egg-link (link to .)
+[1.046s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build
+[1.047s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_hiwonder build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log --single-version-externally-managed install_data --force
+[1.200s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.200s]   warnings.warn(msg)
+[1.268s] running egg_info
+[1.279s] writing ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/PKG-INFO
+[1.279s] writing dependency_links to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/dependency_links.txt
+[1.279s] writing entry points to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/entry_points.txt
+[1.279s] writing requirements to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/requires.txt
+[1.279s] writing top-level names to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/top_level.txt
+[1.301s] reading manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.302s] writing manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.302s] running build
+[1.302s] running build_py
+[1.302s] copying cyberrunner_hiwonder/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+[1.303s] copying cyberrunner_hiwonder/hiwonder_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+[1.303s] running install
+[1.306s] running install_lib
+[1.317s] creating /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+[1.317s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+[1.317s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder/hiwonder_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder
+[1.317s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder/__init__.py to __init__.cpython-310.pyc
+[1.317s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder/hiwonder_node.py to hiwonder_node.cpython-310.pyc
+[1.319s] running install_data
+[1.319s] copying resource/cyberrunner_hiwonder -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages
+[1.320s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder
+[1.320s] running install_egg_info
+[1.333s] Copying ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder-0.0.0-py3.10.egg-info
+[1.335s] running install_scripts
+[1.446s] Installing hiwonder_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder
+[1.446s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log'
+[1.483s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_hiwonder build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log --single-version-externally-managed install_data --force

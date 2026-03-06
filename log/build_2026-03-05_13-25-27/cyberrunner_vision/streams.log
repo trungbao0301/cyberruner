@@ -1,0 +1,56 @@
+[0.628s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build
+[0.774s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.774s]   warnings.warn(msg)
+[0.873s] running develop
+[1.020s] Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner-vision.egg-link (link to .)
+[1.083s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build
+[1.085s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_vision build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/install.log --single-version-externally-managed install_data --force
+[1.231s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.231s]   warnings.warn(msg)
+[1.304s] running egg_info
+[1.317s] writing ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/PKG-INFO
+[1.318s] writing dependency_links to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/dependency_links.txt
+[1.318s] writing entry points to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/entry_points.txt
+[1.318s] writing requirements to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/requires.txt
+[1.318s] writing top-level names to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/top_level.txt
+[1.340s] reading manifest file '../../build/cyberrunner_vision/cyberrunner_vision.egg-info/SOURCES.txt'
+[1.342s] writing manifest file '../../build/cyberrunner_vision/cyberrunner_vision.egg-info/SOURCES.txt'
+[1.342s] running build
+[1.342s] running build_py
+[1.342s] copying cyberrunner_vision/ocam_params.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.342s] copying cyberrunner_vision/controller_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.342s] copying cyberrunner_vision/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.342s] copying cyberrunner_vision/path_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.342s] copying cyberrunner_vision/estimator_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.343s] copying cyberrunner_vision/camera_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.343s] copying cyberrunner_vision/marble_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision
+[1.343s] running install
+[1.347s] running install_lib
+[1.359s] creating /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/ocam_params.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/controller_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/path_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/estimator_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/camera_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.359s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/marble_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision
+[1.360s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/ocam_params.py to ocam_params.cpython-310.pyc
+[1.360s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/controller_node.py to controller_node.cpython-310.pyc
+[1.361s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/__init__.py to __init__.cpython-310.pyc
+[1.362s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/path_node.py to path_node.cpython-310.pyc
+[1.364s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/estimator_node.py to estimator_node.cpython-310.pyc
+[1.367s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/camera_node.py to camera_node.cpython-310.pyc
+[1.369s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/marble_node.py to marble_node.cpython-310.pyc
+[1.369s] running install_data
+[1.370s] copying resource/cyberrunner_vision -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/ament_index/resource_index/packages
+[1.370s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision
+[1.370s] running install_egg_info
+[1.385s] Copying ../../build/cyberrunner_vision/cyberrunner_vision.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision-0.1.0-py3.10.egg-info
+[1.386s] running install_scripts
+[1.484s] Installing camera_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[1.484s] Installing controller_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[1.484s] Installing estimator_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[1.484s] Installing marble_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[1.484s] Installing path_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[1.484s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/install.log'
+[1.528s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_vision build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/install.log --single-version-externally-managed install_data --force

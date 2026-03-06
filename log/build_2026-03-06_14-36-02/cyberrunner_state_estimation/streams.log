@@ -1,0 +1,22 @@
+[0.809s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data
+[0.936s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.937s]   warnings.warn(msg)
+[1.029s] running develop
+[1.137s] running egg_info
+[1.148s] writing cyberrunner_state_estimation.egg-info/PKG-INFO
+[1.148s] writing dependency_links to cyberrunner_state_estimation.egg-info/dependency_links.txt
+[1.148s] writing entry points to cyberrunner_state_estimation.egg-info/entry_points.txt
+[1.148s] writing requirements to cyberrunner_state_estimation.egg-info/requires.txt
+[1.148s] writing top-level names to cyberrunner_state_estimation.egg-info/top_level.txt
+[1.168s] reading manifest file 'cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.169s] writing manifest file 'cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.178s] running build_ext
+[1.178s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner-state-estimation.egg-link (link to .)
+[1.180s] Installing estimator script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.180s] Installing estimator_sub script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.180s] Installing select_markers script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.180s] Installing state_estimation_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.181s] 
+[1.181s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation
+[1.181s] running symlink_data
+[1.206s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data

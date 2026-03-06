@@ -1,0 +1,24 @@
+[1.076s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data
+[1.393s] running develop
+[1.533s] running egg_info
+[1.541s] writing cyberrunner_pid.egg-info/PKG-INFO
+[1.541s] writing dependency_links to cyberrunner_pid.egg-info/dependency_links.txt
+[1.541s] writing entry points to cyberrunner_pid.egg-info/entry_points.txt
+[1.541s] writing requirements to cyberrunner_pid.egg-info/requires.txt
+[1.541s] writing top-level names to cyberrunner_pid.egg-info/top_level.txt
+[1.562s] reading manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[1.563s] writing manifest file 'cyberrunner_pid.egg-info/SOURCES.txt'
+[1.574s] running build_ext
+[1.574s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner-pid.egg-link (link to .)
+[1.574s] Installing click_target script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.574s] Installing maze_planner script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing orange_live_target_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing orange_track_mapper_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing path_follower_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing pid_controller script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing route_wfocus_follow script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] Installing solve script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.575s] 
+[1.575s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_pid
+[1.575s] running symlink_data
+[1.611s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data

@@ -179,11 +179,14 @@ class ControllerNode(Node):
     def _on_marble(self, msg):
         was_lost = self.marble_pos is None
         self.marble_pos = None if msg.z < 0 else (msg.x, msg.y)
-        # Reset PID when marble reappears to avoid windup from lost period
+        # Reset PID + path to beginning when marble reappears
         if was_lost and self.marble_pos is not None:
             self.pid_x.reset()
             self.pid_y.reset()
-            self.get_logger().info("Marble reacquired — PID reset")
+            if self.follower is not None:
+                self.follower.idx  = 0
+                self.follower.done = False
+            self.get_logger().info("Marble reacquired — PID reset, path restarted from beginning")
 
     def _on_waypoints(self, msg):
         self.waypoints = list(msg.data)
@@ -268,7 +271,7 @@ class ControllerNode(Node):
     def _stop_and_level(self):
         self.pid_x.reset()
         self.pid_y.reset()
-        self._send_servo(0, 0, time_ms=600)
+        self._send_servo(0, 0, time_ms=50)
 
     def _svc_start(self, req, res):
         if self.follower is None and self.waypoints:
