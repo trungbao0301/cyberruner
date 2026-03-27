@@ -1,0 +1,183 @@
+================================================================
+  CyberRunner — Launch Guide (Ubuntu)
+================================================================
+
+----------------------------------------------------------------
+STEP 1 — ONE-TIME SETUP (run once after fresh install)
+----------------------------------------------------------------
+
+# Install ROS2 dependencies
+sudo apt install ros-humble-cv-bridge \
+                 ros-humble-launch-ros \
+                 python3-tk \
+                 libhidapi-hidraw0 \
+                 gstreamer1.0-plugins-good \
+                 gstreamer1.0-plugins-bad \
+                 gstreamer1.0-libav
+
+# Install Python dependencies
+pip install numpy opencv-python hidapi
+
+# Allow hiwonder USB HID access without sudo
+echo 'SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="5750", MODE="0666"' \
+  | sudo tee /etc/udev/rules.d/99-hiwonder.rules
+sudo udevadm control --reload-rules && sudo udevadm trigger
+
+# Build the packages
+cd ~/cyberruner
+colcon build --packages-select cyberrunner_vision cyberrunner_hiwonder
+
+----------------------------------------------------------------
+STEP 2 — EVERY SESSION (run each time you open a terminal)
+----------------------------------------------------------------
+
+cd ~/cyberruner
+source /opt/ros/humble/setup.bash
+source install/setup.bash
+
+----------------------------------------------------------------
+STEP 3 — LAUNCH THE PIPELINE
+----------------------------------------------------------------
+
+# Default (camera on /dev/video0)
+ros2 launch cyberrunner_vision cyberrunner.launch.py
+
+# If your camera is on a different device
+ros2 launch cyberrunner_vision cyberrunner.launch.py device_path:=/dev/video2
+
+# If your board dimensions differ from 320x295 mm
+ros2 launch cyberrunner_vision cyberrunner.launch.py board_width_mm:=350.0 board_height_mm:=310.0
+
+# Headless (no monitor — disables all OpenCV/Tkinter windows)
+ros2 launch cyberrunner_vision cyberrunner.launch.py show_gui:=false
+
+----------------------------------------------------------------
+STEP 4 — FIRST-TIME CALIBRATION (only needed once, then auto-loads)
+----------------------------------------------------------------
+
+In the ESTIMATOR window that opens:
+  1. Click 4 STABLE corners (TL → TR → BR → BL) on the fixed frame
+  2. Click 4 MOVING corners (TL → TR → BR → BL) on the maze board
+  3. Press 's' to save  (saves to ~/cyberrunner_config.json)
+
+Next time you launch, it loads automatically — no need to click again.
+Press 'c' to clear and redo if the camera is moved.
+
+----------------------------------------------------------------
+STEP 5 — DRAW A PATH
+----------------------------------------------------------------
+
+In a new terminal (with source commands from Step 2):
+
+  ros2 service call /path/draw std_srvs/srv/Trigger {}
+
+In the PATH window:
+  Left click   → add waypoint
+  Right click  → remove nearest waypoint
+  z            → undo last point
+  x            → clear all
+  s            → save and close  (saves to ~/cyberrunner_path.json)
+  ESC          → close without saving
+
+Path auto-loads next time — no need to redraw.
+
+----------------------------------------------------------------
+STEP 6 — RUN THE CONTROLLER
+----------------------------------------------------------------
+
+  # Start marble following
+  ros2 service call /controller/start std_srvs/srv/Trigger {}
+
+  # Stop and level the board
+  ros2 service call /controller/stop std_srvs/srv/Trigger {}
+
+  # Check marble is detected and board is level
+  ros2 service call /controller/calibrate std_srvs/srv/Trigger {}
+
+----------------------------------------------------------------
+OPTIONAL — LIVE PARAMETER TUNING
+----------------------------------------------------------------
+
+In a new terminal:
+  ros2 run cyberrunner_vision tuner_node
+
+Sliders update controller parameters instantly while running.
+Useful parameters to tune first:
+  kp_x / kp_y     — increase if marble is sluggish
+  kd_x / kd_y     — increase if marble oscillates
+  max_output       — limits max board tilt (start low ~60)
+  arrival_px       — how close to waypoint before advancing (default 35)
+  kalman_r_meas    — from calibration Test 4 (measurement noise)
+  kalman_q_vel     — from calibration Test 6 (velocity tracking)
+
+----------------------------------------------------------------
+OPTIONAL — KALMAN CALIBRATION
+----------------------------------------------------------------
+
+In a new terminal (while camera + marble + estimator are running):
+  ros2 run cyberrunner_vision calibration_node
+
+  Test 4 — Marble held still  →  suggests kalman_r_meas
+  Test 5 — Pixel/mm check     →  verifies board dimensions
+  Test 6 — Roll marble freely →  suggests kalman_q_vel
+  all    — runs 5 → 4 → 6 in order
+
+----------------------------------------------------------------
+TROUBLESHOOTING
+----------------------------------------------------------------
+
+Camera not opening:
+  ls /dev/video*                          # find your device
+  v4l2-ctl --list-devices                 # more detail
+  ros2 launch ... device_path:=/dev/videoX
+
+Hiwonder not connecting:
+  lsusb | grep 0483                       # confirm device is detected
+  ls /dev/hidraw*                         # list HID devices
+  sudo chmod 666 /dev/hidraw0             # quick temp fix (re-run udev rule for permanent fix)
+
+Marble not detected:
+  ros2 run cyberrunner_vision tuner_node  # check HSV range
+  ros2 param set /marble_node hsv_lo "30,60,20"
+  ros2 param set /marble_node hsv_hi "90,255,255"
+
+Estimator window black / no image:
+  Check camera_node is running and publishing:
+  ros2 topic hz /camera/rectified
+
+Board tilt in estimator reads 0.0 always:
+  This is expected until ff_gain > 0 — PD control does not need it.
+
+Controller won't start:
+  "No path loaded"   → run /path/draw and draw at least 2 points
+  "Marble not found" → check marble_node is detecting (green circle in debug window)
+
+Rebuild after code changes:
+  cd ~/cyberruner
+  colcon build --packages-select cyberrunner_vision cyberrunner_hiwonder
+  source install/setup.bash
+
+================================================================
+  TOPIC / SERVICE REFERENCE
+================================================================
+
+Topics (read-only monitoring):
+  ros2 topic echo /marble/position          # marble x,y,radius
+  ros2 topic echo /estimator/state          # tilt, scale, homography
+  ros2 topic echo /path/waypoints           # loaded waypoints
+  ros2 topic hz   /camera/topdown           # check frame rate (~30 Hz)
+  ros2 topic echo /hiwonder/cmd             # servo commands being sent
+
+Services:
+  /controller/start      → begin path following
+  /controller/stop       → stop + level board
+  /controller/calibrate  → level board + report marble position
+  /path/draw             → open waypoint GUI
+  /path/save             → save current path to file
+  /path/load             → reload path from file
+  /path/clear            → clear all waypoints
+  /estimator/save_config → save clicked corners to file
+  /estimator/load_config → reload corners from file
+  /hiwonder/reset        → send servos to home (500, 500)
+
+================================================================

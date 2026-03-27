@@ -78,6 +78,29 @@ class HiwonderHID:
             self.dev = None
             return False
 
+    def move_two(self, id1: int, pos1: int, id2: int, pos2: int, time_ms: int = 300):
+        """Move two servos simultaneously in a single HID packet."""
+        if self.dev is None:
+            return False
+        pos1    = max(0, min(1000,  int(pos1)))
+        pos2    = max(0, min(1000,  int(pos2)))
+        time_ms = max(0, min(30000, int(time_ms)))
+        tL,  tH  = _u16(time_ms)
+        p1L, p1H = _u16(pos1)
+        p2L, p2H = _u16(pos2)
+        # LEN=0x0B: CMD(1)+COUNT(1)+TIME(2)+[ID+PL+PH](3)*2 = 11 bytes
+        pkt = bytes([0x55, 0x55, 0x0B, 0x03, 0x02,
+                     tL, tH,
+                     id1 & 0xFF, p1L, p1H,
+                     id2 & 0xFF, p2L, p2H])
+        try:
+            self._write64(pkt)
+            return True
+        except Exception as e:
+            print(f"[HID] Write error: {e} — will reconnect")
+            self.dev = None
+            return False
+
 
 class HiwonderNode(Node):
     def __init__(self):
@@ -128,8 +151,8 @@ class HiwonderNode(Node):
                     "Reconnect failed — check USB cable")
 
     def go_home(self, time_ms: int = 300):
-        self.hid.move(self.servo1_id, self.home_pos, time_ms)
-        self.hid.move(self.servo2_id, self.home_pos, time_ms)
+        self.hid.move_two(self.servo1_id, self.home_pos,
+                          self.servo2_id, self.home_pos, time_ms)
 
     def on_cmd(self, msg: Int32MultiArray):
         data = list(msg.data)
@@ -147,15 +170,12 @@ class HiwonderNode(Node):
         time_ms = int(data[2]) if len(data) >= 3 else 80
 
         self.get_logger().info(
-            f"CMD: id1={self.servo1_id} pos1={pos1}  "
-            f"id2={self.servo2_id} pos2={pos2}  t={time_ms}ms",
-            throttle_duration_sec=0.5)
+            f"CMD: [{self.servo1_id}]={pos1}  [{self.servo2_id}]={pos2}  t={time_ms}ms",
+            throttle_duration_sec=2.0)
 
-        ok1 = self.hid.move(self.servo1_id, pos1, time_ms)
-        ok2 = self.hid.move(self.servo2_id, pos2, time_ms)
+        ok = self.hid.move_two(self.servo1_id, pos1, self.servo2_id, pos2, time_ms)
 
-        # If write failed, mark as disconnected
-        if not ok1 or not ok2:
+        if not ok:
             self.hid.dev = None
 
     def on_reset(self, request, response):

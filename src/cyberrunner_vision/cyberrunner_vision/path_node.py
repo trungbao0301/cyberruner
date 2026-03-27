@@ -45,6 +45,7 @@ class PathNode(Node):
         self.gui_open       = False
         self.hover_pt       = None
         self.current_wp_idx = -1   # -1 = not running / reset, show all points
+        self._last_published = []  # track last published waypoints to avoid redundant publishes
         self.WIN            = "PATH  (click=add  rclick=remove  z=undo  x=clear  s=save  ESC=close)"
 
         # ROS I/O
@@ -101,7 +102,6 @@ class PathNode(Node):
     # ── GUI tick ──────────────────────────────────────────────────────────────
     def _tick(self):
         if not self.gui_open:
-            self._publish_waypoints()
             return
         if self.last_td is None:
             return
@@ -217,6 +217,9 @@ class PathNode(Node):
 
     # ── Publish ───────────────────────────────────────────────────────────────
     def _publish_waypoints(self):
+        if self.waypoints == self._last_published:
+            return
+        self._last_published = [pt[:] for pt in self.waypoints]
         msg = Float32MultiArray()
         msg.data = [float(v) for pt in self.waypoints for v in pt]
         self.pub_wp.publish(msg)

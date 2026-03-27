@@ -22,42 +22,36 @@ from rcl_interfaces.srv import SetParameters
 # ── Parameter definitions ─────────────────────────────────────────────────────
 # (name, min, max, default, step, is_bool)
 PARAMS = [
-    # PID gains
-    ("kp_x",           0.0,   20.0,    0.3,   0.01,  False),
-    ("kp_y",           0.0,   20.0,    0.3,   0.01,  False),
-    ("ki_x",           0.0,   0.05,   0.001, 0.001, False),
-    ("ki_y",           0.0,   0.05,   0.001, 0.001, False),
-    ("kd_x",           0.0,   1.0,    0.1,   0.005, False),
-    ("kd_y",           0.0,   1.0,    0.1,   0.005, False),
+    # PD gains
+    ("kp_x",        0.0,  20.0,  0.3,  0.01, False),
+    ("kp_y",        0.0,  20.0,  0.3,  0.01, False),
+    ("kd_x",        0.0,  1.0,   0.08, 0.005, False),
+    ("kd_y",        0.0,  1.0,   0.08, 0.005, False),
 
     # Output / path
-    ("max_output",     10,    300,    80,    1,     False),
-    ("arrival_px",     5.0,   150.0,  45.0,  1.0,   False),
-
-    # Constant speed braking X
-    ("max_speed_px_x", 10.0,  1000.0, 120.0, 5.0,   False),
-    ("brake_output_x", 0.0,   500.0,  25.0,  1.0,   False),
-
-    # Constant speed braking Y
-    ("max_speed_px_y", 10.0,  1000.0, 120.0, 5.0,   False),
-    ("brake_output_y", 0.0,   500.0,  25.0,  1.0,   False),
+    ("max_output",  10,   300,   80,   1,    False),
+    ("arrival_px",  5.0,  150.0, 35.0, 1.0,  False),
 
     # Misc
-    ("cmd_time_ms",    5,     200,    20,    1,     False),
-    ("ff_gain",        0.0,   2.0,    0.0,   0.05,  False),
-    ("invert_x",       0,     1,      0,     1,     True),
-    ("invert_y",       0,     1,      1,     1,     True),
+    ("cmd_time_ms",      5,    200,   20,    1,     False),
+    ("ff_gain",          0.0,  2.0,   0.0,   0.05,  False),
+    ("invert_x",         0,    1,     0,     1,     True),
+    ("invert_y",         0,    1,     1,     1,     True),
+
+    # Kalman filter
+    ("kalman_q_pos",     0.1,  50.0,  1.0,   0.1,   False),
+    ("kalman_q_vel",     1.0,  500.0, 50.0,  1.0,   False),
+    ("kalman_r_meas",    1.0,  200.0, 10.0,  1.0,   False),
 ]
 
 GROUPS = {
-    "── PID Gains ──":      ["kp_x", "kp_y", "ki_x", "ki_y", "kd_x", "kd_y"],
-    "── Output / Path ──":  ["max_output", "arrival_px"],
-    "── Braking X ──":      ["max_speed_px_x", "brake_output_x"],
-    "── Braking Y ──":      ["max_speed_px_y", "brake_output_y"],
-    "── Misc ──":           ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
+    "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
+    "── Output / Path ──": ["max_output", "arrival_px"],
+    "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
+    "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
 }
 
-INT_PARAMS = {"max_output", "cmd_time_ms"}
+INT_PARAMS  = {"max_output", "cmd_time_ms"}
 
 
 # ── ROS2 helpers ──────────────────────────────────────────────────────────────

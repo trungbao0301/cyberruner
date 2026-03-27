@@ -73,6 +73,14 @@ class EstimatorNode(Node):
         # Flat (level) moving quad saved when board is level → used for tilt
         self.moving_flat  = None  # np.array shape (4,2)
 
+        # Cached flat-reference dimensions in topdown space (recomputed only when
+        # H or moving_flat changes, not every frame)
+        self._flat_ref_wh = None  # (ref_w, ref_h) in topdown px
+
+        # Optical-flow tracking state for moving corners
+        self._track_pts  = None  # np.array (4,1,2) float32 — current tracked positions
+        self._prev_gray  = None  # previous greyscale frame for LK optical flow
+
         # Window name
         self.WIN = "ESTIMATOR  (click 4 stable → 4 moving | c=clear | s=save)"
 
@@ -129,6 +137,10 @@ class EstimatorNode(Node):
                 # Save the flat reference (board level) on first completion
                 if self.moving_flat is None:
                     self.moving_flat = np.array(self.moving_pts, dtype=np.float32)
+                    self._update_flat_ref()
+                # Reset optical flow so it re-initialises from the new clicked positions
+                self._track_pts = None
+                self._prev_gray = None
                 self.get_logger().info(
                     "All 8 points set! Estimator active.")
         else:
@@ -150,6 +162,9 @@ class EstimatorNode(Node):
             self.moving_pts.clear()
             self.H            = None
             self.moving_flat  = None
+            self._flat_ref_wh = None
+            self._track_pts   = None
+            self._prev_gray   = None
             self.state        = np.zeros(15, dtype=np.float32)
             self.get_logger().info("Cleared. Click 4 stable corners first.")
 
@@ -217,7 +232,21 @@ class EstimatorNode(Node):
         dst = np.array([[ox,oy],[mx,oy],[mx,my],[ox,my]], dtype=np.float32)
         self.H, _ = cv2.findHomography(src, dst)
         self.state[6:15] = self.H.flatten().astype(np.float32)
-        self.state[2]    = float(self.TOP / self.bw)
+        self.state[2]    = float(scale)   # px/mm — matches scale used in homography
+        self._update_flat_ref()
+
+    # ── Flat reference cache ──────────────────────────────────────────────────
+    def _update_flat_ref(self):
+        """Pre-compute flat-reference dimensions in topdown space.
+        Called only when H or moving_flat changes — not every frame."""
+        if self.H is None or self.moving_flat is None:
+            self._flat_ref_wh = None
+            return
+        flat_td = cv2.perspectiveTransform(
+            self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
+        ref_w = max(float(np.linalg.norm(flat_td[1] - flat_td[0])), 1.0)
+        ref_h = max(float(np.linalg.norm(flat_td[3] - flat_td[0])), 1.0)
+        self._flat_ref_wh = (ref_w, ref_h)
 
     # ── Tilt estimation from moving quad skew ────────────────────────────────
     def _estimate_tilt(self):
@@ -246,18 +275,12 @@ class EstimatorNode(Node):
         left_h   = float(np.linalg.norm(td_pts[3] - td_pts[0]))
         right_h  = float(np.linalg.norm(td_pts[2] - td_pts[1]))
 
-        # Normalise against flat reference if available
-        if self.moving_flat is not None:
-            flat_td = cv2.perspectiveTransform(
-                self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
-            ref_w = float(np.linalg.norm(flat_td[1] - flat_td[0]))
-            ref_h = float(np.linalg.norm(flat_td[3] - flat_td[0]))
+        # Normalise against flat reference — use cached value (recomputed only on click)
+        if self._flat_ref_wh is not None:
+            ref_w, ref_h = self._flat_ref_wh
         else:
-            ref_w = (top_w + bot_w) / 2.0
-            ref_h = (left_h + right_h) / 2.0
-
-        ref_w = max(ref_w, 1.0)
-        ref_h = max(ref_h, 1.0)
+            ref_w = max((top_w + bot_w) / 2.0, 1.0)
+            ref_h = max((left_h + right_h) / 2.0, 1.0)
 
         # Ratio → angle (small angle approx, scale factor ~30 for degrees)
         tilt_x = math.degrees(math.atan2(bot_w - top_w,   ref_w * 2.0))
@@ -276,6 +299,31 @@ class EstimatorNode(Node):
             tdm = self.bridge.cv2_to_imgmsg(td, encoding="bgr8")
             tdm.header = msg.header
             self.pub_td.publish(tdm)
+
+        # Optical-flow tracking: update moving_pts from live image
+        if len(self.moving_pts) == 4:
+            gray = cv2.cvtColor(rect, cv2.COLOR_BGR2GRAY)
+
+            if self._track_pts is None or self._prev_gray is None:
+                # First frame after click — seed tracker from clicked positions
+                self._track_pts = np.array(
+                    self.moving_pts, dtype=np.float32).reshape(-1, 1, 2)
+                self._prev_gray = gray
+            else:
+                new_pts, status, _ = cv2.calcOpticalFlowPyrLK(
+                    self._prev_gray, gray, self._track_pts, None)
+
+                if new_pts is not None and status is not None and status.sum() == 4:
+                    self._track_pts = new_pts
+                    self.moving_pts = self._track_pts.reshape(-1, 2).tolist()
+                else:
+                    # Lost tracking — keep last known positions, re-seed next frame
+                    self.get_logger().warn(
+                        "Optical flow lost moving corners — re-seeding",
+                        throttle_duration_sec=2.0)
+                    self._prev_gray = gray
+
+                self._prev_gray = gray
 
         # Tilt + origin
         if len(self.moving_pts) == 4:

@@ -1,3 +1,4 @@
+from glob import glob
 from setuptools import find_packages, setup
 
 package_name = "cyberrunner_vision"
@@ -9,6 +10,7 @@ setup(
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
         ("share/" + package_name, ["package.xml"]),
+        ("share/" + package_name + "/launch", glob("launch/*.launch.py")),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
@@ -24,7 +26,8 @@ setup(
             "path_node       = cyberrunner_vision.path_node:main",
             "marble_node     = cyberrunner_vision.marble_node:main",
             "controller_node = cyberrunner_vision.controller_node:main",
-            'tuner_node = cyberrunner_vision.tuner_node:main',
+            "tuner_node        = cyberrunner_vision.tuner_node:main",
+            "calibration_node  = cyberrunner_vision.calibration_node:main",
         ],
     },
 )

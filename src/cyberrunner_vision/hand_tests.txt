@@ -1,0 +1,129 @@
+================================================================
+  CyberRunner — Hand Calibration Tests
+================================================================
+Complete these BEFORE running the automated calibration_node.
+Results feed directly into controller parameters.
+
+----------------------------------------------------------------
+TEST 1 — Servo Units to Tilt Angle Mapping
+----------------------------------------------------------------
+Goal: Find how many servo units = 1 degree of board tilt.
+This tells you what max_output=80 means physically.
+
+What you need:
+  - Phone with a level app (e.g. "Bubble Level")
+  - ROS2 terminal to send servo commands
+
+Steps:
+  1. Level the board manually. Confirm the level app reads 0.0 deg.
+
+  2. Open a terminal and send a fixed servo command:
+       ros2 topic pub /hiwonder/cmd std_msgs/msg/Int32MultiArray \
+         "{data: [550, 500, 200]}"
+     (This sets servo1=550 centre+50, servo2=500 centre. X-axis only.)
+
+  3. Place the phone level on the board. Record the angle.
+
+  4. Repeat for servo positions: 600, 650, 450, 400
+     (centre=500, so these are +100, +150, -50, -100 from centre)
+
+  5. Fill in this table:
+     -----------------------------------------------
+     Servo value | Offset from 500 | Measured angle
+     -----------------------------------------------
+         550     |     +50         |  _____ deg
+         600     |     +100        |  _____ deg
+         650     |     +150        |  _____ deg
+         450     |     -50         |  _____ deg
+         400     |     -100        |  _____ deg
+     -----------------------------------------------
+
+  6. Calculate ratio:
+       degrees_per_unit = measured_angle / offset
+       Example: if 600 gives 5 deg → 5/100 = 0.05 deg/unit
+
+  7. Record your result:
+       Servo units per degree: _______  (e.g. 20 units/deg)
+       Degrees per unit:       _______  (e.g. 0.05 deg/unit)
+
+  8. Sanity check:
+       max_output=80 units × your_deg_per_unit = _____ deg max tilt
+       This should be between 5–20 degrees. If not, adjust max_output.
+
+  9. Repeat steps 2–6 for servo2 (Y-axis):
+       ros2 topic pub /hiwonder/cmd std_msgs/msg/Int32MultiArray \
+         "{data: [500, 550, 200]}"
+     Y-axis ratio may differ from X if servos are different.
+
+Return board to centre when done:
+  ros2 topic pub /hiwonder/cmd std_msgs/msg/Int32MultiArray \
+    "{data: [500, 500, 200]}"
+
+----------------------------------------------------------------
+TEST 2 — Board Physical Dimensions
+----------------------------------------------------------------
+Goal: Verify board_width_mm and board_height_mm in estimator_node
+match the actual playable area of the maze.
+
+What you need:
+  - Ruler or tape measure
+
+Steps:
+  1. Measure the PLAYABLE area of the maze board (not the whole
+     board — only the area the marble can travel).
+
+     Width  (left to right): _______ mm
+     Height (top to bottom): _______ mm
+
+  2. Compare with current parameters in estimator_node:
+       board_width_mm  = 320.0   (default)
+       board_height_mm = 295.0   (default)
+
+  3. If your measurements differ by more than 5mm, update the
+     parameters in your launch file or node arguments.
+
+  Note: These values directly affect the px/mm scale used by the
+  estimator. Wrong values = wrong tilt estimates.
+
+----------------------------------------------------------------
+TEST 3 — Visual Loop Latency Check
+----------------------------------------------------------------
+Goal: Get a rough feel for total system lag (camera → servo).
+No measurements needed — this is a qualitative check.
+
+Steps:
+  1. Start the full pipeline:
+       camera_node, estimator_node, marble_node, controller_node
+
+  2. Start the controller with a simple 2-point path
+     (start to end, straight line).
+
+  3. Tap the board sharply by hand while watching the servo react.
+
+  4. Estimate the delay between your tap and the servo moving.
+
+  Interpretation:
+    < 80ms  — Good. Kd can be relatively high.
+    80–150ms — Typical. Be careful with high Kd values.
+    > 150ms — High lag. Keep Kd lower to avoid oscillation.
+              Consider reducing cmd_time_ms in tuner.
+
+  Record your estimate: _______ ms
+
+----------------------------------------------------------------
+SUMMARY — Fill in before tuning
+----------------------------------------------------------------
+  Servo units per degree (X): _______
+  Servo units per degree (Y): _______
+  Board width  (measured):    _______ mm
+  Board height (measured):    _______ mm
+  Estimated loop latency:     _______ ms
+
+  Then run the automated tests:
+    ros2 run cyberrunner_vision calibration_node
+
+  After all tests, use results to set in tuner_node:
+    kalman_r_meas  = (from Test 4)
+    kalman_q_vel   = (from Test 6)
+    max_output     = latency × max_reasonable_tilt × units_per_deg
+================================================================

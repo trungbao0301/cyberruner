@@ -1,23 +1,20 @@
 """
-controller_node  (segment-following path + constant speed-limit braking)
-------------------------------------------------------------------------
+controller_node  (segment-following PD + Kalman filter)
+--------------------------------------------------------
 Servo mapping (Hiwonder 0-1000, centre=500):
   servo 1 → X-axis tilt  (right = >500, left = <500)
   servo 2 → Y-axis tilt  (down  = >500, up   = <500)
 
 Control idea:
-- Follow path segments instead of directly chasing only the next waypoint
-- Target = closest point on current segment + small lookahead forward
-- Braking is separate for X and Y:
-    if marble speed on an axis exceeds a threshold,
-    apply a fixed opposite brake tilt on that axis
+- Kalman filter estimates marble position + velocity from noisy detections
+- Follow path segments with lookahead; PD error in filtered position space
+- Kd acts on Kalman velocity directly (no noisy finite-difference needed)
 
-PID error is in PIXELS (topdown space, 0-1000px).
+PD error is in PIXELS (topdown space, 0-1000px).
 Output is directly in servo UNITS (not degrees).
 
 Parameters:
   kp_x, kp_y          float
-  ki_x, ki_y          float
   kd_x, kd_y          float
   max_output          int
   servo_center        int
@@ -27,11 +24,9 @@ Parameters:
   ff_gain             float
   invert_x            bool
   invert_y            bool
-
-  max_speed_px_x      float   speed threshold for X braking
-  max_speed_px_y      float   speed threshold for Y braking
-  brake_output_x      float   fixed brake output on X
-  brake_output_y      float   fixed brake output on Y
+  kalman_q_pos        float   process noise — position (lower = trust model more)
+  kalman_q_vel        float   process noise — velocity (higher = track fast moves)
+  kalman_r_meas       float   measurement noise (higher = trust camera less)
 
 Services:
   /controller/start      Trigger
@@ -39,52 +34,111 @@ Services:
   /controller/calibrate  Trigger
 """
 
-import math
 import time
 import numpy as np
 import rclpy
 from rclpy.node import Node
+from rcl_interfaces.msg import SetParametersResult
 from std_msgs.msg import Float32MultiArray, Int32MultiArray
 from geometry_msgs.msg import Point
 from std_srvs.srv import Trigger
 
 
-# ── PID ───────────────────────────────────────────────────────────────────────
-class PID:
-    def __init__(self, kp, ki, kd, lo, hi):
+# ── PD ────────────────────────────────────────────────────────────────────────
+class PD:
+    def __init__(self, kp, kd, lo, hi):
         self.kp = kp
-        self.ki = ki
         self.kd = kd
         self.lo = lo
         self.hi = hi
-        self._i = 0.0
         self._prev = 0.0
 
     def reset(self):
-        self._i = 0.0
         self._prev = 0.0
 
-    def set_gains_and_limits(self, kp, ki, kd, lo, hi):
+    def set_gains_and_limits(self, kp, kd, lo, hi):
         self.kp = kp
-        self.ki = ki
         self.kd = kd
         self.lo = lo
         self.hi = hi
 
-        i_max = self.hi / max(abs(self.ki), 1e-9)
-        self._i = float(np.clip(self._i, -i_max, i_max))
+    def update(self, err, vel):
+        """err: position error in px. vel: Kalman velocity in px/s (same axis)."""
+        out = self.kp * err - self.kd * vel
+        return float(np.clip(out, self.lo, self.hi))
 
-    def update(self, err, dt):
+
+# ── 2D Constant-velocity Kalman filter ───────────────────────────────────────
+class KalmanFilter2D:
+    """
+    State:       [x, y, vx, vy]
+    Measurement: [x, y]
+    Model:       constant velocity  (x += vx*dt, y += vy*dt)
+
+    Tuning:
+      q_pos   — how much the position can drift from the model per step
+                (low = smooth position, high = follows detections faster)
+      q_vel   — how much velocity can change per step
+                (high = tracks acceleration, low = smoother velocity)
+      r_meas  — how noisy the camera measurement is
+                (high = trust model more, low = trust camera more)
+    """
+    def __init__(self, q_pos=1.0, q_vel=50.0, r_meas=10.0):
+        self.x = np.zeros(4)           # [x, y, vx, vy]
+        self.P = np.eye(4) * 500.0     # large initial uncertainty
+        self.q_pos  = q_pos
+        self.q_vel  = q_vel
+        self.r_meas = r_meas
+        self.initialized = False
+        # H is constant — we always measure [x, y] from state [x, y, vx, vy]
+        self._H = np.array([[1, 0, 0, 0],
+                            [0, 1, 0, 0]], dtype=np.float64)
+        self._I4 = np.eye(4)
+
+    def reset(self):
+        self.x[:] = 0.0
+        self.P = np.eye(4) * 500.0
+        self.initialized = False
+
+    def init(self, x, y):
+        self.x = np.array([x, y, 0.0, 0.0])
+        self.P = np.eye(4) * 500.0
+        self.initialized = True
+
+    def update(self, x_meas, y_meas, dt):
         dt = max(dt, 1e-3)
 
-        i_max = self.hi / max(abs(self.ki), 1e-9)
-        self._i = float(np.clip(self._i + err * dt, -i_max, i_max))
+        if not self.initialized:
+            self.init(x_meas, y_meas)
+            return self.x[0], self.x[1], self.x[2], self.x[3]
 
-        d = (err - self._prev) / dt
-        self._prev = err
+        # ── Predict ──────────────────────────────────────────────────────────
+        F = np.array([[1, 0, dt, 0],
+                      [0, 1, 0, dt],
+                      [0, 0, 1,  0],
+                      [0, 0, 0,  1]], dtype=np.float64)
 
-        out = self.kp * err + self.ki * self._i + self.kd * d
-        return float(np.clip(out, self.lo, self.hi))
+        Q = np.diag([self.q_pos, self.q_pos, self.q_vel, self.q_vel])
+
+        x_pred = F @ self.x
+        P_pred = F @ self.P @ F.T + Q
+
+        # ── Update ───────────────────────────────────────────────────────────
+        # H = [[1,0,0,0],[0,1,0,0]] — exploit structure with slices, avoid matmul
+        inn = np.array([x_meas, y_meas]) - x_pred[:2]          # innovation (2,)
+        S   = P_pred[:2, :2] + np.eye(2) * self.r_meas         # S = H P H' + R (2×2)
+
+        # Analytical 2×2 inverse — faster than np.linalg.inv for fixed-size matrix
+        det = S[0, 0] * S[1, 1] - S[0, 1] * S[1, 0]
+        S_inv = np.array([[ S[1, 1], -S[0, 1]],
+                          [-S[1, 0],  S[0, 0]]]) / det
+
+        K = P_pred[:, :2] @ S_inv                              # Kalman gain (4×2)
+
+        self.x = x_pred + K @ inn
+        self.P = P_pred - K @ P_pred[:2, :]                    # = (I - KH) P_pred
+
+        return self.x[0], self.x[1], self.x[2], self.x[3]  # x, y, vx, vy
 
 
 # ── Segment-following path follower ──────────────────────────────────────────
@@ -174,8 +228,6 @@ class ControllerNode(Node):
         # Parameters
         self.declare_parameter("kp_x", 0.3)
         self.declare_parameter("kp_y", 0.3)
-        self.declare_parameter("ki_x", 0.001)
-        self.declare_parameter("ki_y", 0.001)
         self.declare_parameter("kd_x", 0.08)
         self.declare_parameter("kd_y", 0.08)
         self.declare_parameter("max_output", 80)
@@ -186,14 +238,12 @@ class ControllerNode(Node):
         self.declare_parameter("ff_gain", 0.0)
         self.declare_parameter("invert_x", False)
         self.declare_parameter("invert_y", True)
-
-        self.declare_parameter("max_speed_px_x", 100.0)
-        self.declare_parameter("max_speed_px_y", 100.0)
-        self.declare_parameter("brake_output_x", 20.0)
-        self.declare_parameter("brake_output_y", 20.0)
+        self.declare_parameter("kalman_q_pos",  1.0)
+        self.declare_parameter("kalman_q_vel",  50.0)
+        self.declare_parameter("kalman_r_meas", 10.0)
 
         # State
-        self.marble_pos = None
+        self.marble_pos = None   # raw position from marble_node
         self.waypoints = None
         self.est_state = None
         self.follower = None
@@ -201,15 +251,19 @@ class ControllerNode(Node):
 
         self.marble_lost_frames = 0
         self.marble_lost_threshold = 30
+        self._last_wp_idx = None
 
         self.t_last = time.time()
-        self.prev_marble_pos = None
 
-        # PID objects created once
-        self.pid_x = PID(0.0, 0.0, 0.0, -80.0, 80.0)
-        self.pid_y = PID(0.0, 0.0, 0.0, -80.0, 80.0)
+        # PD objects created once
+        self.pid_x = PD(0.0, 0.0, -80.0, 80.0)
+        self.pid_y = PD(0.0, 0.0, -80.0, 80.0)
+
+        # Kalman filter for marble position + velocity
+        self.kalman = KalmanFilter2D()
 
         self._load_params()
+        self.add_on_set_parameters_callback(self._on_params_changed)
 
         # ROS
         self.sub_marble = self.create_subscription(
@@ -241,6 +295,10 @@ class ControllerNode(Node):
             "  /controller/calibrate  → send centre, check marble pos\n"
         )
 
+    def _on_params_changed(self, params):
+        self._load_params()
+        return SetParametersResult(successful=True)
+
     def _load_params(self):
         mx = float(self.get_parameter("max_output").value)
 
@@ -252,21 +310,18 @@ class ControllerNode(Node):
         self.invert_x = bool(self.get_parameter("invert_x").value)
         self.invert_y = bool(self.get_parameter("invert_y").value)
 
-        self.max_speed_px_x = float(self.get_parameter("max_speed_px_x").value)
-        self.max_speed_px_y = float(self.get_parameter("max_speed_px_y").value)
-        self.brake_output_x = float(self.get_parameter("brake_output_x").value)
-        self.brake_output_y = float(self.get_parameter("brake_output_y").value)
+        self.kalman.q_pos  = float(self.get_parameter("kalman_q_pos").value)
+        self.kalman.q_vel  = float(self.get_parameter("kalman_q_vel").value)
+        self.kalman.r_meas = float(self.get_parameter("kalman_r_meas").value)
 
         self.pid_x.set_gains_and_limits(
             float(self.get_parameter("kp_x").value),
-            float(self.get_parameter("ki_x").value),
             float(self.get_parameter("kd_x").value),
             -mx,
             mx,
         )
         self.pid_y.set_gains_and_limits(
             float(self.get_parameter("kp_y").value),
-            float(self.get_parameter("ki_y").value),
             float(self.get_parameter("kd_y").value),
             -mx,
             mx,
@@ -277,17 +332,17 @@ class ControllerNode(Node):
             self.follower.lookahead = self.lookahead_px
 
     def _publish_wp_idx(self, idx):
+        if idx == self._last_wp_idx:
+            return
+        self._last_wp_idx = idx
         msg = Int32MultiArray()
         msg.data = [int(idx)]
         self.pub_wp_idx.publish(msg)
 
-    def _reset_motion_history(self):
-        self.prev_marble_pos = None
-
     def _reset_all(self):
         self.pid_x.reset()
         self.pid_y.reset()
-        self._reset_motion_history()
+        self.kalman.reset()
 
         if self.follower is not None:
             self.follower.reset()
@@ -351,8 +406,6 @@ class ControllerNode(Node):
         return pos1, pos2
 
     def _tick(self):
-        self._load_params()
-
         now = time.time()
         dt = max(now - self.t_last, 1e-3)
         self.t_last = now
@@ -368,7 +421,13 @@ class ControllerNode(Node):
             )
             return
 
-        target, seg_idx, done = self.follower.update(self.marble_pos)
+        # Kalman: fuse raw detection → filtered position + velocity estimate
+        kx, ky, vx, vy = self.kalman.update(
+            self.marble_pos[0], self.marble_pos[1], dt
+        )
+        filtered_pos = (kx, ky)
+
+        target, seg_idx, done = self.follower.update(filtered_pos)
         self._publish_wp_idx(seg_idx)
 
         if done:
@@ -378,44 +437,14 @@ class ControllerNode(Node):
             self.active = False
             return
 
-        err_x = float(target[0] - self.marble_pos[0])
-        err_y = float(target[1] - self.marble_pos[1])
+        err_x = float(target[0] - kx)
+        err_y = float(target[1] - ky)
 
-        out_x = self.pid_x.update(err_x, dt)
-        out_y = self.pid_y.update(err_y, dt)
+        # PD uses Kalman velocity directly — no noisy finite-difference needed
+        out_x = self.pid_x.update(err_x, vx)
+        out_y = self.pid_y.update(err_y, vy)
 
-        # Constant speed-limit braking
-        brake_x = 0.0
-        brake_y = 0.0
-        vel_x = 0.0
-        vel_y = 0.0
-
-        if self.prev_marble_pos is not None:
-            vel_x = (self.marble_pos[0] - self.prev_marble_pos[0]) / dt
-            vel_y = (self.marble_pos[1] - self.prev_marble_pos[1]) / dt
-
-            # Oppose marble velocity:
-            # vel > 0  -> brake output negative
-            # vel < 0  -> brake output positive
-            if abs(vel_x) > self.max_speed_px_x:
-                brake_x = -math.copysign(self.brake_output_x, vel_x)
-                self.get_logger().warn(
-                    f"HIGH SPEED X: {round(vel_x,1)} px/s  braking: {round(brake_x,1)}",
-                    throttle_duration_sec=0.2,
-                )
-
-            if abs(vel_y) > self.max_speed_px_y:
-                brake_y = math.copysign(self.brake_output_y, vel_y)
-                self.get_logger().warn(
-                    f"HIGH SPEED Y: {round(vel_y,1)} px/s  braking: {round(brake_y,1)}",
-                    throttle_duration_sec=0.2,
-                )
-
-        self.prev_marble_pos = self.marble_pos
-
-        mx = float(self.get_parameter("max_output").value)
-        out_x = float(np.clip(out_x + brake_x, -mx, mx))
-        out_y = float(np.clip(out_y + brake_y, -mx, mx))
+        mx = float(self.pid_x.hi)
 
         # Feed-forward
         if self.est_state and len(self.est_state) > 5 and self.ff_gain > 0 and self.est_state[5] > 0.5:
@@ -428,19 +457,18 @@ class ControllerNode(Node):
         self._send_servo(out_x, out_y)
 
         self.get_logger().info(
-            "seg=" + str(seg_idx) + "/" + str(len(self.follower.path) - 2)
-            + "  target=(" + str(round(float(target[0]))) + "," + str(round(float(target[1]))) + ")"
-            + "  err=(" + str(round(err_x, 1)) + "," + str(round(err_y, 1)) + ")"
-            + "  vel=(" + str(round(vel_x, 1)) + "," + str(round(vel_y, 1)) + ")"
-            + "  brake=(" + str(round(brake_x, 1)) + "," + str(round(brake_y, 1)) + ")"
-            + "  out=(" + str(round(out_x, 1)) + "," + str(round(out_y, 1)) + ")",
+            f"seg={seg_idx}/{len(self.follower.path)-2}"
+            f"  target=({round(float(target[0]))},{round(float(target[1]))})"
+            f"  err=({round(err_x,1)},{round(err_y,1)})"
+            f"  vel=({round(vx,1)},{round(vy,1)})"
+            f"  out=({round(out_x,1)},{round(out_y,1)})",
             throttle_duration_sec=0.2,
         )
 
     def _stop_and_level(self):
         self.pid_x.reset()
         self.pid_y.reset()
-        self._reset_motion_history()
+        self.kalman.reset()
         self._send_servo(0, 0, time_ms=60)
 
     def _svc_start(self, req, res):
@@ -463,7 +491,7 @@ class ControllerNode(Node):
 
         self.pid_x.reset()
         self.pid_y.reset()
-        self._reset_motion_history()
+        self.kalman.reset()
         self.follower.reset()
         self.active = True
         self.t_last = time.time()

@@ -92,13 +92,14 @@ def open_camera(index: int, device_path: str, width: int, height: int, fps: int)
 class CameraNode(Node):
     def __init__(self):
         super().__init__("camera_node")
-        self.declare_parameter("camera_index", 0)
-        self.declare_parameter("device_path",  "")     # e.g. "/dev/video0"
-        self.declare_parameter("fx",     850.0)
-        self.declare_parameter("fy",     750.0)
-        self.declare_parameter("width",  OCAM["width"])
-        self.declare_parameter("height", OCAM["height"])
-        self.declare_parameter("fps",    30)
+        self.declare_parameter("camera_index",  0)
+        self.declare_parameter("device_path",   "")     # e.g. "/dev/video0"
+        self.declare_parameter("fx",      850.0)
+        self.declare_parameter("fy",      750.0)
+        self.declare_parameter("width",   OCAM["width"])
+        self.declare_parameter("height",  OCAM["height"])
+        self.declare_parameter("fps",     30)
+        self.declare_parameter("show_preview", True)    # set False on headless machines
 
         idx    = self.get_parameter("camera_index").value
         dpath  = self.get_parameter("device_path").value
@@ -128,6 +129,7 @@ class CameraNode(Node):
             "  resolution=" + str(actual_w) + "x" + str(actual_h) +
             "  fx=" + str(fx) + "  fy=" + str(fy))
 
+        self.show_preview = bool(self.get_parameter("show_preview").value)
         self.pub   = self.create_publisher(Image, "/camera/rectified", 2)
         self.timer = self.create_timer(1.0 / fps, self._tick)
 
@@ -144,9 +146,9 @@ class CameraNode(Node):
         msg.header.frame_id = "camera"
         self.pub.publish(msg)
 
-        # Live preview (press q to hide, does not stop the node)
-        cv2.imshow("RECTIFIED", rect)
-        cv2.waitKey(1)
+        if self.show_preview:
+            cv2.imshow("RECTIFIED", rect)
+            cv2.waitKey(1)
 
     def destroy_node(self):
         if self.cap:
