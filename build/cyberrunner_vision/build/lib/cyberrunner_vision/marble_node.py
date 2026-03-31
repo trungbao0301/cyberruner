@@ -20,9 +20,9 @@ import numpy as np
 import cv2
 import rclpy
 from rclpy.node import Node
+from rcl_interfaces.msg import SetParametersResult
 from sensor_msgs.msg import Image
 from geometry_msgs.msg import Point
-from std_msgs.msg import Float32MultiArray
 from cv_bridge import CvBridge
 
 
@@ -39,18 +39,22 @@ class MarbleNode(Node):
         self.declare_parameter("show_debug",   True)
 
         self._refresh_params()
-        self.bridge     = CvBridge()
+        self.add_on_set_parameters_callback(self._on_params_changed)
+        self.bridge = CvBridge()
+
+        # Morphological kernels — built once, reused every frame
+        self._k3 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
+        self._k5 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
         # Tracking state
-        self.smooth_x   = None   # smoothed position
+        self.smooth_x   = None
         self.smooth_y   = None
         self.smooth_r   = None
-        self.lost_count = 0      # frames since last detection
+        self.lost_count = 0
 
         self.sub_td = self.create_subscription(
             Image, "/camera/topdown", self._on_image, 2)
         self.pub = self.create_publisher(Point, "/marble/position", 2)
-        self.create_timer(2.0, self._refresh_params)
         self.get_logger().info("MarbleNode started  (deep green mode)")
 
     def _refresh_params(self):
@@ -64,15 +68,20 @@ class MarbleNode(Node):
         self.alpha      = float(self.get_parameter("smooth_alpha").value)
         self.lost_max   = self.get_parameter("lost_frames").value
         self.show_debug = self.get_parameter("show_debug").value
+        self._area_min  = np.pi * self.min_r ** 2 * 0.4
+        self._area_max  = np.pi * self.max_r ** 2 * 1.8
+
+    def _on_params_changed(self, params):
+        self._refresh_params()
+        return SetParametersResult(successful=True)
 
     def _on_image(self, msg):
         td  = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
-        raw = self._detect(td)
+        raw, mask = self._detect(td)
 
         if raw is not None:
             cx, cy, r = raw
             self.lost_count = 0
-            # Exponential moving average smoothing
             if self.smooth_x is None:
                 self.smooth_x = float(cx)
                 self.smooth_y = float(cy)
@@ -91,28 +100,25 @@ class MarbleNode(Node):
             pt.y = self.smooth_y
             pt.z = self.smooth_r
         else:
-            pt.z = -1.0   # truly lost
+            pt.z = -1.0
 
         self.pub.publish(pt)
 
         if self.show_debug:
-            self._show_debug(td, raw, pt)
+            self._show_debug(td, mask, raw, pt)
 
     def _detect(self, bgr):
         """
-        Returns (cx, cy, radius) or None.
+        Returns ((cx, cy, radius), mask) or (None, mask).
         Stage 1: HSV mask → largest valid blob
         Stage 2: Hough circles on green-channel enhanced image
         """
         hsv  = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(hsv, self.hsv_lo, self.hsv_hi)
 
-        # Morphological cleanup — more aggressive for noisy dark colours
-        k3 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3))
-        k5 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
-        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  k3, iterations=2)
-        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, k5, iterations=3)
-        mask = cv2.dilate(mask, k3, iterations=1)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  self._k3, iterations=2)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self._k5, iterations=3)
+        mask = cv2.dilate(mask, self._k3, iterations=1)
 
         # ── Stage 1: blob in HSV mask ────────────────────────────────────────
         cnts, _ = cv2.findContours(
@@ -120,26 +126,24 @@ class MarbleNode(Node):
         best = None
         for c in cnts:
             area = cv2.contourArea(c)
-            if area < np.pi * self.min_r ** 2 * 0.4:
+            if area < self._area_min:
                 continue
-            if area > np.pi * self.max_r ** 2 * 1.8:
+            if area > self._area_max:
                 continue
             (x, y), r = cv2.minEnclosingCircle(c)
-            # Circularity check — real marble should be round
             perimeter = cv2.arcLength(c, True)
             if perimeter == 0:
                 continue
             circularity = 4 * np.pi * area / (perimeter * perimeter)
-            if circularity < 0.45:   # 1.0 = perfect circle
+            if circularity < 0.45:
                 continue
             if self.min_r <= r <= self.max_r:
                 if best is None or area > best[3]:
                     best = (int(x), int(y), float(r), area)
         if best:
-            return best[0], best[1], best[2]
+            return (best[0], best[1], best[2]), mask
 
-        # ── Stage 2: Hough on green-channel (green marble pops here) ─────────
-        # Enhance green channel contrast before Hough
+        # ── Stage 2: Hough on green-channel ──────────────────────────────────
         b, g, r_ch = cv2.split(bgr)
         green_enh = cv2.subtract(g, cv2.addWeighted(b, 0.5, r_ch, 0.5, 0))
         green_enh = cv2.GaussianBlur(green_enh, (5, 5), 0)
@@ -151,30 +155,24 @@ class MarbleNode(Node):
             minRadius=self.min_r, maxRadius=self.max_r)
         if circles is not None:
             c = np.round(circles[0, 0]).astype(int)
-            # Verify this circle overlaps with the HSV mask
             cx, cy, cr = int(c[0]), int(c[1]), int(c[2])
             roi_mask = mask[max(0,cy-cr):cy+cr, max(0,cx-cr):cx+cr]
             if roi_mask.size > 0 and roi_mask.mean() > 10:
-                return cx, cy, float(cr)
+                return (cx, cy, float(cr)), mask
 
-        return None
+        return None, mask
 
-    def _show_debug(self, bgr, raw, pt):
+    def _show_debug(self, bgr, mask, raw, pt):
         dbg = bgr.copy()
 
-        # Draw HSV mask as green tint
-        hsv  = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv, self.hsv_lo, self.hsv_hi)
         tint = np.zeros_like(bgr)
-        tint[:, :, 1] = mask   # green channel
+        tint[:, :, 1] = mask
         dbg  = cv2.addWeighted(dbg, 0.75, tint, 0.25, 0)
 
-        # Raw detection (white)
         if raw:
             cv2.circle(dbg, (int(raw[0]), int(raw[1])), int(raw[2]),
                        (255, 255, 255), 1)
 
-        # Smoothed position (bright green)
         if pt.z > 0:
             cx, cy, r = int(pt.x), int(pt.y), int(pt.z)
             cv2.circle(dbg, (cx, cy), r,  (0, 255, 0), 2)

@@ -1,0 +1,37 @@
+[0.861s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/cyberrunner_dreamer build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/install.log --single-version-externally-managed install_data
+[0.974s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.974s]   warnings.warn(msg)
+[1.033s] running egg_info
+[1.042s] writing ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/PKG-INFO
+[1.042s] writing dependency_links to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/dependency_links.txt
+[1.043s] writing entry points to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/entry_points.txt
+[1.043s] writing requirements to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/requires.txt
+[1.043s] writing top-level names to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/top_level.txt
+[1.065s] reading manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+[1.065s] writing manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+[1.066s] running build
+[1.066s] running build_py
+[1.066s] copying cyberrunner_dreamer/path.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/env.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/test_motors.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/train.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/eval.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.066s] copying cyberrunner_dreamer/cyberrunner_layout.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.067s] copying cyberrunner_dreamer/train_parallel.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+[1.067s] running install
+[1.069s] running install_lib
+[1.079s] running install_data
+[1.079s] copying resource/cyberrunner_dreamer -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/ament_index/resource_index/packages
+[1.080s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+[1.080s] copying data/path_0002_hard.pkl -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+[1.087s] running install_egg_info
+[1.100s] removing '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer-0.0.0-py3.10.egg-info' (and everything under it)
+[1.100s] Copying ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer-0.0.0-py3.10.egg-info
+[1.100s] running install_scripts
+[1.177s] Installing eval script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.178s] Installing test script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.178s] Installing train script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.178s] Installing train_parallel script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+[1.178s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/install.log'
+[1.196s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/cyberrunner_dreamer build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/install.log --single-version-externally-managed install_data

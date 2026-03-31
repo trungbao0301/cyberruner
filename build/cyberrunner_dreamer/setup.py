@@ -1,1 +1,0 @@
-/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer/setup.py

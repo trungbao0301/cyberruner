@@ -1,0 +1,35 @@
+/home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+writing ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/PKG-INFO
+writing dependency_links to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/dependency_links.txt
+writing entry points to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/entry_points.txt
+writing requirements to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/requires.txt
+writing top-level names to ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/top_level.txt
+reading manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+writing manifest file '../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info/SOURCES.txt'
+running build
+running build_py
+copying cyberrunner_dreamer/path.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/env.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/test_motors.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/train.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/eval.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/cyberrunner_layout.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+copying cyberrunner_dreamer/train_parallel.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build/lib/cyberrunner_dreamer
+running install
+running install_lib
+running install_data
+copying resource/cyberrunner_dreamer -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/ament_index/resource_index/packages
+copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+copying data/path_0002_hard.pkl -> /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer
+running install_egg_info
+removing '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../../build/cyberrunner_dreamer/cyberrunner_dreamer.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages/cyberrunner_dreamer-0.0.0-py3.10.egg-info
+running install_scripts
+Installing eval script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing test script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing train script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+Installing train_parallel script to /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer
+writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/install.log'

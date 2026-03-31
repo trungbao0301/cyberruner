@@ -1,0 +1,45 @@
+/home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running egg_info
+writing ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/PKG-INFO
+writing dependency_links to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/dependency_links.txt
+writing entry points to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/entry_points.txt
+writing requirements to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/requires.txt
+writing top-level names to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/top_level.txt
+reading manifest file '../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/SOURCES.txt'
+writing manifest file '../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/SOURCES.txt'
+running build
+running build_py
+copying cyberrunner_state_estimation/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+copying cyberrunner_state_estimation/cyberrunner_state_estimation_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+copying cyberrunner_state_estimation/select_markers.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+copying cyberrunner_state_estimation/cyberrunner_state_estimation_subimg.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+copying cyberrunner_state_estimation/core/masking.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/plate_pose.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/detection.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/measurements.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/estimation_pipeline.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/estimator.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/core/gaussian_robust.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+copying cyberrunner_state_estimation/utils/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+copying cyberrunner_state_estimation/utils/divers.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+copying cyberrunner_state_estimation/utils/ocam_model.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+copying cyberrunner_state_estimation/utils/camera_pose_visualizer.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+copying cyberrunner_state_estimation/utils/profiler_file.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+copying cyberrunner_state_estimation/utils/anim_3d.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+running install
+running install_lib
+running install_data
+copying resource/cyberrunner_state_estimation -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/ament_index/resource_index/packages
+copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation
+copying calib/calib_results_cyberrunner.txt -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation
+running install_egg_info
+removing '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation-0.0.0-py3.10.egg-info
+running install_scripts
+Installing estimator script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+Installing estimator_sub script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+Installing select_markers script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+Installing state_estimation_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/install.log'

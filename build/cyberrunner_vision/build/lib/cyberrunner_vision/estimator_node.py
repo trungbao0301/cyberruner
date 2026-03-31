@@ -52,12 +52,17 @@ class EstimatorNode(Node):
         self.declare_parameter("board_height_mm", 295.0)
         self.declare_parameter("topdown_size",    1000)
         self.declare_parameter("show_window",     True)
+        self.declare_parameter("blue_lo",         "90,80,50")
+        self.declare_parameter("blue_hi",         "130,255,255")
+        self.declare_parameter("min_dot_radius",  4)
+        self.declare_parameter("max_dot_radius",  30)
 
         self.config_path  = self.get_parameter("config_path").value
         self.bw           = self.get_parameter("board_width_mm").value
         self.bh           = self.get_parameter("board_height_mm").value
         self.TOP          = self.get_parameter("topdown_size").value
         self.show_window  = self.get_parameter("show_window").value
+        self._reload_blue_params()
 
         self.bridge       = CvBridge()
         self.last_rect    = None   # latest rectified frame
@@ -73,15 +78,24 @@ class EstimatorNode(Node):
         # Flat (level) moving quad saved when board is level → used for tilt
         self.moving_flat  = None  # np.array shape (4,2)
 
+        # Cached flat-reference dimensions in topdown space (recomputed only when
+        # H or moving_flat changes, not every frame)
+        self._flat_ref_wh = None  # (ref_w, ref_h) in topdown px
+
+        # Morphological kernel for blue-dot detection
+        self._k5 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
+
         # Window name
         self.WIN = "ESTIMATOR  (click 4 stable → 4 moving | c=clear | s=save)"
 
         # ROS I/O
         self.sub = self.create_subscription(
             Image, "/camera/rectified", self._on_image, 2)
-        self.pub_td    = self.create_publisher(Image, "/camera/topdown", 2)
-        self.pub_state = self.create_publisher(
+        self.pub_td             = self.create_publisher(Image, "/camera/topdown", 2)
+        self.pub_state          = self.create_publisher(
             Float32MultiArray, "/estimator/state", 2)
+        self.pub_board_xfm      = self.create_publisher(
+            Float32MultiArray, "/estimator/board_transform", 2)
         self.create_service(Trigger, "/estimator/save_config", self._svc_save)
         self.create_service(Trigger, "/estimator/load_config", self._svc_load)
 
@@ -129,6 +143,7 @@ class EstimatorNode(Node):
                 # Save the flat reference (board level) on first completion
                 if self.moving_flat is None:
                     self.moving_flat = np.array(self.moving_pts, dtype=np.float32)
+                    self._update_flat_ref()
                 self.get_logger().info(
                     "All 8 points set! Estimator active.")
         else:
@@ -150,6 +165,7 @@ class EstimatorNode(Node):
             self.moving_pts.clear()
             self.H            = None
             self.moving_flat  = None
+            self._flat_ref_wh = None
             self.state        = np.zeros(15, dtype=np.float32)
             self.get_logger().info("Cleared. Click 4 stable corners first.")
 
@@ -217,7 +233,21 @@ class EstimatorNode(Node):
         dst = np.array([[ox,oy],[mx,oy],[mx,my],[ox,my]], dtype=np.float32)
         self.H, _ = cv2.findHomography(src, dst)
         self.state[6:15] = self.H.flatten().astype(np.float32)
-        self.state[2]    = float(self.TOP / self.bw)
+        self.state[2]    = float(scale)   # px/mm — matches scale used in homography
+        self._update_flat_ref()
+
+    # ── Flat reference cache ──────────────────────────────────────────────────
+    def _update_flat_ref(self):
+        """Pre-compute flat-reference dimensions in topdown space.
+        Called only when H or moving_flat changes — not every frame."""
+        if self.H is None or self.moving_flat is None:
+            self._flat_ref_wh = None
+            return
+        flat_td = cv2.perspectiveTransform(
+            self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
+        ref_w = max(float(np.linalg.norm(flat_td[1] - flat_td[0])), 1.0)
+        ref_h = max(float(np.linalg.norm(flat_td[3] - flat_td[0])), 1.0)
+        self._flat_ref_wh = (ref_w, ref_h)
 
     # ── Tilt estimation from moving quad skew ────────────────────────────────
     def _estimate_tilt(self):
@@ -246,24 +276,78 @@ class EstimatorNode(Node):
         left_h   = float(np.linalg.norm(td_pts[3] - td_pts[0]))
         right_h  = float(np.linalg.norm(td_pts[2] - td_pts[1]))
 
-        # Normalise against flat reference if available
-        if self.moving_flat is not None:
-            flat_td = cv2.perspectiveTransform(
-                self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
-            ref_w = float(np.linalg.norm(flat_td[1] - flat_td[0]))
-            ref_h = float(np.linalg.norm(flat_td[3] - flat_td[0]))
+        # Normalise against flat reference — use cached value (recomputed only on click)
+        if self._flat_ref_wh is not None:
+            ref_w, ref_h = self._flat_ref_wh
         else:
-            ref_w = (top_w + bot_w) / 2.0
-            ref_h = (left_h + right_h) / 2.0
-
-        ref_w = max(ref_w, 1.0)
-        ref_h = max(ref_h, 1.0)
+            ref_w = max((top_w + bot_w) / 2.0, 1.0)
+            ref_h = max((left_h + right_h) / 2.0, 1.0)
 
         # Ratio → angle (small angle approx, scale factor ~30 for degrees)
         tilt_x = math.degrees(math.atan2(bot_w - top_w,   ref_w * 2.0))
         tilt_y = math.degrees(math.atan2(right_h - left_h, ref_h * 2.0))
 
         return tilt_x, tilt_y, float(origin[0]), float(origin[1])
+
+    # ── Blue-dot detection ────────────────────────────────────────────────────
+    def _reload_blue_params(self):
+        lo = list(map(int, self.get_parameter("blue_lo").value.split(",")))
+        hi = list(map(int, self.get_parameter("blue_hi").value.split(",")))
+        self._blue_lo     = np.array(lo, dtype=np.uint8)
+        self._blue_hi     = np.array(hi, dtype=np.uint8)
+        self._min_dot_r   = float(self.get_parameter("min_dot_radius").value)
+        self._max_dot_r   = float(self.get_parameter("max_dot_radius").value)
+
+    def _detect_blue_dots(self, rect):
+        """Detect 4 blue corner markers in rectified image.
+        Only searches inside the stable quad to avoid picking up outer frame corners.
+        Returns [[x,y]×4] in TL,TR,BR,BL order, or None."""
+        hsv  = cv2.cvtColor(rect, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, self._blue_lo, self._blue_hi)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  self._k5, iterations=1)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self._k5, iterations=2)
+
+        # Restrict search to inside the stable quad so outer frame corners are excluded
+        if len(self.stable_pts) == 4:
+            roi = np.zeros(mask.shape, dtype=np.uint8)
+            pts = np.array(self.stable_pts, dtype=np.int32)
+            cv2.fillPoly(roi, [pts], 255)
+            mask = cv2.bitwise_and(mask, roi)
+
+        # Debug window — shows masked region so HSV range can be tuned
+        if self.show_window:
+            dbg = rect.copy()
+            dbg[mask > 0] = (0, 255, 255)
+            cv2.imshow("BLUE DOT MASK", dbg)
+
+        cnts, _ = cv2.findContours(
+            mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+        area_min = math.pi * self._min_dot_r ** 2 * 0.3
+        area_max = math.pi * self._max_dot_r ** 2 * 2.0
+        dots = []
+        for c in cnts:
+            area = cv2.contourArea(c)
+            if area < area_min or area > area_max:
+                continue
+            (x, y), _ = cv2.minEnclosingCircle(c)
+            dots.append((float(x), float(y), area))
+
+        if len(dots) < 4:
+            return None
+
+        # Keep 4 largest blobs
+        dots.sort(key=lambda d: d[2], reverse=True)
+        pts = [(d[0], d[1]) for d in dots[:4]]
+
+        # Sort into TL, TR, BR, BL
+        pts.sort(key=lambda p: p[1])      # top-2 / bottom-2
+        top = sorted(pts[:2], key=lambda p: p[0])
+        bot = sorted(pts[2:], key=lambda p: p[0])
+        return [[top[0][0], top[0][1]],   # TL
+                [top[1][0], top[1][1]],   # TR
+                [bot[1][0], bot[1][1]],   # BR
+                [bot[0][0], bot[0][1]]]   # BL
 
     # ── Image callback ────────────────────────────────────────────────────────
     def _on_image(self, msg):
@@ -277,12 +361,36 @@ class EstimatorNode(Node):
             tdm.header = msg.header
             self.pub_td.publish(tdm)
 
+        # Blue-dot detection: update moving_pts from live image
+        if len(self.moving_pts) == 4:
+            detected = self._detect_blue_dots(rect)
+            if detected is not None:
+                self.moving_pts = detected
+            else:
+                self.get_logger().warn(
+                    "Blue dots not found — keeping last position",
+                    throttle_duration_sec=2.0)
+
         # Tilt + origin
         if len(self.moving_pts) == 4:
             tx, ty, ox, oy = self._estimate_tilt()
             self.state[0] = ox;  self.state[1] = oy
             self.state[3] = tx;  self.state[4] = ty
             self.state[5] = 1.0
+
+            # Board transform: flat reference → current (both in topdown space)
+            # Lets the controller keep waypoints aligned with the moving maze
+            if self.H is not None and self.moving_flat is not None:
+                flat_td = cv2.perspectiveTransform(
+                    self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
+                cur_td  = cv2.perspectiveTransform(
+                    np.array(self.moving_pts, dtype=np.float32).reshape(-1, 1, 2),
+                    self.H).reshape(-1, 2)
+                M, _ = cv2.findHomography(flat_td, cur_td)
+                if M is not None:
+                    xfm = Float32MultiArray()
+                    xfm.data = M.flatten().astype(float).tolist()
+                    self.pub_board_xfm.publish(xfm)
         else:
             self.state[5] = 0.0
 
@@ -292,7 +400,8 @@ class EstimatorNode(Node):
 
     # ── Persistence ───────────────────────────────────────────────────────────
     def _save_config(self, path):
-        with open(path, "w") as f:
+        tmp = path + ".tmp"
+        with open(tmp, "w") as f:
             json.dump({
                 "stable_pts":      self.stable_pts,
                 "moving_pts":      self.moving_pts,
@@ -302,6 +411,7 @@ class EstimatorNode(Node):
                 "board_height_mm": self.bh,
                 "topdown_size":    self.TOP,
             }, f, indent=2)
+        os.replace(tmp, path)
 
     def _load_config(self, path):
         with open(path) as f:

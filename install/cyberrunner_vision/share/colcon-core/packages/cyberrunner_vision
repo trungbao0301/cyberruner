@@ -1,1 +1,1 @@
-cv_bridge:geometry_msgs:rclpy:sensor_msgs:std_msgs:std_srvs
+cv_bridge:geometry_msgs:launch:launch_ros:rcl_interfaces:rclpy:sensor_msgs:std_msgs:std_srvs

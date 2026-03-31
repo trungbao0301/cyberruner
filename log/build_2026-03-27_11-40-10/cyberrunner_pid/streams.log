@@ -1,0 +1,39 @@
+[0.933s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_pid': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_pid build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/install.log --single-version-externally-managed install_data
+[1.097s] running egg_info
+[1.106s] writing ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/PKG-INFO
+[1.107s] writing dependency_links to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/dependency_links.txt
+[1.107s] writing entry points to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/entry_points.txt
+[1.107s] writing requirements to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/requires.txt
+[1.107s] writing top-level names to ../../build/cyberrunner_pid/cyberrunner_pid.egg-info/top_level.txt
+[1.127s] reading manifest file '../../build/cyberrunner_pid/cyberrunner_pid.egg-info/SOURCES.txt'
+[1.128s] writing manifest file '../../build/cyberrunner_pid/cyberrunner_pid.egg-info/SOURCES.txt'
+[1.128s] running build
+[1.128s] running build_py
+[1.128s] copying cyberrunner_pid/solve.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.128s] copying cyberrunner_pid/click_target.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.128s] copying cyberrunner_pid/route_wfocus_follow.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.128s] copying cyberrunner_pid/pid_controller.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] copying cyberrunner_pid/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] copying cyberrunner_pid/orange_live_target_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] copying cyberrunner_pid/maze_planner.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] copying cyberrunner_pid/path_follower_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] copying cyberrunner_pid/orange_track_mapper_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build/lib/cyberrunner_pid
+[1.129s] running install
+[1.132s] running install_lib
+[1.142s] running install_data
+[1.143s] copying resource/cyberrunner_pid -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/ament_index/resource_index/packages
+[1.143s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid
+[1.143s] running install_egg_info
+[1.153s] removing '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid-0.0.0-py3.10.egg-info' (and everything under it)
+[1.153s] Copying ../../build/cyberrunner_pid/cyberrunner_pid.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages/cyberrunner_pid-0.0.0-py3.10.egg-info
+[1.154s] running install_scripts
+[1.231s] Installing click_target script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing maze_planner script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing orange_live_target_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing orange_track_mapper_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing path_follower_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing pid_controller script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing route_wfocus_follow script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] Installing solve script to /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid
+[1.231s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/install.log'
+[1.248s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_pid' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_pid build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/install.log --single-version-externally-managed install_data

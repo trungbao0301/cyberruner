@@ -1,0 +1,94 @@
+[0.654s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build
+[0.747s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.747s]   warnings.warn(msg)
+[0.821s] running develop
+[0.922s] Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner-state-estimation.egg-link (link to .)
+[0.941s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --uninstall --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build
+[0.942s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_state_estimation': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/cyberrunner_state_estimation build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/install.log --single-version-externally-managed install_data --force
+[1.039s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.039s]   warnings.warn(msg)
+[1.088s] running egg_info
+[1.096s] writing ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/PKG-INFO
+[1.096s] writing dependency_links to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/dependency_links.txt
+[1.096s] writing entry points to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/entry_points.txt
+[1.096s] writing requirements to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/requires.txt
+[1.096s] writing top-level names to ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/top_level.txt
+[1.115s] reading manifest file '../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.117s] writing manifest file '../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info/SOURCES.txt'
+[1.118s] running build
+[1.118s] running build_py
+[1.118s] creating /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+[1.118s] copying cyberrunner_state_estimation/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+[1.118s] copying cyberrunner_state_estimation/cyberrunner_state_estimation_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+[1.118s] copying cyberrunner_state_estimation/select_markers.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+[1.118s] copying cyberrunner_state_estimation/cyberrunner_state_estimation_subimg.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation
+[1.118s] creating /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/masking.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/plate_pose.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/detection.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/measurements.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/estimation_pipeline.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/estimator.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.118s] copying cyberrunner_state_estimation/core/gaussian_robust.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core
+[1.119s] creating /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/divers.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/ocam_model.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/camera_pose_visualizer.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/profiler_file.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] copying cyberrunner_state_estimation/utils/anim_3d.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils
+[1.119s] running install
+[1.122s] running install_lib
+[1.131s] creating /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/cyberrunner_state_estimation_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/select_markers.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/cyberrunner_state_estimation_subimg.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation
+[1.131s] creating /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/masking.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/plate_pose.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/detection.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/measurements.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/estimation_pipeline.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/estimator.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/core/gaussian_robust.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core
+[1.131s] creating /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.131s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/divers.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.132s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/ocam_model.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.132s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/camera_pose_visualizer.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.132s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/profiler_file.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.132s] copying /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build/lib/cyberrunner_state_estimation/utils/anim_3d.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils
+[1.132s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/__init__.py to __init__.cpython-310.pyc
+[1.132s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/cyberrunner_state_estimation_node.py to cyberrunner_state_estimation_node.cpython-310.pyc
+[1.133s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/select_markers.py to select_markers.cpython-310.pyc
+[1.134s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/cyberrunner_state_estimation_subimg.py to cyberrunner_state_estimation_subimg.cpython-310.pyc
+[1.134s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/masking.py to masking.cpython-310.pyc
+[1.135s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/__init__.py to __init__.cpython-310.pyc
+[1.135s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/plate_pose.py to plate_pose.cpython-310.pyc
+[1.135s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/detection.py to detection.cpython-310.pyc
+[1.137s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/measurements.py to measurements.cpython-310.pyc
+[1.137s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/estimation_pipeline.py to estimation_pipeline.cpython-310.pyc
+[1.138s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/estimator.py to estimator.cpython-310.pyc
+[1.139s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/core/gaussian_robust.py to gaussian_robust.cpython-310.pyc
+[1.140s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/__init__.py to __init__.cpython-310.pyc
+[1.140s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/divers.py to divers.cpython-310.pyc
+[1.140s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/ocam_model.py to ocam_model.cpython-310.pyc
+[1.141s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/camera_pose_visualizer.py to camera_pose_visualizer.cpython-310.pyc
+[1.141s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/profiler_file.py to profiler_file.cpython-310.pyc
+[1.142s] byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation/utils/anim_3d.py to anim_3d.cpython-310.pyc
+[1.142s] running install_data
+[1.142s] copying resource/cyberrunner_state_estimation -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/ament_index/resource_index/packages
+[1.142s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation
+[1.143s] copying calib/calib_results_cyberrunner.txt -> /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation
+[1.144s] running install_egg_info
+[1.154s] Copying ../../../build/cyberrunner_state_estimation/cyberrunner_state_estimation.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages/cyberrunner_state_estimation-0.0.0-py3.10.egg-info
+[1.154s] running install_scripts
+[1.221s] Installing estimator script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.221s] Installing estimator_sub script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.221s] Installing select_markers script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.221s] Installing state_estimation_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation
+[1.221s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/install.log'
+[1.242s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_state_estimation' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../../build/cyberrunner_state_estimation build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/install.log --single-version-externally-managed install_data --force
