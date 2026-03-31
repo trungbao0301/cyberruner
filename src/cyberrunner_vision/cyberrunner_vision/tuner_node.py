@@ -9,6 +9,8 @@ Run:
   python3 tuner_node.py
 """
 
+import json
+import os
 import threading
 import tkinter as tk
 from tkinter import ttk
@@ -17,6 +19,9 @@ import rclpy
 from rclpy.node import Node
 from rcl_interfaces.msg import ParameterType
 from rcl_interfaces.srv import SetParameters
+from std_srvs.srv import Trigger
+
+PARAMS_FILE = os.path.expanduser("~/cyberrunner_tuner_params.json")
 
 
 # ── Parameter definitions ─────────────────────────────────────────────────────
@@ -45,12 +50,12 @@ PARAMS = [
     ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
 
     # Danger zones
-    ("danger_zone_gain",   0.0,  100.0, 25.0,  1.0,   False),
+    ("danger_zone_gain",   0.0,  100.0, 0.0,   1.0,   False),
     ("danger_zone_radius", 10.0, 200.0, 80.0,  5.0,   False),
 
     # Timing / latency
     ("waypoint_pause_s",   0.0,  2.0,   0.3,   0.05,  False),
-    ("predict_latency_s",  0.0,  0.2,   0.05,  0.005, False),
+    ("predict_latency_s",  0.0,  1.0,   0.05,  0.005, False),
 
     # Corner gain scheduling
     ("corner_kp_scale",     1.0,  5.0,  2.0,  0.1,   False),
@@ -67,6 +72,10 @@ PARAMS = [
     # ILC
     ("ilc_enabled",       0,    1,     1,    1,     True),
     ("ilc_gain",          0.01, 0.5,   0.1,  0.01,  False),
+
+    # Speed ceiling
+    ("max_speed_px",     0.0,  500.0, 0.0,  5.0,   False),
+    ("speed_brake_gain", 0.0,  5.0,   0.5,  0.05,  False),
 ]
 
 GROUPS = {
@@ -80,6 +89,7 @@ GROUPS = {
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
                             "settle_frames", "settle_timeout_s"],
     "── ILC ──":           ["ilc_enabled", "ilc_gain"],
+    "── Speed ──":         ["max_speed_px", "speed_brake_gain"],
     "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
 }
 
@@ -114,7 +124,36 @@ class TunerNode(Node):
         self._client = self.create_client(
             SetParameters, "/controller_node/set_parameters"
         )
+        self._svc_start      = self.create_client(Trigger, "/controller/start")
+        self._svc_stop       = self.create_client(Trigger, "/controller/stop")
+        self._svc_calibrate  = self.create_client(Trigger, "/controller/calibrate")
+        self._svc_reset_ilc  = self.create_client(Trigger, "/controller/reset_ilc")
+        self._svc_clear_dz   = self.create_client(Trigger, "/controller/clear_danger_zones")
+        self._svc_draw       = self.create_client(Trigger, "/path/draw")
+        self._svc_path_load  = self.create_client(Trigger, "/path/load")
+        self._svc_path_save  = self.create_client(Trigger, "/path/save")
         self.get_logger().info("TunerNode ready — waiting for controller_node...")
+
+    def call_trigger(self, client, label):
+        if not client.wait_for_service(timeout_sec=0.1):
+            self.get_logger().warn(f"{label}: service not available",
+                                   throttle_duration_sec=2.0)
+            return
+        future = client.call_async(Trigger.Request())
+        future.add_done_callback(
+            lambda f, l=label: self._on_trigger_done(f, l))
+
+    def _on_trigger_done(self, future, label):
+        try:
+            res = future.result()
+            if res is None:
+                self.get_logger().warn(f"{label}: no response")
+            elif not res.success:
+                self.get_logger().warn(f"{label}: {res.message}")
+            else:
+                self.get_logger().info(f"{label}: {res.message}")
+        except Exception as e:
+            self.get_logger().error(f"{label} error: {e}")
 
     def set_param(self, name, value, is_bool):
         if not self._client.wait_for_service(timeout_sec=0.1):
@@ -145,6 +184,22 @@ class TunerNode(Node):
         ]
         future = self._client.call_async(req)
         future.add_done_callback(lambda f: self._on_done(f, "reset_all"))
+
+    def set_params_batch(self, params):
+        """Send an arbitrary list of (name, value, is_bool) in one request."""
+        if not self._client.wait_for_service(timeout_sec=0.1):
+            self.get_logger().warn(
+                "controller_node not available",
+                throttle_duration_sec=2.0
+            )
+            return
+        req = SetParameters.Request()
+        req.parameters = [
+            build_param_msg(name, value, is_bool)
+            for name, value, is_bool in params
+        ]
+        future = self._client.call_async(req)
+        future.add_done_callback(lambda f: self._on_done(f, "load_all"))
 
     def _on_done(self, future, name):
         try:
@@ -178,6 +233,7 @@ class TunerGUI:
         self.vars = {}
         self.value_labels = {}
         self.param_map = {p[0]: p for p in PARAMS}
+        self.saved_vals = self._load_params()
 
         self.root = tk.Tk()
         self.root.title("Controller Tuner")
@@ -231,10 +287,88 @@ class TunerGUI:
             )
             for name in names:
                 _, lo, hi, default, step, is_bool = self.param_map[name]
-                self._add_row(inner, name, lo, hi, default, step, is_bool)
+                initial = self.saved_vals.get(name, default)
+                self._add_row(inner, name, lo, hi, initial, step, is_bool)
+
+        ctrl_row = tk.Frame(inner, bg=BG)
+        ctrl_row.pack(fill="x", pady=(14, 2))
+
+        ttk.Label(ctrl_row, text="Controller:", style="TLabel").pack(side="left", padx=(0, 6))
+
+        tk.Button(
+            ctrl_row, text="▶ Start",
+            bg="#40a02b", fg="#ffffff",
+            relief="flat", font=FONT_B, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_start, "start"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            ctrl_row, text="■ Stop",
+            bg="#d20f39", fg="#ffffff",
+            relief="flat", font=FONT_B, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_stop, "stop"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            ctrl_row, text="Calibrate",
+            bg=BG2, fg=FG,
+            relief="flat", font=FONT, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_calibrate, "calibrate"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            ctrl_row, text="Reset ILC",
+            bg=BG2, fg=FG,
+            relief="flat", font=FONT, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_reset_ilc, "reset_ilc"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            ctrl_row, text="Clear DZ",
+            bg=BG2, fg=FG,
+            relief="flat", font=FONT, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_clear_dz, "clear_dz"),
+        ).pack(side="left")
+
+        path_row = tk.Frame(inner, bg=BG)
+        path_row.pack(fill="x", pady=(4, 2))
+
+        ttk.Label(path_row, text="Path:      ", style="TLabel").pack(side="left", padx=(0, 6))
+
+        tk.Button(
+            path_row, text="✎ Draw",
+            bg="#7287fd", fg="#ffffff",
+            relief="flat", font=FONT_B, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_draw, "draw"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            path_row, text="Load",
+            bg=BG2, fg=FG,
+            relief="flat", font=FONT, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_path_load, "path_load"),
+        ).pack(side="left", padx=(0, 4))
+
+        tk.Button(
+            path_row, text="Save",
+            bg=BG2, fg=FG,
+            relief="flat", font=FONT, cursor="hand2",
+            command=lambda: self.node.call_trigger(self.node._svc_path_save, "path_save"),
+        ).pack(side="left")
 
         btn_row = tk.Frame(inner, bg=BG)
-        btn_row.pack(fill="x", pady=(14, 4))
+        btn_row.pack(fill="x", pady=(6, 4))
+
+        tk.Button(
+            btn_row,
+            text="Load saved",
+            bg=BG2,
+            fg=FG,
+            relief="flat",
+            font=FONT,
+            cursor="hand2",
+            command=self._load_all,
+        ).pack(side="left", padx=(0, 6))
 
         tk.Button(
             btn_row,
@@ -255,6 +389,21 @@ class TunerGUI:
             font=("Consolas", 9),
         ).pack(side="right")
 
+    @staticmethod
+    def _load_params():
+        try:
+            with open(PARAMS_FILE) as f:
+                return json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            return {}
+
+    def _save_params(self):
+        data = {}
+        for name, var in self.vars.items():
+            data[name] = var.get()
+        with open(PARAMS_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+
     def _add_row(self, parent, name, lo, hi, default, step, is_bool):
         row = tk.Frame(parent, bg=BG)
         row.pack(fill="x", pady=2)
@@ -274,7 +423,10 @@ class TunerGUI:
             ttk.Checkbutton(
                 row,
                 variable=var,
-                command=lambda n=name, v=var: self.node.set_param(n, v.get(), True),
+                command=lambda n=name, v=var: (
+                    self.node.set_param(n, v.get(), True),
+                    self._save_params(),
+                ),
             ).pack(side="left")
 
             ttk.Label(
@@ -325,6 +477,32 @@ class TunerGUI:
 
         _, _, _, _, _, is_bool = self.param_map[name]
         self.node.set_param(name, snapped, is_bool)
+        self._save_params()
+
+    def _load_all(self):
+        vals = self._load_params()
+        if not vals:
+            return
+        batch = []
+        for name, _, _, _, step, is_bool in PARAMS:
+            if name not in vals:
+                continue
+            raw = vals[name]
+            if is_bool:
+                v = int(raw)
+                self.vars[name].set(v)
+            elif name in INT_PARAMS:
+                v = int(raw)
+                self.vars[name].set(v)
+                if name in self.value_labels:
+                    self.value_labels[name].config(text=self._fmt(v))
+            else:
+                v = float(round(float(raw) / step) * step)
+                self.vars[name].set(v)
+                if name in self.value_labels:
+                    self.value_labels[name].config(text=self._fmt(v))
+            batch.append((name, v, is_bool))
+        self.node.set_params_batch(batch)
 
     def _reset_all(self):
         for name, _, _, default, _, is_bool in PARAMS:
@@ -341,6 +519,7 @@ class TunerGUI:
 
         # Send all defaults in a single batched RPC instead of N individual calls
         self.node.reset_all_params()
+        self._save_params()
 
     @staticmethod
     def _fmt(v):

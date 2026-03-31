@@ -1,0 +1,19 @@
+[1.153s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build --no-deps symlink_data
+[1.288s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.288s]   warnings.warn(msg)
+[1.411s] running develop
+[1.550s] running egg_info
+[1.557s] writing cyberrunner_hiwonder.egg-info/PKG-INFO
+[1.557s] writing dependency_links to cyberrunner_hiwonder.egg-info/dependency_links.txt
+[1.557s] writing entry points to cyberrunner_hiwonder.egg-info/entry_points.txt
+[1.558s] writing requirements to cyberrunner_hiwonder.egg-info/requires.txt
+[1.558s] writing top-level names to cyberrunner_hiwonder.egg-info/top_level.txt
+[1.583s] reading manifest file 'cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.583s] writing manifest file 'cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.596s] running build_ext
+[1.596s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner-hiwonder.egg-link (link to .)
+[1.596s] Installing hiwonder_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder
+[1.596s] 
+[1.597s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder
+[1.597s] running symlink_data
+[1.654s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build --no-deps symlink_data

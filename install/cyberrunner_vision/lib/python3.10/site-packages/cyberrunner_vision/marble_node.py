@@ -156,7 +156,9 @@ class MarbleNode(Node):
         if circles is not None:
             c = np.round(circles[0, 0]).astype(int)
             cx, cy, cr = c[0], c[1], c[2]
-            roi_mask = mask[max(0,cy-cr):cy+cr, max(0,cx-cr):cx+cr]
+            h, w = mask.shape[:2]
+            roi_mask = mask[max(0, cy - cr):min(h, cy + cr),
+                           max(0, cx - cr):min(w, cx + cr)]
             if roi_mask.size > 0 and roi_mask.mean() > 10:
                 return (cx, cy, float(cr)), mask
 

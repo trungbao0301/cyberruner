@@ -30,7 +30,7 @@ def generate_launch_description():
         # ── Launch arguments ──────────────────────────────────────────────────
         # Camera: use device_path (e.g. /dev/video0) OR camera_index (int)
         DeclareLaunchArgument(
-            "device_path", default_value="",
+            "device_path", default_value="/dev/video2",
             description="V4L2 device path, e.g. /dev/video0. Overrides camera_index."),
         DeclareLaunchArgument(
             "camera_index", default_value="0",

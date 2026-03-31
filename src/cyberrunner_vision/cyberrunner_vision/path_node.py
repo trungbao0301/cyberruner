@@ -49,11 +49,17 @@ class PathNode(Node):
         self.WIN            = "PATH  (click=add  rclick=remove  z=undo  x=clear  s=save  ESC=close)"
 
         # ROS I/O
+        self.board_M     = None   # flat→current topdown  (from estimator)
+        self.board_M_inv = None   # current topdown→flat
+
         self.sub_td     = self.create_subscription(
             Image, "/camera/topdown", self._on_topdown, 2)
         self.sub_wp_idx = self.create_subscription(
             Int32MultiArray, "/controller/wp_idx",
             lambda m: setattr(self, "current_wp_idx", m.data[0] if m.data else -1), 2)
+        self.sub_board_xfm = self.create_subscription(
+            Float32MultiArray, "/estimator/board_transform",
+            self._on_board_transform, 2)
         self.pub_wp     = self.create_publisher(
             Float32MultiArray, "/path/waypoints", 2)
         self.pub_active = self.create_publisher(Bool, "/path/active", 2)
@@ -70,6 +76,31 @@ class PathNode(Node):
             self.get_logger().info(
                 "Auto-loaded path (" + str(len(self.waypoints)) + " pts)")
 
+    # ── Board transform ───────────────────────────────────────────────────────
+    def _on_board_transform(self, msg):
+        M = np.array(msg.data, dtype=np.float64).reshape(3, 3)
+        try:
+            if np.linalg.cond(M) > 1e10:
+                return
+            self.board_M     = M
+            self.board_M_inv = np.linalg.inv(M)
+        except np.linalg.LinAlgError:
+            pass
+
+    def _to_flat(self, x, y):
+        """Current topdown → flat (board-relative) space."""
+        if self.board_M_inv is None:
+            return float(x), float(y)
+        ph = self.board_M_inv @ np.array([x, y, 1.0])
+        return float(ph[0] / ph[2]), float(ph[1] / ph[2])
+
+    def _to_display(self, x, y):
+        """Flat (board-relative) → current topdown space for display."""
+        if self.board_M is None:
+            return float(x), float(y)
+        ph = self.board_M @ np.array([x, y, 1.0])
+        return float(ph[0] / ph[2]), float(ph[1] / ph[2])
+
     # ── Subscribers ───────────────────────────────────────────────────────────
     def _on_topdown(self, msg):
         self.last_td = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
@@ -81,23 +112,26 @@ class PathNode(Node):
             self.hover_pt = (x, y)
 
         elif event == cv2.EVENT_LBUTTONDOWN:
-            self.waypoints.append([x, y])
+            fx, fy = self._to_flat(x, y)
+            self.waypoints.append([fx, fy])
             self.get_logger().info(
                 "Added point " + str(len(self.waypoints)) +
-                "  (" + str(x) + ", " + str(y) + ")")
+                "  flat=(" + str(round(fx, 1)) + ", " + str(round(fy, 1)) + ")")
             self._path_dirty = True
             self._publish_waypoints()
 
         elif event == cv2.EVENT_RBUTTONDOWN:
             if not self.waypoints:
                 return
-            dists   = [math.hypot(x - p[0], y - p[1]) for p in self.waypoints]
+            # Hit-test in display (topdown) space so the click feels natural
+            disp = [self._to_display(*p) for p in self.waypoints]
+            dists   = [math.hypot(x - d[0], y - d[1]) for d in disp]
             nearest = int(np.argmin(dists))
             if dists[nearest] < 30:
                 removed = self.waypoints.pop(nearest)
                 self.get_logger().info(
                     "Removed point " + str(nearest + 1) +
-                    "  (" + str(removed[0]) + ", " + str(removed[1]) + ")")
+                    "  (" + str(round(removed[0], 1)) + ", " + str(round(removed[1], 1)) + ")")
                 self._path_dirty = True
                 self._publish_waypoints()
 
@@ -156,28 +190,31 @@ class PathNode(Node):
         running = self.current_wp_idx >= 0   # True = active run, hide passed pts
         idx     = self.current_wp_idx if running else 0
 
+        # Convert all waypoints to current topdown (display) coords
+        disp = [self._to_display(*pt) for pt in self.waypoints]
+
         # Draw connecting lines
         if n >= 2:
             for i in range(n - 1):
                 # Skip passed segments only during active run
                 if running and i < idx - 1:
                     continue
-                p1 = (int(self.waypoints[i][0]),   int(self.waypoints[i][1]))
-                p2 = (int(self.waypoints[i+1][0]), int(self.waypoints[i+1][1]))
+                p1 = (int(disp[i][0]),   int(disp[i][1]))
+                p2 = (int(disp[i+1][0]), int(disp[i+1][1]))
                 cv2.line(img, p1, p2, (0, 220, 255), 2)
 
         # Draw preview line from last point to mouse
         if n >= 1 and self.hover_pt is not None:
-            last = (int(self.waypoints[-1][0]), int(self.waypoints[-1][1]))
+            last = (int(disp[-1][0]), int(disp[-1][1]))
             cv2.line(img, last, self.hover_pt, (100, 100, 255), 1)
 
         # Draw each waypoint
-        for i, pt in enumerate(self.waypoints):
+        for i, (pt, dp) in enumerate(zip(self.waypoints, disp)):
             # Skip already-passed points only during active run
             if running and i < idx:
                 continue
 
-            px, py = int(pt[0]), int(pt[1])
+            px, py = int(dp[0]), int(dp[1])
 
             # Colour logic
             if running and i == idx:
@@ -196,7 +233,7 @@ class PathNode(Node):
             cv2.circle(img, (px, py), 6, color, -1)
             cv2.circle(img, (px, py), 8, (255, 255, 255), 1)
 
-            coord_text = "(" + str(px) + "," + str(py) + ")"
+            coord_text = "(" + str(round(pt[0])) + "," + str(round(pt[1])) + ")"
             cv2.putText(img, label,
                         (px + 10, py - 8),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)

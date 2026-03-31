@@ -65,10 +65,9 @@ class PD:
         self.kd = kd
         self.lo = lo
         self.hi = hi
-        self._prev = 0.0
 
     def reset(self):
-        self._prev = 0.0
+        pass
 
     def set_gains_and_limits(self, kp, kd, lo, hi):
         self.kp = kp
@@ -105,14 +104,12 @@ class KalmanFilter2D:
         self.q_vel  = q_vel
         self.r_meas = r_meas
         self.initialized = False
-        # H is constant — we always measure [x, y] from state [x, y, vx, vy]
-        self._H = np.array([[1, 0, 0, 0],
-                            [0, 1, 0, 0]], dtype=np.float64)
-        self._I4 = np.eye(4)
         # Pre-allocated prediction matrices — updated in-place each call
         # to avoid repeated numpy array allocation at 30 Hz.
         self._F = np.eye(4, dtype=np.float64)    # dt slots at [0,2] and [1,3]
-        self._Q = np.diag([q_pos, q_pos, q_vel, q_vel]).astype(np.float64)
+        self._Q = np.zeros((4, 4), dtype=np.float64)
+        self._inn   = np.zeros(2,      dtype=np.float64)
+        self._S_inv = np.zeros((2, 2), dtype=np.float64)
 
     def reset(self):
         self.x[:] = 0.0
@@ -136,9 +133,16 @@ class KalmanFilter2D:
         self._F[0, 2] = dt
         self._F[1, 3] = dt
         F = self._F
-        # Update Q diagonal in-place — avoids allocation when params unchanged
-        self._Q[0, 0] = self._Q[1, 1] = self.q_pos
-        self._Q[2, 2] = self._Q[3, 3] = self.q_vel
+        # Update Q in-place with proper constant-velocity cross-terms (dt-dependent).
+        # Derived from Q = q_vel * integral(F_c G G' F_c' dt) where G = [dt^2/2, dt]'
+        # plus an independent position noise term q_pos on the diagonal.
+        dt2 = dt * dt
+        dt3 = dt2 * dt * 0.5    # dt^3 / 2
+        dt4 = dt2 * dt2 * 0.25  # dt^4 / 4
+        self._Q[0, 0] = self._Q[1, 1] = self.q_pos + self.q_vel * dt4
+        self._Q[2, 2] = self._Q[3, 3] = self.q_vel * dt2
+        self._Q[0, 2] = self._Q[2, 0] = self.q_vel * dt3   # x–vx coupling
+        self._Q[1, 3] = self._Q[3, 1] = self.q_vel * dt3   # y–vy coupling
         Q = self._Q
 
         x_pred = F @ self.x
@@ -146,7 +150,8 @@ class KalmanFilter2D:
 
         # ── Update ───────────────────────────────────────────────────────────
         # H = [[1,0,0,0],[0,1,0,0]] — exploit structure with slices, avoid matmul
-        inn = np.array([x_meas, y_meas]) - x_pred[:2]          # innovation (2,)
+        self._inn[0] = x_meas - x_pred[0]
+        self._inn[1] = y_meas - x_pred[1]
         S   = P_pred[:2, :2] + np.eye(2) * self.r_meas         # S = H P H' + R (2×2)
 
         # Analytical 2×2 inverse — faster than np.linalg.inv for fixed-size matrix
@@ -156,13 +161,16 @@ class KalmanFilter2D:
             self.x = x_pred
             self.P = P_pred
             return self.x[0], self.x[1], self.x[2], self.x[3]
-        S_inv = np.array([[ S[1, 1], -S[0, 1]],
-                          [-S[1, 0],  S[0, 0]]]) / det
+        self._S_inv[0, 0] =  S[1, 1] / det
+        self._S_inv[0, 1] = -S[0, 1] / det
+        self._S_inv[1, 0] = -S[1, 0] / det
+        self._S_inv[1, 1] =  S[0, 0] / det
 
-        K = P_pred[:, :2] @ S_inv                              # Kalman gain (4×2)
+        K = P_pred[:, :2] @ self._S_inv                        # Kalman gain (4×2)
 
-        self.x = x_pred + K @ inn
+        self.x = x_pred + K @ self._inn
         self.P = P_pred - K @ P_pred[:2, :]                    # = (I - KH) P_pred
+        self.P = (self.P + self.P.T) * 0.5                     # re-symmetrise against float drift
 
         return self.x[0], self.x[1], self.x[2], self.x[3]  # x, y, vx, vy
 
@@ -304,6 +312,7 @@ class ControllerNode(Node):
         self.declare_parameter("lookahead_px", 25.0)
         self.declare_parameter("cmd_time_ms", 20)
         self.declare_parameter("ff_gain", 0.0)
+        self.declare_parameter("ff_board_scale", 10.0)  # est_state board-angle → servo unit scale
         self.declare_parameter("invert_x", False)
         self.declare_parameter("invert_y", True)
         self.declare_parameter("waypoint_pause_s",    0.3)
@@ -328,6 +337,10 @@ class ControllerNode(Node):
         self.declare_parameter("settle_frames",     10)     # consecutive frames required
         self.declare_parameter("settle_timeout_s",  5.0)    # give up if marble hasn't settled
 
+        # Speed ceiling — active braking when marble exceeds max speed
+        self.declare_parameter("max_speed_px",    0.0)   # px/s  (0 = disabled)
+        self.declare_parameter("speed_brake_gain", 0.5)  # brake strength per px/s over limit
+
         # ILC — iterative learning control
         self.declare_parameter("ilc_enabled", True)
         self.declare_parameter("ilc_gain",    0.1)    # learning rate L (0.05 – 0.3)
@@ -340,9 +353,11 @@ class ControllerNode(Node):
         self.est_state = None
         self.follower = None
         self.active = False
+        self._levelling = False   # True while holding board flat after marble loss
 
         self.marble_lost_frames = 0
         self.marble_lost_threshold = 30
+        self._pending_kalman_reset = False   # set in sub callback, consumed in timer tick
         self._last_wp_idx = None
         self._was_active   = False   # True if controller was active when marble was lost
 
@@ -430,7 +445,8 @@ class ControllerNode(Node):
         self.arrival_px = float(self.get_parameter("arrival_px").value)
         self.lookahead_px = float(self.get_parameter("lookahead_px").value)
         self.cmd_time_ms = int(self.get_parameter("cmd_time_ms").value)
-        self.ff_gain = float(self.get_parameter("ff_gain").value)
+        self.ff_gain        = float(self.get_parameter("ff_gain").value)
+        self.ff_board_scale = float(self.get_parameter("ff_board_scale").value)
         self.invert_x = bool(self.get_parameter("invert_x").value)
         self.invert_y = bool(self.get_parameter("invert_y").value)
         self.waypoint_pause_s  = float(self.get_parameter("waypoint_pause_s").value)
@@ -451,6 +467,9 @@ class ControllerNode(Node):
         self.settle_speed_px  = float(self.get_parameter("settle_speed_px").value)
         self.settle_frames    = int(self.get_parameter("settle_frames").value)
         self.settle_timeout_s = float(self.get_parameter("settle_timeout_s").value)
+
+        self.max_speed_px    = float(self.get_parameter("max_speed_px").value)
+        self.speed_brake_gain = float(self.get_parameter("speed_brake_gain").value)
 
         self.ilc_enabled = bool(self.get_parameter("ilc_enabled").value)
         self.ilc_gain    = float(self.get_parameter("ilc_gain").value)
@@ -482,9 +501,12 @@ class ControllerNode(Node):
         self.pub_wp_idx.publish(msg)
 
     def _reset_all(self):
+        # Called from the subscription callback — defer Kalman reset to the
+        # timer thread via flag so that concurrent Kalman reads in _tick are safe
+        # when a MultiThreadedExecutor is used.
         self.pid_x.reset()
         self.pid_y.reset()
-        self.kalman.reset()
+        self._pending_kalman_reset = True
 
         if self.follower is not None:
             self.follower.reset()
@@ -522,37 +544,47 @@ class ControllerNode(Node):
                 self._was_active = self.active
                 # Save last known position as a danger zone if we were active
                 if self.active and self.marble_pos is not None:
-                    self.danger_zones.append(list(self.marble_pos))
+                    # Always store in topdown (camera) space so zones from
+                    # different sessions are comparable regardless of whether
+                    # board_M_inv was available at save time.
+                    dz = list(self.marble_pos)
+                    self.danger_zones.append(dz)
                     self._save_danger_zones()
                     self.get_logger().warn(
                         f"Danger zone saved at {self.marble_pos} "
                         f"(total: {len(self.danger_zones)})")
                 self.marble_pos  = None
                 self.active      = False
+                self._levelling  = True
                 self._ilc_end_run(completed=False)
                 self._reset_all()
         else:
             if was_none and self.marble_lost_frames >= self.marble_lost_threshold:
                 self.get_logger().info("Marble reacquired")
                 if self._was_active and self.follower is not None:
-                    # Mid-run loss recovery — Kalman warm-up not needed, restart directly
+                    # Mid-run loss recovery — resume from nearest segment so the
+                    # controller doesn't roll the marble back to WP 0.
                     self.pid_x.reset()
                     self.pid_y.reset()
-                    self.kalman.reset()
-                    self.follower.reset()
+                    self._pending_kalman_reset = True
+                    nearest = self._find_nearest_segment(new_pos)
+                    self.follower.idx  = nearest
+                    self.follower.done = False
                     self._paused_at_wp = False
                     self.active  = True
                     self.t_last  = time.time()
                     self._was_active = False
-                    self.get_logger().info("Controller auto-restarted")
+                    self.get_logger().info(
+                        f"Controller auto-restarted at segment {nearest}")
                 elif self.auto_start and not self._settling and self.follower is not None:
                     # Fresh reload — wait for marble to settle before running
-                    self.kalman.reset()
+                    self._pending_kalman_reset = True
                     self._settling     = True
                     self._settle_count = 0
                     self._settle_start = time.time()
                     self.get_logger().info("Marble detected — waiting for it to settle...")
             self.marble_lost_frames = 0
+            self._levelling = False
             self.marble_pos = new_pos
 
     def _load_danger_zones(self):
@@ -633,11 +665,18 @@ class ControllerNode(Node):
 
         if not self.active and not self._settling:
             self._publish_wp_idx(-1)
+            if self._levelling:
+                self._send_servo(0, 0)
             return
 
         with self._state_lock:
-            marble_pos_snap   = self.marble_pos
-            danger_zones_snap = list(self.danger_zones)
+            marble_pos_snap        = self.marble_pos
+            danger_zones_snap      = list(self.danger_zones)
+            pending_kalman_reset   = self._pending_kalman_reset
+            self._pending_kalman_reset = False
+
+        if pending_kalman_reset:
+            self.kalman.reset()
 
         if marble_pos_snap is None:
             if self._settling:
@@ -697,7 +736,9 @@ class ControllerNode(Node):
                 and not self._paused_at_wp):
             self._paused_at_wp = True
             self._pause_until  = now + self.waypoint_pause_s
-            self._stop_and_level()
+            self.pid_x.reset()
+            self.pid_y.reset()
+            self._send_servo(0, 0, time_ms=60)
             self.get_logger().info(
                 f"Waypoint {seg_idx} reached — pausing {self.waypoint_pause_s:.1f}s")
 
@@ -731,6 +772,7 @@ class ControllerNode(Node):
         # cannot be cancelled out by output clipping.
         tx, ty = float(target[0]), float(target[1])
         for dz_x, dz_y in danger_zones_snap:
+            # Danger zones are stored in topdown space — compare against mx_td/my_td.
             dx   = mx_td - dz_x
             dy   = my_td - dz_y
             dist = math.sqrt(dx * dx + dy * dy) + 1e-9
@@ -779,12 +821,21 @@ class ControllerNode(Node):
         out_x = self.pid_x.update(err_x, vx, kp_scale, kd_scale)
         out_y = self.pid_y.update(err_y, vy, kp_scale, kd_scale)
 
+        # Speed ceiling — brake actively when marble exceeds max_speed_px
+        if self.max_speed_px > 0.0:
+            speed = math.sqrt(vx * vx + vy * vy)
+            excess = speed - self.max_speed_px
+            if excess > 0.0:
+                brake = self.speed_brake_gain * excess / speed
+                out_x -= brake * vx
+                out_y -= brake * vy
+
         mx = float(self.pid_x.hi)
 
         # Feed-forward
         if self.est_state and len(self.est_state) > 5 and self.ff_gain > 0 and self.est_state[5] > 0.5:
-            out_x += self.ff_gain * self.est_state[3] * 10.0
-            out_y += self.ff_gain * self.est_state[4] * 10.0
+            out_x += self.ff_gain * self.est_state[3] * self.ff_board_scale
+            out_y += self.ff_gain * self.est_state[4] * self.ff_board_scale
 
         out_x = float(np.clip(out_x, -mx, mx))
         out_y = float(np.clip(out_y, -mx, mx))
@@ -801,6 +852,19 @@ class ControllerNode(Node):
             f"  dz={len(danger_zones_snap)}",
             throttle_duration_sec=0.2,
         )
+
+    def _find_nearest_segment(self, pos):
+        """Return the follower segment index whose projection is closest to pos."""
+        p = np.array(pos, dtype=np.float32)
+        best_idx, best_dist = 0, float('inf')
+        for i in range(len(self.follower.path) - 1):
+            proj, _, _ = PathFollower._project_to_segment(
+                p, self.follower.path[i], self.follower.path[i + 1])
+            d = float(np.linalg.norm(p - proj))
+            if d < best_dist:
+                best_dist = d
+                best_idx  = i
+        return best_idx
 
     def _stop_and_level(self):
         self.pid_x.reset()
@@ -826,24 +890,27 @@ class ControllerNode(Node):
             res.message = "Marble not detected — check /marble/position"
             return res
 
-        self.pid_x.reset()
-        self.pid_y.reset()
         self.kalman.reset()
         self.follower.reset()
         self._paused_at_wp = False
         self._ilc_reset_log()
-        self.active = True
-        self.t_last = time.time()
+        # Use the settling phase to warm up the Kalman velocity estimate before
+        # activating PD — same path as auto_start.  _start_active() resets PD.
+        self._settling     = True
+        self._settle_count = 0
+        self._settle_start = time.time()
+        self.t_last        = time.time()
 
         res.success = True
-        res.message = "Controller started"
-        self.get_logger().info("Controller STARTED")
+        res.message = "Controller settling — will activate when marble is still"
+        self.get_logger().info("Controller SETTLING")
         return res
 
     def _svc_stop(self, req, res):
         self.active      = False
         self._was_active = False   # manual stop — don't auto-restart
         self._settling   = False
+        self._levelling  = False
         self._stop_and_level()
         self._publish_wp_idx(-1)
 
@@ -883,7 +950,8 @@ class ControllerNode(Node):
     # ── ILC helpers ───────────────────────────────────────────────────────────
     @staticmethod
     def _path_hash(waypoints_flat):
-        return hash(tuple(round(v) for v in waypoints_flat))
+        data = ",".join(str(round(v)) for v in waypoints_flat)
+        return hashlib.md5(data.encode()).hexdigest()
 
     def _ilc_init(self, n_segments):
         """Load saved ILC data if it matches the current path, else start fresh."""
@@ -921,8 +989,10 @@ class ControllerNode(Node):
                 continue
             mean_ex = float(np.mean([e[0] for e in errors]))
             mean_ey = float(np.mean([e[1] for e in errors]))
-            self._ilc_ff[i, 0] += self.ilc_gain * mean_ex
-            self._ilc_ff[i, 1] += self.ilc_gain * mean_ey
+            self._ilc_ff[i, 0] = float(np.clip(
+                self._ilc_ff[i, 0] + self.ilc_gain * mean_ex, -150.0, 150.0))
+            self._ilc_ff[i, 1] = float(np.clip(
+                self._ilc_ff[i, 1] + self.ilc_gain * mean_ey, -150.0, 150.0))
             updated += 1
         self._ilc_run_count += 1
         self._ilc_save()

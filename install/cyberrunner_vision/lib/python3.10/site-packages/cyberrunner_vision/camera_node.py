@@ -56,10 +56,14 @@ def open_camera(index: int, device_path: str, width: int, height: int, fps: int)
     """
     source = device_path if device_path else index
 
-    # Build explicit GStreamer pipeline (most reliable for this camera)
+    # Build explicit GStreamer pipeline (most reliable for this camera).
+    # Do NOT hard-code framerate in the caps — some cameras (e.g. this one at
+    # 1920×1200) only support 60/114 fps at full resolution, so requesting
+    # framerate=30/1 causes a caps-negotiation failure.  Let v4l2src negotiate.
+    dev = source if isinstance(source, str) else f"/dev/video{source}"
     gst = (
-        f"v4l2src device={source if isinstance(source, str) else '/dev/video'+str(source)} "
-        f"! image/jpeg,width={width},height={height},framerate={fps}/1 "
+        f"v4l2src device={dev} "
+        f"! image/jpeg,width={width},height={height} "
         f"! jpegdec ! videoconvert ! appsink"
     )
     cap = cv2.VideoCapture(gst, cv2.CAP_GSTREAMER)
