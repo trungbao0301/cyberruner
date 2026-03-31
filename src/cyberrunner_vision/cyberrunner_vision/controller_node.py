@@ -43,6 +43,7 @@ Services:
   /controller/clear_danger_zones Trigger
 """
 
+import hashlib
 import os
 import json
 import math
@@ -75,9 +76,10 @@ class PD:
         self.lo = lo
         self.hi = hi
 
-    def update(self, err, vel):
-        """err: position error in px. vel: Kalman velocity in px/s (same axis)."""
-        out = self.kp * err - self.kd * vel
+    def update(self, err, vel, kp_scale=1.0, kd_scale=1.0):
+        """err: position error in px. vel: Kalman velocity in px/s (same axis).
+        kp_scale / kd_scale: runtime multipliers for corner gain scheduling."""
+        out = (self.kp * kp_scale) * err - (self.kd * kd_scale) * vel
         return float(np.clip(out, self.lo, self.hi))
 
 
@@ -107,6 +109,10 @@ class KalmanFilter2D:
         self._H = np.array([[1, 0, 0, 0],
                             [0, 1, 0, 0]], dtype=np.float64)
         self._I4 = np.eye(4)
+        # Pre-allocated prediction matrices — updated in-place each call
+        # to avoid repeated numpy array allocation at 30 Hz.
+        self._F = np.eye(4, dtype=np.float64)    # dt slots at [0,2] and [1,3]
+        self._Q = np.diag([q_pos, q_pos, q_vel, q_vel]).astype(np.float64)
 
     def reset(self):
         self.x[:] = 0.0
@@ -126,12 +132,14 @@ class KalmanFilter2D:
             return self.x[0], self.x[1], self.x[2], self.x[3]
 
         # ── Predict ──────────────────────────────────────────────────────────
-        F = np.array([[1, 0, dt, 0],
-                      [0, 1, 0, dt],
-                      [0, 0, 1,  0],
-                      [0, 0, 0,  1]], dtype=np.float64)
-
-        Q = np.diag([self.q_pos, self.q_pos, self.q_vel, self.q_vel])
+        # Update dt slots in-place — avoids allocating a new 4×4 array every call
+        self._F[0, 2] = dt
+        self._F[1, 3] = dt
+        F = self._F
+        # Update Q diagonal in-place — avoids allocation when params unchanged
+        self._Q[0, 0] = self._Q[1, 1] = self.q_pos
+        self._Q[2, 2] = self._Q[3, 3] = self.q_vel
+        Q = self._Q
 
         x_pred = F @ self.x
         P_pred = F @ self.P @ F.T + Q
@@ -167,6 +175,23 @@ class PathFollower:
         self.lookahead = float(lookahead_px)
         self.idx = 0              # current segment start index
         self.done = False
+        # Angle (degrees) at each waypoint: 0 = straight, 90 = right angle, 180 = U-turn.
+        # Precomputed once — used by controller for gain scheduling.
+        self.corner_angles = self._compute_corner_angles()
+
+    def _compute_corner_angles(self):
+        n = len(self.path)
+        angles = np.zeros(n, dtype=np.float32)
+        for i in range(1, n - 1):
+            ab = self.path[i]   - self.path[i - 1]
+            bc = self.path[i + 1] - self.path[i]
+            len_ab = float(np.linalg.norm(ab))
+            len_bc = float(np.linalg.norm(bc))
+            if len_ab < 1e-9 or len_bc < 1e-9:
+                continue
+            cos_a = float(np.dot(ab, bc) / (len_ab * len_bc))
+            angles[i] = math.degrees(math.acos(max(-1.0, min(1.0, cos_a))))
+        return angles
 
     def reset(self):
         self.idx = 0
@@ -223,10 +248,35 @@ class PathFollower:
 
         proj, t, seg_len = self._project_to_segment(p, a, b)
 
-        # Look a bit forward along the segment
+        # Look ahead along the path — if the lookahead overflows the current
+        # segment, continue into the next segment(s).  This lets the controller
+        # "see around the corner" on short segments and start pre-tilting early,
+        # giving more time to execute sharp turns before reaching a hole.
         if seg_len > 1e-9:
-            t_look = min(1.0, t + self.lookahead / seg_len)
-            target = a + t_look * (b - a)
+            dist_to_end = (1.0 - t) * seg_len
+            if self.lookahead <= dist_to_end:
+                # Lookahead stays within current segment — normal case
+                t_look = t + self.lookahead / seg_len
+                target = a + t_look * (b - a)
+            else:
+                # Overflow: walk remaining lookahead along subsequent segments
+                remaining = self.lookahead - dist_to_end
+                look_idx  = self.idx + 1
+                target    = b.copy()
+                while remaining > 1e-9 and look_idx < len(self.path) - 1:
+                    na = self.path[look_idx]
+                    nb = self.path[look_idx + 1]
+                    next_len = float(np.linalg.norm(nb - na))
+                    if next_len < 1e-9:
+                        look_idx += 1
+                        continue
+                    if remaining >= next_len:
+                        remaining -= next_len
+                        target    = nb.copy()
+                        look_idx += 1
+                    else:
+                        target = na + (remaining / next_len) * (nb - na)
+                        break
         else:
             target = b.copy()
 
@@ -266,6 +316,24 @@ class ControllerNode(Node):
         self.declare_parameter("kalman_q_vel",  50.0)
         self.declare_parameter("kalman_r_meas", 10.0)
 
+        # Corner gain scheduling — ramp Kp and Kd up near sharp turns
+        self.declare_parameter("corner_kp_scale",     2.0)   # max Kp multiplier at corner
+        self.declare_parameter("corner_kd_scale",     2.5)   # max Kd multiplier at corner
+        self.declare_parameter("corner_angle_thresh", 25.0)  # min corner angle (deg) to activate
+        self.declare_parameter("corner_preview_px",  100.0)  # ramp-up starts this far before corner
+
+        # Auto-start after reload — settle before running
+        self.declare_parameter("auto_start",        False)
+        self.declare_parameter("settle_speed_px",   15.0)   # px/s below which marble is settled
+        self.declare_parameter("settle_frames",     10)     # consecutive frames required
+        self.declare_parameter("settle_timeout_s",  5.0)    # give up if marble hasn't settled
+
+        # ILC — iterative learning control
+        self.declare_parameter("ilc_enabled", True)
+        self.declare_parameter("ilc_gain",    0.1)    # learning rate L (0.05 – 0.3)
+        self.declare_parameter("ilc_path",
+                               os.path.expanduser("~/cyberrunner_ilc.json"))
+
         # State
         self.marble_pos = None   # raw position from marble_node
         self.waypoints = None
@@ -280,6 +348,17 @@ class ControllerNode(Node):
 
         self._paused_at_wp = False
         self._pause_until  = 0.0
+
+        # Settling state — board stays level while marble decelerates after reload
+        self._settling      = False
+        self._settle_count  = 0       # consecutive frames below speed threshold
+        self._settle_start  = 0.0     # time.time() when settling began
+
+        # ILC state
+        self._ilc_ff          = None  # np.array (n_segments, 2) — feedforward corrections
+        self._ilc_error_log   = None  # list of lists — path errors per segment per tick
+        self._ilc_run_count   = 0     # total completed runs (for logging)
+        self._current_path_hash = None
 
         self.board_M_inv  = None  # inverse of flat→current board homography
 
@@ -329,6 +408,7 @@ class ControllerNode(Node):
         self.create_service(Trigger, "/controller/stop",               self._svc_stop)
         self.create_service(Trigger, "/controller/calibrate",          self._svc_calibrate)
         self.create_service(Trigger, "/controller/clear_danger_zones", self._svc_clear_dz)
+        self.create_service(Trigger, "/controller/reset_ilc",          self._svc_reset_ilc)
 
         self.timer = self.create_timer(0.033, self._tick)
 
@@ -361,6 +441,20 @@ class ControllerNode(Node):
         self.kalman.q_pos  = float(self.get_parameter("kalman_q_pos").value)
         self.kalman.q_vel  = float(self.get_parameter("kalman_q_vel").value)
         self.kalman.r_meas = float(self.get_parameter("kalman_r_meas").value)
+
+        self.corner_kp_scale     = float(self.get_parameter("corner_kp_scale").value)
+        self.corner_kd_scale     = float(self.get_parameter("corner_kd_scale").value)
+        self.corner_angle_thresh = float(self.get_parameter("corner_angle_thresh").value)
+        self.corner_preview_px   = float(self.get_parameter("corner_preview_px").value)
+
+        self.auto_start       = bool(self.get_parameter("auto_start").value)
+        self.settle_speed_px  = float(self.get_parameter("settle_speed_px").value)
+        self.settle_frames    = int(self.get_parameter("settle_frames").value)
+        self.settle_timeout_s = float(self.get_parameter("settle_timeout_s").value)
+
+        self.ilc_enabled = bool(self.get_parameter("ilc_enabled").value)
+        self.ilc_gain    = float(self.get_parameter("ilc_gain").value)
+        self._ilc_path   = self.get_parameter("ilc_path").value
 
         self.pid_x.set_gains_and_limits(
             float(self.get_parameter("kp_x").value),
@@ -397,7 +491,22 @@ class ControllerNode(Node):
 
         self._paused_at_wp = False
         self._publish_wp_idx(-1)
+        self._send_servo(0, 0, time_ms=60)
         self.get_logger().info("Marble lost — reset controller state")
+
+    def _start_active(self):
+        """Transition from SETTLING to ACTIVE. Kalman is already warmed up — do not reset it."""
+        self._settling     = False
+        self._settle_count = 0
+        self.pid_x.reset()
+        self.pid_y.reset()
+        if self.follower is not None:
+            self.follower.reset()
+        self._paused_at_wp = False
+        self._ilc_reset_log()
+        self.active  = True
+        self.t_last  = time.time()
+        self.get_logger().info("Marble settled — path following started")
 
     def _on_marble(self, msg):
         with self._state_lock:
@@ -420,12 +529,13 @@ class ControllerNode(Node):
                         f"(total: {len(self.danger_zones)})")
                 self.marble_pos  = None
                 self.active      = False
-                self._stop_and_level()
+                self._ilc_end_run(completed=False)
                 self._reset_all()
         else:
             if was_none and self.marble_lost_frames >= self.marble_lost_threshold:
                 self.get_logger().info("Marble reacquired")
                 if self._was_active and self.follower is not None:
+                    # Mid-run loss recovery — Kalman warm-up not needed, restart directly
                     self.pid_x.reset()
                     self.pid_y.reset()
                     self.kalman.reset()
@@ -435,6 +545,13 @@ class ControllerNode(Node):
                     self.t_last  = time.time()
                     self._was_active = False
                     self.get_logger().info("Controller auto-restarted")
+                elif self.auto_start and not self._settling and self.follower is not None:
+                    # Fresh reload — wait for marble to settle before running
+                    self.kalman.reset()
+                    self._settling     = True
+                    self._settle_count = 0
+                    self._settle_start = time.time()
+                    self.get_logger().info("Marble detected — waiting for it to settle...")
             self.marble_lost_frames = 0
             self.marble_pos = new_pos
 
@@ -484,6 +601,12 @@ class ControllerNode(Node):
             self.arrival_px,
             self.lookahead_px
         )
+        # Initialise ILC for this path (loads saved data if path unchanged)
+        n_seg = len(self.follower.path) - 1
+        if n_seg > 0:
+            self._current_path_hash = self._path_hash(new_waypoints)
+            self._ilc_init(n_seg)
+            self._ilc_reset_log()
         self.get_logger().info(
             f"Loaded new path with {len(self.follower.path)} waypoints"
         )
@@ -508,19 +631,21 @@ class ControllerNode(Node):
         dt = max(now - self.t_last, 1e-3)
         self.t_last = now
 
-        if not self.active or self.follower is None:
+        if not self.active and not self._settling:
             self._publish_wp_idx(-1)
             return
 
         with self._state_lock:
-            marble_pos_snap  = self.marble_pos
+            marble_pos_snap   = self.marble_pos
             danger_zones_snap = list(self.danger_zones)
 
         if marble_pos_snap is None:
-            self.get_logger().warn(
-                "Waiting for marble...",
-                throttle_duration_sec=1.0
-            )
+            if self._settling:
+                self._settling = False
+                self.get_logger().info("Marble lost during settling — aborting")
+            else:
+                self.get_logger().warn(
+                    "Waiting for marble...", throttle_duration_sec=1.0)
             return
 
         # Keep topdown position for repulsion (danger zones are in topdown space)
@@ -533,8 +658,34 @@ class ControllerNode(Node):
             ph = self.board_M_inv @ np.array([mx_raw, my_raw, 1.0])
             mx_raw, my_raw = float(ph[0] / ph[2]), float(ph[1] / ph[2])
 
-        # Kalman: fuse raw detection → filtered position + velocity estimate
+        # Kalman always runs — in SETTLING this warms up the filter before ACTIVE
         kx, ky, vx, vy = self.kalman.update(mx_raw, my_raw, dt)
+
+        # ── SETTLING ─────────────────────────────────────────────────────────
+        if self._settling:
+            self._send_servo(0, 0)   # hold board level while marble decelerates
+            speed = math.sqrt(vx * vx + vy * vy)
+            if speed < self.settle_speed_px:
+                self._settle_count += 1
+            else:
+                self._settle_count = 0
+
+            self.get_logger().info(
+                f"Settling  speed={round(speed, 1)} px/s"
+                f"  count={self._settle_count}/{self.settle_frames}",
+                throttle_duration_sec=0.3,
+            )
+
+            if self._settle_count >= self.settle_frames:
+                self._start_active()
+            elif now - self._settle_start > self.settle_timeout_s:
+                self._settling = False
+                self.get_logger().warn(
+                    f"Settling timeout ({self.settle_timeout_s}s)"
+                    f" — marble did not settle, staying idle")
+            return
+
+        # ── ACTIVE ───────────────────────────────────────────────────────────
         filtered_pos = (kx, ky)
 
         target, seg_idx, done = self.follower.update(filtered_pos)
@@ -553,6 +704,7 @@ class ControllerNode(Node):
         self._publish_wp_idx(seg_idx)
 
         if done:
+            self._ilc_end_run(completed=True)
             self.get_logger().info("Goal reached! Stopping controller.")
             self._stop_and_level()
             self._publish_wp_idx(-1)
@@ -565,6 +717,14 @@ class ControllerNode(Node):
                 return
             self._paused_at_wp = False
             self.get_logger().info("Resuming after waypoint pause")
+
+        # ILC error recording — raw path error before any target modification.
+        # This is the true tracking error: how far the marble is from the path.
+        if self._ilc_error_log is not None and seg_idx < len(self._ilc_error_log):
+            self._ilc_error_log[seg_idx].append((
+                float(target[0]) - kx,
+                float(target[1]) - ky,
+            ))
 
         # Danger zone repulsion — shift the TARGET away from known loss positions.
         # Done before PD so repulsion works within the same error budget and
@@ -581,15 +741,43 @@ class ControllerNode(Node):
                 tx += dx * push
                 ty += dy * push
 
+        # ILC feedforward — pre-correct systematic error learned from past runs.
+        # Applied after danger zone so both shifts stack on the target.
+        if (self.ilc_enabled
+                and self._ilc_ff is not None
+                and seg_idx < len(self._ilc_ff)):
+            tx += float(self._ilc_ff[seg_idx, 0])
+            ty += float(self._ilc_ff[seg_idx, 1])
+
         # Latency prediction — shift error to where marble will be
         kx_p = kx + vx * self.predict_latency_s
         ky_p = ky + vy * self.predict_latency_s
         err_x = float(tx - kx_p)
         err_y = float(ty - ky_p)
 
+        # ── Corner gain scheduling ────────────────────────────────────────────
+        # As the marble approaches a sharp corner, smoothly ramp Kp and Kd up.
+        # Kp increase → stronger lateral correction toward the new direction.
+        # Kd increase → harder braking of velocity in the old direction.
+        # Both scale linearly with blend (proximity) × angle_factor (sharpness).
+        kp_scale = kd_scale = 1.0
+        next_idx = seg_idx + 1
+        if next_idx < len(self.follower.path):
+            corner_angle = float(self.follower.corner_angles[next_idx])
+            if corner_angle > self.corner_angle_thresh:
+                nwp  = self.follower.path[next_idx]
+                dist = math.sqrt((kx - float(nwp[0])) ** 2 +
+                                 (ky - float(nwp[1])) ** 2)
+                if dist < self.corner_preview_px:
+                    blend        = 1.0 - dist / self.corner_preview_px
+                    angle_factor = min(1.0, corner_angle / 90.0)
+                    boost        = blend * angle_factor
+                    kp_scale = 1.0 + boost * (self.corner_kp_scale - 1.0)
+                    kd_scale = 1.0 + boost * (self.corner_kd_scale - 1.0)
+
         # PD uses Kalman velocity directly — no noisy finite-difference needed
-        out_x = self.pid_x.update(err_x, vx)
-        out_y = self.pid_y.update(err_y, vy)
+        out_x = self.pid_x.update(err_x, vx, kp_scale, kd_scale)
+        out_y = self.pid_y.update(err_y, vy, kp_scale, kd_scale)
 
         mx = float(self.pid_x.hi)
 
@@ -609,6 +797,7 @@ class ControllerNode(Node):
             f"  err=({round(err_x,1)},{round(err_y,1)})"
             f"  vel=({round(vx,1)},{round(vy,1)})"
             f"  out=({round(out_x,1)},{round(out_y,1)})"
+            f"  kp_scale={round(kp_scale,2)}"
             f"  dz={len(danger_zones_snap)}",
             throttle_duration_sec=0.2,
         )
@@ -642,6 +831,7 @@ class ControllerNode(Node):
         self.kalman.reset()
         self.follower.reset()
         self._paused_at_wp = False
+        self._ilc_reset_log()
         self.active = True
         self.t_last = time.time()
 
@@ -653,6 +843,7 @@ class ControllerNode(Node):
     def _svc_stop(self, req, res):
         self.active      = False
         self._was_active = False   # manual stop — don't auto-restart
+        self._settling   = False
         self._stop_and_level()
         self._publish_wp_idx(-1)
 
@@ -685,6 +876,86 @@ class ControllerNode(Node):
         self._save_danger_zones()
         res.success = True
         res.message = f"Cleared {n} danger zones"
+        self.get_logger().info(res.message)
+        return res
+
+
+    # ── ILC helpers ───────────────────────────────────────────────────────────
+    @staticmethod
+    def _path_hash(waypoints_flat):
+        return hash(tuple(round(v) for v in waypoints_flat))
+
+    def _ilc_init(self, n_segments):
+        """Load saved ILC data if it matches the current path, else start fresh."""
+        if os.path.exists(self._ilc_path):
+            try:
+                with open(self._ilc_path) as f:
+                    data = json.load(f)
+                if (data.get("path_hash") == self._current_path_hash
+                        and len(data.get("ff", [])) == n_segments):
+                    self._ilc_ff        = np.array(data["ff"], dtype=np.float64)
+                    self._ilc_run_count = int(data.get("run_count", 0))
+                    mags = np.linalg.norm(self._ilc_ff, axis=1)
+                    self.get_logger().info(
+                        f"ILC loaded  segments={n_segments}"
+                        f"  runs={self._ilc_run_count}"
+                        f"  max_ff={round(float(np.max(mags)), 1)}px")
+                    return
+            except Exception:
+                pass
+        self._ilc_ff        = np.zeros((n_segments, 2), dtype=np.float64)
+        self._ilc_run_count = 0
+        self.get_logger().info(f"ILC initialised  segments={n_segments}  (fresh)")
+
+    def _ilc_reset_log(self):
+        if self._ilc_ff is not None:
+            self._ilc_error_log = [[] for _ in range(len(self._ilc_ff))]
+
+    def _ilc_end_run(self, completed):
+        """Update ILC feedforward from this run's error log, then save."""
+        if self._ilc_ff is None or self._ilc_error_log is None:
+            return
+        updated = 0
+        for i, errors in enumerate(self._ilc_error_log):
+            if not errors:
+                continue
+            mean_ex = float(np.mean([e[0] for e in errors]))
+            mean_ey = float(np.mean([e[1] for e in errors]))
+            self._ilc_ff[i, 0] += self.ilc_gain * mean_ex
+            self._ilc_ff[i, 1] += self.ilc_gain * mean_ey
+            updated += 1
+        self._ilc_run_count += 1
+        self._ilc_save()
+        self._ilc_reset_log()
+        mags = np.linalg.norm(self._ilc_ff, axis=1)
+        self.get_logger().info(
+            f"ILC updated  run={self._ilc_run_count}"
+            f"  segments_updated={updated}/{len(self._ilc_ff)}"
+            f"  completed={completed}"
+            f"  max_ff={round(float(np.max(mags)), 1)}px")
+
+    def _ilc_save(self):
+        tmp = self._ilc_path + ".tmp"
+        with open(tmp, "w") as f:
+            json.dump({
+                "ff":         self._ilc_ff.tolist(),
+                "run_count":  self._ilc_run_count,
+                "path_hash":  self._current_path_hash,
+            }, f, indent=2)
+        os.replace(tmp, self._ilc_path)
+
+    def _svc_reset_ilc(self, req, res):
+        if self._ilc_ff is not None:
+            n = len(self._ilc_ff)
+            self._ilc_ff        = np.zeros((n, 2), dtype=np.float64)
+            self._ilc_run_count = 0
+            self._ilc_save()
+            self._ilc_reset_log()
+            res.success = True
+            res.message = f"ILC reset ({n} segments)"
+        else:
+            res.success = False
+            res.message = "No path loaded"
         self.get_logger().info(res.message)
         return res
 
