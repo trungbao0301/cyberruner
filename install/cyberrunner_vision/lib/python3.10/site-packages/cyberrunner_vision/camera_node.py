@@ -37,8 +37,8 @@ def _world2cam(dirs, ocam):
 
 
 def build_rectify_map(ocam, out_w, out_h, fx, fy):
-    uu, vv = np.meshgrid(np.arange(out_w, dtype=np.float64),
-                         np.arange(out_h, dtype=np.float64))
+    uu, vv = np.meshgrid(np.arange(out_w, dtype=np.float32),
+                         np.arange(out_h, dtype=np.float32))
     x = (uu - out_w / 2) / fx
     y = (vv - out_h / 2) / fy
     z = np.ones_like(x)
@@ -124,10 +124,10 @@ class CameraNode(Node):
         actual_h = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         src_str = dpath if dpath else str(idx)
         self.get_logger().info(
-            "Camera opened  source=" + src_str +
-            "  backend=" + str(backend) +
-            "  resolution=" + str(actual_w) + "x" + str(actual_h) +
-            "  fx=" + str(fx) + "  fy=" + str(fy))
+            f"Camera opened  source={src_str}"
+            f"  backend={backend}"
+            f"  resolution={actual_w}x{actual_h}"
+            f"  fx={fx}  fy={fy}")
 
         self.show_preview = bool(self.get_parameter("show_preview").value)
         self.pub   = self.create_publisher(Image, "/camera/rectified", 2)

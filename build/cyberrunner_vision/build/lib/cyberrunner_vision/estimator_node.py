@@ -24,7 +24,7 @@ Services
 
 Parameters
   config_path       str    ~/cyberrunner_config.json
-  board_width_mm    float  400.0   (physical TL→TR distance, for scale)
+  board_width_mm    float  320.0   (physical TL→TR distance, for scale)
   board_height_mm   float  400.0
   topdown_size      int    1000
   show_window       bool   true
@@ -81,6 +81,18 @@ class EstimatorNode(Node):
         # Cached flat-reference dimensions in topdown space (recomputed only when
         # H or moving_flat changes, not every frame)
         self._flat_ref_wh = None  # (ref_w, ref_h) in topdown px
+
+        # Cached flat_td: moving_flat projected into topdown space.
+        # Only changes when H or moving_flat changes — not every frame.
+        self._flat_td = None  # np.array shape (4,2)
+
+        # Cached stable-quad ROI mask for blue-dot detection.
+        # Only rebuilt when stable_pts changes (on click or load).
+        self._stable_roi_mask     = None
+        self._stable_roi_mask_pts = None  # the pts used to build the mask
+
+        # Pending debug image from _detect_blue_dots — shown in _tick (main thread)
+        self._blue_dbg = None
 
         # Morphological kernel for blue-dot detection
         self._k5 = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
@@ -158,15 +170,21 @@ class EstimatorNode(Node):
         disp = self.last_rect.copy()
         self._draw_overlay(disp)
         cv2.imshow(self.WIN, disp)
+        if self._blue_dbg is not None:
+            cv2.imshow("BLUE DOT MASK", self._blue_dbg)
+            self._blue_dbg = None
         key = cv2.waitKey(1) & 0xFF
 
         if key == ord('c'):
             self.stable_pts.clear()
             self.moving_pts.clear()
-            self.H            = None
-            self.moving_flat  = None
-            self._flat_ref_wh = None
-            self.state        = np.zeros(15, dtype=np.float32)
+            self.H                    = None
+            self.moving_flat          = None
+            self._flat_ref_wh         = None
+            self._flat_td             = None
+            self._stable_roi_mask     = None
+            self._stable_roi_mask_pts = None
+            self.state                = np.zeros(15, dtype=np.float32)
             self.get_logger().info("Cleared. Click 4 stable corners first.")
 
         elif key == ord('s'):
@@ -238,16 +256,18 @@ class EstimatorNode(Node):
 
     # ── Flat reference cache ──────────────────────────────────────────────────
     def _update_flat_ref(self):
-        """Pre-compute flat-reference dimensions in topdown space.
+        """Pre-compute flat-reference data in topdown space.
         Called only when H or moving_flat changes — not every frame."""
         if self.H is None or self.moving_flat is None:
             self._flat_ref_wh = None
+            self._flat_td     = None
             return
         flat_td = cv2.perspectiveTransform(
             self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
         ref_w = max(float(np.linalg.norm(flat_td[1] - flat_td[0])), 1.0)
         ref_h = max(float(np.linalg.norm(flat_td[3] - flat_td[0])), 1.0)
         self._flat_ref_wh = (ref_w, ref_h)
+        self._flat_td     = flat_td  # cache for board_xfm publisher
 
     # ── Tilt estimation from moving quad skew ────────────────────────────────
     def _estimate_tilt(self):
@@ -307,18 +327,21 @@ class EstimatorNode(Node):
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN,  self._k5, iterations=1)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, self._k5, iterations=2)
 
-        # Restrict search to inside the stable quad so outer frame corners are excluded
+        # Restrict search to inside the stable quad so outer frame corners are excluded.
+        # ROI mask is cached and only rebuilt when stable_pts changes.
         if len(self.stable_pts) == 4:
-            roi = np.zeros(mask.shape, dtype=np.uint8)
-            pts = np.array(self.stable_pts, dtype=np.int32)
-            cv2.fillPoly(roi, [pts], 255)
-            mask = cv2.bitwise_and(mask, roi)
+            if self._stable_roi_mask_pts != self.stable_pts:
+                roi = np.zeros(mask.shape, dtype=np.uint8)
+                cv2.fillPoly(roi, [np.array(self.stable_pts, dtype=np.int32)], 255)
+                self._stable_roi_mask     = roi
+                self._stable_roi_mask_pts = [pt[:] for pt in self.stable_pts]
+            mask = cv2.bitwise_and(mask, self._stable_roi_mask)
 
-        # Debug window — shows masked region so HSV range can be tuned
+        # Store debug image — shown in _tick so imshow stays on the GUI thread
         if self.show_window:
             dbg = rect.copy()
             dbg[mask > 0] = (0, 255, 255)
-            cv2.imshow("BLUE DOT MASK", dbg)
+            self._blue_dbg = dbg
 
         cnts, _ = cv2.findContours(
             mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -380,9 +403,8 @@ class EstimatorNode(Node):
 
             # Board transform: flat reference → current (both in topdown space)
             # Lets the controller keep waypoints aligned with the moving maze
-            if self.H is not None and self.moving_flat is not None:
-                flat_td = cv2.perspectiveTransform(
-                    self.moving_flat.reshape(-1, 1, 2), self.H).reshape(-1, 2)
+            if self.H is not None and self._flat_td is not None:
+                flat_td = self._flat_td
                 cur_td  = cv2.perspectiveTransform(
                     np.array(self.moving_pts, dtype=np.float32).reshape(-1, 1, 2),
                     self.H).reshape(-1, 2)

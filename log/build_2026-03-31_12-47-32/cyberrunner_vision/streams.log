@@ -1,0 +1,28 @@
+[0.516s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build --no-deps symlink_data --force
+[0.598s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.598s]   warnings.warn(msg)
+[0.678s] running develop
+[0.760s] running egg_info
+[0.766s] writing cyberrunner_vision.egg-info/PKG-INFO
+[0.767s] writing dependency_links to cyberrunner_vision.egg-info/dependency_links.txt
+[0.767s] writing entry points to cyberrunner_vision.egg-info/entry_points.txt
+[0.767s] writing requirements to cyberrunner_vision.egg-info/requires.txt
+[0.767s] writing top-level names to cyberrunner_vision.egg-info/top_level.txt
+[0.781s] reading manifest file 'cyberrunner_vision.egg-info/SOURCES.txt'
+[0.781s] writing manifest file 'cyberrunner_vision.egg-info/SOURCES.txt'
+[0.788s] running build_ext
+[0.788s] Creating /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner-vision.egg-link (link to .)
+[0.789s] Installing calibration_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing camera_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing controller_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing estimator_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing marble_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing path_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] Installing tuner_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision
+[0.789s] 
+[0.789s] Installed /home/trungbao/cyberrunner_ws/build/cyberrunner_vision
+[0.789s] running symlink_data
+[0.789s] symbolically linking /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/resource/cyberrunner_vision -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/ament_index/resource_index/packages
+[0.790s] symbolically linking /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision
+[0.790s] symbolically linking /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/launch/cyberrunner.launch.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/launch
+[0.805s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build --no-deps symlink_data --force

@@ -17,7 +17,11 @@ cyberrunner_pid/path_follower_node.py
 cyberrunner_pid/pid_controller.py
 cyberrunner_pid/route_wfocus_follow.py
 cyberrunner_pid/solve.py
+cyberrunner_pid.egg-info/PKG-INFO
+cyberrunner_pid.egg-info/SOURCES.txt
+cyberrunner_pid.egg-info/dependency_links.txt
+cyberrunner_pid.egg-info/entry_points.txt
+cyberrunner_pid.egg-info/requires.txt
+cyberrunner_pid.egg-info/top_level.txt
+cyberrunner_pid.egg-info/zip-safe
 resource/cyberrunner_pid
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

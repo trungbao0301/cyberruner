@@ -307,7 +307,7 @@ class ControllerNode(Node):
         self.declare_parameter("invert_x", False)
         self.declare_parameter("invert_y", True)
         self.declare_parameter("waypoint_pause_s",    0.3)
-        self.declare_parameter("danger_zone_gain",   25.0)
+        self.declare_parameter("danger_zone_gain",   0.0)
         self.declare_parameter("danger_zone_radius", 80.0)
         self.declare_parameter("danger_zone_path",
                                os.path.expanduser("~/cyberrunner_danger_zones.json"))

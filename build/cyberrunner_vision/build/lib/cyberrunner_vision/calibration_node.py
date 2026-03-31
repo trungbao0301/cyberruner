@@ -37,7 +37,7 @@ class CalibrationNode(Node):
 
     def _on_marble(self, msg):
         if self.collecting and msg.z >= 0:
-            self.marble_samples.append((float(msg.x), float(msg.y)))
+            self.marble_samples.append((time.time(), float(msg.x), float(msg.y)))
 
     # ── Test 4 ────────────────────────────────────────────────────────────────
     def run_test_4(self):
@@ -65,8 +65,8 @@ class CalibrationNode(Node):
             print("       Is marble_node running and detecting the marble?")
             return None
 
-        xs = np.array([s[0] for s in self.marble_samples])
-        ys = np.array([s[1] for s in self.marble_samples])
+        xs = np.array([s[1] for s in self.marble_samples])
+        ys = np.array([s[2] for s in self.marble_samples])
 
         var_x = float(np.var(xs))
         var_y = float(np.var(ys))
@@ -169,13 +169,17 @@ class CalibrationNode(Node):
             print("ERROR: Not enough samples. Is marble_node running?")
             return None
 
-        xs  = np.array([s[0] for s in self.marble_samples])
-        ys  = np.array([s[1] for s in self.marble_samples])
-        # average dt between consecutive samples
-        avg_dt = 15.0 / max(len(self.marble_samples) - 1, 1)
+        ts  = np.array([s[0] for s in self.marble_samples])
+        xs  = np.array([s[1] for s in self.marble_samples])
+        ys  = np.array([s[2] for s in self.marble_samples])
+        # Use actual inter-sample deltas — avoids errors when marble goes lost
+        # mid-test and creates large gaps that inflate uniform-dt estimates.
+        dt_arr = np.diff(ts)
+        dt_arr = np.where(dt_arr > 1e-6, dt_arr, 1e-3)  # guard zero/negative
+        avg_dt = float(np.mean(dt_arr))
 
-        vx     = np.diff(xs) / avg_dt
-        vy     = np.diff(ys) / avg_dt
+        vx     = np.diff(xs) / dt_arr
+        vy     = np.diff(ys) / dt_arr
         speeds = np.sqrt(vx ** 2 + vy ** 2)
 
         max_speed = float(np.max(speeds))

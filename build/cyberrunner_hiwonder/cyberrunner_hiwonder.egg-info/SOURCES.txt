@@ -10,7 +10,11 @@ setup.py
 ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/zip-safe
 cyberrunner_hiwonder/__init__.py
 cyberrunner_hiwonder/hiwonder_node.py
+cyberrunner_hiwonder.egg-info/PKG-INFO
+cyberrunner_hiwonder.egg-info/SOURCES.txt
+cyberrunner_hiwonder.egg-info/dependency_links.txt
+cyberrunner_hiwonder.egg-info/entry_points.txt
+cyberrunner_hiwonder.egg-info/requires.txt
+cyberrunner_hiwonder.egg-info/top_level.txt
+cyberrunner_hiwonder.egg-info/zip-safe
 resource/cyberrunner_hiwonder
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

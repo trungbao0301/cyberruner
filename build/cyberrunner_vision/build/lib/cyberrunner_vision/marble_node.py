@@ -36,7 +36,7 @@ class MarbleNode(Node):
         self.declare_parameter("hough_param2", 18)
         self.declare_parameter("smooth_alpha", 0.4)
         self.declare_parameter("lost_frames",  8)
-        self.declare_parameter("show_debug",   True)
+        self.declare_parameter("show_debug",   False)
 
         self._refresh_params()
         self.add_on_set_parameters_callback(self._on_params_changed)
@@ -155,7 +155,7 @@ class MarbleNode(Node):
             minRadius=self.min_r, maxRadius=self.max_r)
         if circles is not None:
             c = np.round(circles[0, 0]).astype(int)
-            cx, cy, cr = int(c[0]), int(c[1]), int(c[2])
+            cx, cy, cr = c[0], c[1], c[2]
             roi_mask = mask[max(0,cy-cr):cy+cr, max(0,cx-cr):cx+cr]
             if roi_mask.size > 0 and roi_mask.mean() > 10:
                 return (cx, cy, float(cr)), mask
@@ -197,7 +197,8 @@ class MarbleNode(Node):
         cv2.waitKey(1)
 
     def destroy_node(self):
-        cv2.destroyAllWindows()
+        if self.show_debug:
+            cv2.destroyAllWindows()
         super().destroy_node()
 
 

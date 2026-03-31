@@ -45,7 +45,7 @@ class PathNode(Node):
         self.gui_open       = False
         self.hover_pt       = None
         self.current_wp_idx = -1   # -1 = not running / reset, show all points
-        self._last_published = []  # track last published waypoints to avoid redundant publishes
+        self._path_dirty    = False  # set True whenever waypoints change
         self.WIN            = "PATH  (click=add  rclick=remove  z=undo  x=clear  s=save  ESC=close)"
 
         # ROS I/O
@@ -85,6 +85,7 @@ class PathNode(Node):
             self.get_logger().info(
                 "Added point " + str(len(self.waypoints)) +
                 "  (" + str(x) + ", " + str(y) + ")")
+            self._path_dirty = True
             self._publish_waypoints()
 
         elif event == cv2.EVENT_RBUTTONDOWN:
@@ -97,6 +98,7 @@ class PathNode(Node):
                 self.get_logger().info(
                     "Removed point " + str(nearest + 1) +
                     "  (" + str(removed[0]) + ", " + str(removed[1]) + ")")
+                self._path_dirty = True
                 self._publish_waypoints()
 
     # ── GUI tick ──────────────────────────────────────────────────────────────
@@ -117,12 +119,14 @@ class PathNode(Node):
                 self.get_logger().info(
                     "Undo — removed (" +
                     str(removed[0]) + ", " + str(removed[1]) + ")")
+                self._path_dirty = True
                 self._publish_waypoints()
 
         elif key == ord('x'):
             self.waypoints.clear()
             self.current_wp_idx = -1
             self.get_logger().info("Path cleared")
+            self._path_dirty = True
             self._publish_waypoints()
 
         elif key == ord('s'):
@@ -208,7 +212,7 @@ class PathNode(Node):
                     "  | left=add  right=remove  z=undo  x=clear  s=save",
                     (10, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2)
 
-        if self.hover_pt:
+        if self.hover_pt is not None:
             cv2.putText(img,
                         "cursor: (" + str(self.hover_pt[0]) +
                         ", " + str(self.hover_pt[1]) + ")",
@@ -217,9 +221,9 @@ class PathNode(Node):
 
     # ── Publish ───────────────────────────────────────────────────────────────
     def _publish_waypoints(self):
-        if self.waypoints == self._last_published:
+        if not self._path_dirty:
             return
-        self._last_published = [pt[:] for pt in self.waypoints]
+        self._path_dirty = False
         msg = Float32MultiArray()
         msg.data = [float(v) for pt in self.waypoints for v in pt]
         self.pub_wp.publish(msg)
@@ -237,7 +241,8 @@ class PathNode(Node):
     def _load_path(self, path):
         with open(path) as f:
             data = json.load(f)
-        self.waypoints = data.get("waypoints", [])
+        self.waypoints   = data.get("waypoints", [])
+        self._path_dirty = True
         self._publish_waypoints()
 
     # ── Services ──────────────────────────────────────────────────────────────
@@ -268,6 +273,7 @@ class PathNode(Node):
     def _svc_clear(self, req, res):
         self.waypoints.clear()
         self.current_wp_idx = -1
+        self._path_dirty = True
         self._publish_waypoints()
         res.success = True
         res.message = "Path cleared"

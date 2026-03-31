@@ -23,35 +23,67 @@ from rcl_interfaces.srv import SetParameters
 # (name, min, max, default, step, is_bool)
 PARAMS = [
     # PD gains
-    ("kp_x",        0.0,  20.0,  0.3,  0.01, False),
-    ("kp_y",        0.0,  20.0,  0.3,  0.01, False),
+    ("kp_x",        0.0,  20.0,  0.3,  0.01,  False),
+    ("kp_y",        0.0,  20.0,  0.3,  0.01,  False),
     ("kd_x",        0.0,  1.0,   0.08, 0.005, False),
     ("kd_y",        0.0,  1.0,   0.08, 0.005, False),
 
     # Output / path
-    ("max_output",  10,   300,   80,   1,    False),
-    ("arrival_px",  5.0,  150.0, 35.0, 1.0,  False),
+    ("max_output",   10,   300,   80,   1,     False),
+    ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
+    ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
 
     # Misc
-    ("cmd_time_ms",      5,    200,   20,    1,     False),
-    ("ff_gain",          0.0,  2.0,   0.0,   0.05,  False),
-    ("invert_x",         0,    1,     0,     1,     True),
-    ("invert_y",         0,    1,     1,     1,     True),
+    ("cmd_time_ms",       5,    200,   20,    1,      False),
+    ("ff_gain",           0.0,  2.0,   0.0,   0.05,   False),
+    ("invert_x",          0,    1,     0,     1,      True),
+    ("invert_y",          0,    1,     1,     1,      True),
 
     # Kalman filter
-    ("kalman_q_pos",     0.1,  50.0,  1.0,   0.1,   False),
-    ("kalman_q_vel",     1.0,  500.0, 50.0,  1.0,   False),
-    ("kalman_r_meas",    1.0,  200.0, 10.0,  1.0,   False),
+    ("kalman_q_pos",      0.1,  50.0,  1.0,   0.1,    False),
+    ("kalman_q_vel",      1.0,  500.0, 50.0,  1.0,    False),
+    ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
+
+    # Danger zones
+    ("danger_zone_gain",   0.0,  100.0, 25.0,  1.0,   False),
+    ("danger_zone_radius", 10.0, 200.0, 80.0,  5.0,   False),
+
+    # Timing / latency
+    ("waypoint_pause_s",   0.0,  2.0,   0.3,   0.05,  False),
+    ("predict_latency_s",  0.0,  0.2,   0.05,  0.005, False),
+
+    # Corner gain scheduling
+    ("corner_kp_scale",     1.0,  5.0,  2.0,  0.1,   False),
+    ("corner_kd_scale",     1.0,  8.0,  2.5,  0.1,   False),
+    ("corner_angle_thresh", 5.0, 90.0, 25.0,  5.0,   False),
+    ("corner_preview_px",  20.0, 300.0, 100.0, 5.0,   False),
+
+    # Auto-start / settling
+    ("auto_start",        0,    1,     0,    1,     True),
+    ("settle_speed_px",   2.0,  100.0, 15.0, 1.0,   False),
+    ("settle_frames",     3,    60,    10,   1,     False),
+    ("settle_timeout_s",  1.0,  15.0,  5.0,  0.5,   False),
+
+    # ILC
+    ("ilc_enabled",       0,    1,     1,    1,     True),
+    ("ilc_gain",          0.01, 0.5,   0.1,  0.01,  False),
 ]
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
-    "── Output / Path ──": ["max_output", "arrival_px"],
+    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
+    "── Danger Zones ──":  ["danger_zone_gain", "danger_zone_radius"],
+    "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
+    "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
+                            "corner_angle_thresh", "corner_preview_px"],
+    "── Auto-Start ──":    ["auto_start", "settle_speed_px",
+                            "settle_frames", "settle_timeout_s"],
+    "── ILC ──":           ["ilc_enabled", "ilc_gain"],
     "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
 }
 
-INT_PARAMS  = {"max_output", "cmd_time_ms"}
+INT_PARAMS  = {"max_output", "cmd_time_ms", "settle_frames"}
 
 
 # ── ROS2 helpers ──────────────────────────────────────────────────────────────
@@ -96,6 +128,23 @@ class TunerNode(Node):
         req.parameters = [build_param_msg(name, value, is_bool)]
         future = self._client.call_async(req)
         future.add_done_callback(lambda f, n=name: self._on_done(f, n))
+
+    def reset_all_params(self):
+        """Send all parameters in a single batched SetParameters request."""
+        if not self._client.wait_for_service(timeout_sec=0.1):
+            self.get_logger().warn(
+                "controller_node not available",
+                throttle_duration_sec=2.0
+            )
+            return
+
+        req = SetParameters.Request()
+        req.parameters = [
+            build_param_msg(name, default, is_bool)
+            for name, _, _, default, _, is_bool in PARAMS
+        ]
+        future = self._client.call_async(req)
+        future.add_done_callback(lambda f: self._on_done(f, "reset_all"))
 
     def _on_done(self, future, name):
         try:
@@ -278,7 +327,7 @@ class TunerGUI:
         self.node.set_param(name, snapped, is_bool)
 
     def _reset_all(self):
-        for name, _lo, _hi, default, _step, is_bool in PARAMS:
+        for name, _, _, default, _, is_bool in PARAMS:
             if is_bool:
                 self.vars[name].set(int(default))
             elif name in INT_PARAMS:
@@ -290,7 +339,8 @@ class TunerGUI:
                 if name in self.value_labels:
                     self.value_labels[name].config(text=self._fmt(default))
 
-            self.node.set_param(name, default, is_bool)
+        # Send all defaults in a single batched RPC instead of N individual calls
+        self.node.reset_all_params()
 
     @staticmethod
     def _fmt(v):

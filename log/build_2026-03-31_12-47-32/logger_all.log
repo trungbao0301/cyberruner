@@ -1,0 +1,681 @@
+[0.090s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--symlink-install']
+[0.090s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=True, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=24, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x71638d16f370>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x71638d16eaa0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x71638d16eaa0>>)
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.125s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.125s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/trungbao/cyberrunner_ws'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.125s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'ignore_ament_install'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['colcon_pkg']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'colcon_pkg'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['colcon_meta']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'colcon_meta'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['ros']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'ros'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['cmake', 'python']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'cmake'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'python'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extensions ['python_setup_py']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(scripts) by extension 'python_setup_py'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ignore', 'ignore_ament_install']
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ignore_ament_install'
+[0.146s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_pkg']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_pkg'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['colcon_meta']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'colcon_meta'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['ros']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'ros'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['cmake', 'python']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'cmake'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extensions ['python_setup_py']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src) by extension 'python_setup_py'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['ignore', 'ignore_ament_install']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'ignore'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'ignore_ament_install'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['colcon_pkg']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'colcon_pkg'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['colcon_meta']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'colcon_meta'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['ros']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'ros'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['cmake', 'python']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'cmake'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'python'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extensions ['python_setup_py']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner) by extension 'python_setup_py'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extension 'ignore'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extension 'ignore_ament_install'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extensions ['colcon_pkg']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extension 'colcon_pkg'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extensions ['colcon_meta']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extension 'colcon_meta'
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extensions ['ros']
+[0.147s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_camera) by extension 'ros'
+[0.149s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner/cyberrunner_camera' with type 'ros.ament_cmake' and name 'cyberrunner_camera'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extensions ['ignore', 'ignore_ament_install']
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extension 'ignore'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extension 'ignore_ament_install'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extensions ['colcon_pkg']
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extension 'colcon_pkg'
+[0.149s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extensions ['colcon_meta']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extension 'colcon_meta'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extensions ['ros']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_dreamer) by extension 'ros'
+[0.150s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner/cyberrunner_dreamer' with type 'ros.ament_python' and name 'cyberrunner_dreamer'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extensions ['ignore', 'ignore_ament_install']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extension 'ignore'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extension 'ignore_ament_install'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extensions ['colcon_pkg']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extension 'colcon_pkg'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extensions ['colcon_meta']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extension 'colcon_meta'
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extensions ['ros']
+[0.150s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_interfaces) by extension 'ros'
+[0.151s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner/cyberrunner_interfaces' with type 'ros.ament_cmake' and name 'cyberrunner_interfaces'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extensions ['ignore', 'ignore_ament_install']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extension 'ignore'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extension 'ignore_ament_install'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extensions ['colcon_pkg']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extension 'colcon_pkg'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extensions ['colcon_meta']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extension 'colcon_meta'
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extensions ['ros']
+[0.151s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/cyberrunner_state_estimation) by extension 'ros'
+[0.152s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner/cyberrunner_state_estimation' with type 'ros.ament_python' and name 'cyberrunner_state_estimation'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'ignore'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'ignore_ament_install'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['colcon_pkg']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'colcon_pkg'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['colcon_meta']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'colcon_meta'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['ros']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'ros'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['cmake', 'python']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'cmake'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'python'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extensions ['python_setup_py']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs) by extension 'python_setup_py'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'ignore'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'ignore_ament_install'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['colcon_pkg']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'colcon_pkg'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['colcon_meta']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'colcon_meta'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['ros']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'ros'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['cmake', 'python']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'cmake'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'python'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extensions ['python_setup_py']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets) by extension 'python_setup_py'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['ignore', 'ignore_ament_install']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'ignore'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'ignore_ament_install'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['colcon_pkg']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'colcon_pkg'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['colcon_meta']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'colcon_meta'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['ros']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'ros'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['cmake', 'python']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'cmake'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'python'
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extensions ['python_setup_py']
+[0.152s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/camera) by extension 'python_setup_py'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'ignore'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'ignore_ament_install'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['colcon_pkg']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'colcon_pkg'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['colcon_meta']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'colcon_meta'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['ros']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'ros'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['cmake', 'python']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'cmake'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'python'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extensions ['python_setup_py']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/motors) by extension 'python_setup_py'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'ignore'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'ignore_ament_install'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['colcon_pkg']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'colcon_pkg'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['colcon_meta']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'colcon_meta'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['ros']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'ros'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['cmake', 'python']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'cmake'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'python'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extensions ['python_setup_py']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload) by extension 'python_setup_py'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'ignore'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'ignore_ament_install'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['colcon_pkg']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'colcon_pkg'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['colcon_meta']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'colcon_meta'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['ros']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'ros'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['cmake', 'python']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'cmake'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'python'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extensions ['python_setup_py']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/assets/reload/arduino) by extension 'python_setup_py'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['ignore', 'ignore_ament_install']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'ignore'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'ignore_ament_install'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['colcon_pkg']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'colcon_pkg'
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['colcon_meta']
+[0.153s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'colcon_meta'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['ros']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'ros'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['cmake', 'python']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'cmake'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'python'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extensions ['python_setup_py']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/docs/img) by extension 'python_setup_py'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/dreamerv3) by extensions ['ignore', 'ignore_ament_install']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/dreamerv3) by extension 'ignore'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner/dreamerv3) ignored
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['ignore', 'ignore_ament_install']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'ignore'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'ignore_ament_install'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['colcon_pkg']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'colcon_pkg'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['colcon_meta']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'colcon_meta'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['ros']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'ros'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['cmake', 'python']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'cmake'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'python'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extensions ['python_setup_py']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera) by extension 'python_setup_py'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['ignore', 'ignore_ament_install']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'ignore'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'ignore_ament_install'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['colcon_pkg']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'colcon_pkg'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['colcon_meta']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'colcon_meta'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['ros']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'ros'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['cmake', 'python']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'cmake'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'python'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extensions ['python_setup_py']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_camera/launch) by extension 'python_setup_py'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extensions ['ignore', 'ignore_ament_install']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extension 'ignore'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extension 'ignore_ament_install'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extensions ['colcon_pkg']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extension 'colcon_pkg'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extensions ['colcon_meta']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extension 'colcon_meta'
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extensions ['ros']
+[0.154s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_hiwonder) by extension 'ros'
+[0.155s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner_hiwonder' with type 'ros.ament_python' and name 'cyberrunner_hiwonder'
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extensions ['ignore', 'ignore_ament_install']
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extension 'ignore'
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extension 'ignore_ament_install'
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extensions ['colcon_pkg']
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extension 'colcon_pkg'
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extensions ['colcon_meta']
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extension 'colcon_meta'
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extensions ['ros']
+[0.155s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_pid) by extension 'ros'
+[0.156s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner_pid' with type 'ros.ament_python' and name 'cyberrunner_pid'
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extensions ['ignore', 'ignore_ament_install']
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extension 'ignore'
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extension 'ignore_ament_install'
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extensions ['colcon_pkg']
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extension 'colcon_pkg'
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extensions ['colcon_meta']
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extension 'colcon_meta'
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extensions ['ros']
+[0.156s] Level 1:colcon.colcon_core.package_identification:_identify(src/cyberrunner_vision) by extension 'ros'
+[0.157s] DEBUG:colcon.colcon_core.package_identification:Package 'src/cyberrunner_vision' with type 'ros.ament_python' and name 'cyberrunner_vision'
+[0.157s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.157s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.157s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.157s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.157s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.171s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.171s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.172s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 7 installed packages in /home/trungbao/cyberrunner_ws/install
+[0.173s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 272 installed packages in /opt/ros/humble
+[0.173s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_target' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_clean_cache' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_clean_first' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'cmake_force_configure' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'ament_cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'catkin_cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_camera' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.196s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_camera' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_camera', 'symlink_install': True, 'test_result_base': None}
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_target' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_clean_cache' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_clean_first' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'cmake_force_configure' from command line to 'False'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'ament_cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'catkin_cmake_args' from command line to 'None'
+[0.196s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_hiwonder' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.197s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_hiwonder' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder', 'symlink_install': True, 'test_result_base': None}
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_target' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_clean_cache' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_clean_first' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'cmake_force_configure' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'ament_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'catkin_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_interfaces' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.197s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_interfaces' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces', 'symlink_install': True, 'test_result_base': None}
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_target' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_clean_cache' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_clean_first' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'cmake_force_configure' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'ament_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'catkin_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_vision' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.197s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_vision' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision', 'symlink_install': True, 'test_result_base': None}
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_target' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_clean_cache' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_clean_first' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'cmake_force_configure' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'ament_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'catkin_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_dreamer' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.197s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_dreamer' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer', 'symlink_install': True, 'test_result_base': None}
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_target' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_clean_cache' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_clean_first' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'cmake_force_configure' from command line to 'False'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'ament_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'catkin_cmake_args' from command line to 'None'
+[0.197s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_pid' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.197s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_pid' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner_pid', 'symlink_install': True, 'test_result_base': None}
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_args' from command line to 'None'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_target' from command line to 'None'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_clean_cache' from command line to 'False'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_clean_first' from command line to 'False'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'cmake_force_configure' from command line to 'False'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'ament_cmake_args' from command line to 'None'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'catkin_cmake_args' from command line to 'None'
+[0.198s] Level 5:colcon.colcon_core.verb:set package 'cyberrunner_state_estimation' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.198s] DEBUG:colcon.colcon_core.verb:Building package 'cyberrunner_state_estimation' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation', 'merge_install': False, 'path': '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_state_estimation', 'symlink_install': True, 'test_result_base': None}
+[0.198s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.198s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.199s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces' with build type 'ament_cmake'
+[0.199s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces'
+[0.203s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.203s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.203s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.205s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_camera' with build type 'ament_cmake'
+[0.205s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_camera'
+[0.205s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.205s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.208s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder' with build type 'ament_python'
+[0.208s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_hiwonder', 'ament_prefix_path')
+[0.208s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/ament_prefix_path.ps1'
+[0.209s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/ament_prefix_path.dsv'
+[0.209s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/ament_prefix_path.sh'
+[0.210s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.210s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.212s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision' with build type 'ament_python'
+[0.212s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_vision', 'ament_prefix_path')
+[0.212s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/ament_prefix_path.ps1'
+[0.212s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/ament_prefix_path.dsv'
+[0.213s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/ament_prefix_path.sh'
+[0.213s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.213s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.218s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces
+[0.220s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_camera -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_camera
+[0.331s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder'
+[0.331s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.331s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.439s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision'
+[0.439s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.440s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.640s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_camera -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_camera
+[0.641s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+[0.669s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_camera -- -j24 -l24
+[0.675s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera
+[0.685s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_camera)
+[0.685s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_camera' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_camera
+[0.689s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera' for CMake module files
+[0.689s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera' for CMake config files
+[0.689s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_camera', 'cmake_prefix_path')
+[0.689s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.ps1'
+[0.689s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.dsv'
+[0.690s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.sh'
+[0.690s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib'
+[0.690s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/bin'
+[0.690s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/pkgconfig/cyberrunner_camera.pc'
+[0.690s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/python3.10/site-packages'
+[0.690s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/bin'
+[0.691s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.ps1'
+[0.691s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.dsv'
+[0.692s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.sh'
+[0.692s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.bash'
+[0.692s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.zsh'
+[0.693s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/colcon-core/packages/cyberrunner_camera)
+[0.693s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_camera)
+[0.693s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera' for CMake module files
+[0.693s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera' for CMake config files
+[0.693s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_camera', 'cmake_prefix_path')
+[0.694s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.ps1'
+[0.694s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.dsv'
+[0.694s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/hook/cmake_prefix_path.sh'
+[0.694s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib'
+[0.694s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/bin'
+[0.694s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/pkgconfig/cyberrunner_camera.pc'
+[0.694s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/python3.10/site-packages'
+[0.694s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/bin'
+[0.695s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.ps1'
+[0.695s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.dsv'
+[0.695s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.sh'
+[0.695s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.bash'
+[0.695s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.zsh'
+[0.695s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/colcon-core/packages/cyberrunner_camera)
+[0.726s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/ament_index/resource_index/packages/cyberrunner_vision
+[0.726s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.xml
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/launch/cyberrunner.launch.py
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/calibration_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/camera_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/controller_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/estimator_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/marble_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/path_node
+[0.727s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision/tuner_node
+[0.729s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build --no-deps symlink_data --force
+[0.729s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages/cyberrunner_hiwonder
+[0.729s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.xml
+[0.729s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder/hiwonder_node
+[0.730s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build --no-deps symlink_data --force
+[1.017s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_vision', 'pythonpath_develop')
+[1.017s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath_develop.ps1'
+[1.018s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build --no-deps symlink_data --force
+[1.018s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath_develop.dsv'
+[1.018s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath_develop.sh'
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision' for CMake module files
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision' for CMake config files
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib'
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/bin'
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/pkgconfig/cyberrunner_vision.pc'
+[1.019s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages'
+[1.019s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_vision', 'pythonpath')
+[1.019s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath.ps1'
+[1.019s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath.dsv'
+[1.020s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/hook/pythonpath.sh'
+[1.020s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/bin'
+[1.020s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_vision)
+[1.020s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.ps1'
+[1.020s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.dsv'
+[1.021s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.sh'
+[1.021s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.bash'
+[1.021s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/package.zsh'
+[1.021s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/colcon-core/packages/cyberrunner_vision)
+[1.026s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_hiwonder', 'pythonpath_develop')
+[1.027s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.ps1'
+[1.027s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build --no-deps symlink_data --force
+[1.028s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.dsv'
+[1.028s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath_develop.sh'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder' for CMake module files
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder' for CMake config files
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/bin'
+[1.028s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/pkgconfig/cyberrunner_hiwonder.pc'
+[1.029s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages'
+[1.029s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_hiwonder', 'pythonpath')
+[1.029s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath.ps1'
+[1.029s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath.dsv'
+[1.029s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/hook/pythonpath.sh'
+[1.029s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/bin'
+[1.029s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_hiwonder)
+[1.030s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.ps1'
+[1.030s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.dsv'
+[1.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.sh'
+[1.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.bash'
+[1.031s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder/package.zsh'
+[1.032s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/colcon-core/packages/cyberrunner_hiwonder)
+[1.156s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_interfaces -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces
+[1.156s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces -- -j24 -l24
+[1.376s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces -- -j24 -l24
+[1.379s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces
+[1.434s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_interfaces)
+[1.435s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces' for CMake module files
+[1.435s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_interfaces
+[1.436s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces' for CMake config files
+[1.436s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_interfaces', 'cmake_prefix_path')
+[1.436s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.ps1'
+[1.437s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.dsv'
+[1.437s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.sh'
+[1.437s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib'
+[1.437s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_interfaces', 'ld_library_path_lib')
+[1.437s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.ps1'
+[1.437s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.dsv'
+[1.438s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.sh'
+[1.438s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/bin'
+[1.438s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/pkgconfig/cyberrunner_interfaces.pc'
+[1.438s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/python3.10/site-packages'
+[1.438s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/bin'
+[1.438s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.ps1'
+[1.438s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.dsv'
+[1.439s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.sh'
+[1.439s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.bash'
+[1.439s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.zsh'
+[1.439s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/colcon-core/packages/cyberrunner_interfaces)
+[1.439s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_interfaces)
+[1.439s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces' for CMake module files
+[1.440s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces' for CMake config files
+[1.440s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_interfaces', 'cmake_prefix_path')
+[1.440s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.ps1'
+[1.440s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.dsv'
+[1.441s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/cmake_prefix_path.sh'
+[1.441s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib'
+[1.441s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_interfaces', 'ld_library_path_lib')
+[1.441s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.ps1'
+[1.441s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.dsv'
+[1.441s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/hook/ld_library_path_lib.sh'
+[1.441s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/bin'
+[1.441s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/pkgconfig/cyberrunner_interfaces.pc'
+[1.441s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib/python3.10/site-packages'
+[1.442s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/bin'
+[1.442s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.ps1'
+[1.442s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.dsv'
+[1.442s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.sh'
+[1.442s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.bash'
+[1.443s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/cyberrunner_interfaces/package.zsh'
+[1.443s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/share/colcon-core/packages/cyberrunner_interfaces)
+[1.443s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer' with build type 'ament_python'
+[1.443s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_dreamer', 'ament_prefix_path')
+[1.443s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/ament_prefix_path.ps1'
+[1.444s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/ament_prefix_path.dsv'
+[1.444s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/ament_prefix_path.sh'
+[1.444s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.444s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.446s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_pid' with build type 'ament_python'
+[1.446s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_pid', 'ament_prefix_path')
+[1.446s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/ament_prefix_path.ps1'
+[1.446s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/ament_prefix_path.dsv'
+[1.446s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/ament_prefix_path.sh'
+[1.446s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.446s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.448s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_state_estimation' with build type 'ament_python'
+[1.448s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_state_estimation', 'ament_prefix_path')
+[1.448s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/ament_prefix_path.ps1'
+[1.448s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/ament_prefix_path.dsv'
+[1.449s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/ament_prefix_path.sh'
+[1.449s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.449s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.563s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_dreamer'
+[1.563s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.563s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.673s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/trungbao/cyberrunner_ws/src/cyberrunner_pid'
+[1.674s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.674s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.785s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/trungbao/cyberrunner_ws/src/cyberrunner/cyberrunner_state_estimation'
+[1.785s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.785s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/ament_index/resource_index/packages/cyberrunner_dreamer
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.xml
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/path_0002_hard.pkl
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer/eval
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer/test
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer/train
+[2.021s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/cyberrunner_dreamer/train_parallel
+[2.023s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build --no-deps symlink_data --force
+[2.023s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/ament_index/resource_index/packages/cyberrunner_pid
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.xml
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/click_target
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/maze_planner
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/orange_live_target_node
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/orange_track_mapper_node
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/path_follower_node
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/pid_controller
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/route_wfocus_follow
+[2.024s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/cyberrunner_pid/solve
+[2.025s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data --force
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/ament_index/resource_index/packages/cyberrunner_state_estimation
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.xml
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/calib_results_cyberrunner.txt
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation/estimator
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation/estimator_sub
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation/select_markers
+[2.025s] DEBUG:colcon.colcon_core.task.python.build:While undoing a previous installation files outside the Python library path are being ignored: /home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/cyberrunner_state_estimation/state_estimation_node
+[2.026s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data --force
+[2.314s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_dreamer', 'pythonpath_develop')
+[2.314s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath_develop.ps1'
+[2.315s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/build --no-deps symlink_data --force
+[2.315s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath_develop.dsv'
+[2.315s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath_develop.sh'
+[2.315s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer' for CMake module files
+[2.315s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer' for CMake config files
+[2.316s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib'
+[2.316s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/bin'
+[2.316s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/pkgconfig/cyberrunner_dreamer.pc'
+[2.316s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages'
+[2.316s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_dreamer', 'pythonpath')
+[2.316s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath.ps1'
+[2.316s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath.dsv'
+[2.316s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/hook/pythonpath.sh'
+[2.316s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/bin'
+[2.317s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_dreamer)
+[2.317s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.ps1'
+[2.317s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.dsv'
+[2.317s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.sh'
+[2.317s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.bash'
+[2.317s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/cyberrunner_dreamer/package.zsh'
+[2.318s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/share/colcon-core/packages/cyberrunner_dreamer)
+[2.318s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_state_estimation', 'pythonpath_develop')
+[2.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath_develop.ps1'
+[2.318s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath_develop.dsv'
+[2.318s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/build --no-deps symlink_data --force
+[2.318s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath_develop.sh'
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation' for CMake module files
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation' for CMake config files
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib'
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/bin'
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/pkgconfig/cyberrunner_state_estimation.pc'
+[2.319s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages'
+[2.319s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_state_estimation', 'pythonpath')
+[2.319s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath.ps1'
+[2.319s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath.dsv'
+[2.320s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/hook/pythonpath.sh'
+[2.320s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/bin'
+[2.320s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_state_estimation)
+[2.320s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.ps1'
+[2.320s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.dsv'
+[2.320s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.sh'
+[2.321s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.bash'
+[2.321s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/cyberrunner_state_estimation/package.zsh'
+[2.321s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/share/colcon-core/packages/cyberrunner_state_estimation)
+[2.321s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_pid', 'pythonpath_develop')
+[2.321s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath_develop.ps1'
+[2.322s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/trungbao/cyberrunner_ws/build/cyberrunner_pid/build --no-deps symlink_data --force
+[2.322s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath_develop.dsv'
+[2.322s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/build/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath_develop.sh'
+[2.322s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid' for CMake module files
+[2.322s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid' for CMake config files
+[2.322s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib'
+[2.322s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/bin'
+[2.322s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/pkgconfig/cyberrunner_pid.pc'
+[2.323s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages'
+[2.323s] Level 1:colcon.colcon_core.shell:create_environment_hook('cyberrunner_pid', 'pythonpath')
+[2.323s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath.ps1'
+[2.323s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath.dsv'
+[2.323s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/hook/pythonpath.sh'
+[2.323s] Level 1:colcon.colcon_core.environment:checking '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/bin'
+[2.323s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cyberrunner_pid)
+[2.324s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.ps1'
+[2.324s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.dsv'
+[2.324s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.sh'
+[2.324s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.bash'
+[2.324s] INFO:colcon.colcon_core.shell:Creating package script '/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/cyberrunner_pid/package.zsh'
+[2.324s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/share/colcon-core/packages/cyberrunner_pid)
+[2.324s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[2.325s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[2.325s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[2.325s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[2.328s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[2.328s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[2.328s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[2.339s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[2.339s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/trungbao/cyberrunner_ws/install/local_setup.ps1'
+[2.341s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/trungbao/cyberrunner_ws/install/_local_setup_util_ps1.py'
+[2.342s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/trungbao/cyberrunner_ws/install/setup.ps1'
+[2.342s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/trungbao/cyberrunner_ws/install/local_setup.sh'
+[2.343s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/trungbao/cyberrunner_ws/install/_local_setup_util_sh.py'
+[2.343s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/trungbao/cyberrunner_ws/install/setup.sh'
+[2.344s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/trungbao/cyberrunner_ws/install/local_setup.bash'
+[2.344s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/trungbao/cyberrunner_ws/install/setup.bash'
+[2.345s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/trungbao/cyberrunner_ws/install/local_setup.zsh'
+[2.345s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/trungbao/cyberrunner_ws/install/setup.zsh'
