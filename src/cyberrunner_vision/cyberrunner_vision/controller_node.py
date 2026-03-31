@@ -9,29 +9,38 @@ Control idea:
 - Kalman filter estimates marble position + velocity from noisy detections
 - Follow path segments with lookahead; PD error in filtered position space
 - Kd acts on Kalman velocity directly (no noisy finite-difference needed)
+- Danger zones repel the target away from positions where marble was lost
+- Latency prediction shifts the error target by predict_latency_s seconds
+- Auto-restarts when marble is reacquired after being lost mid-run
 
 PD error is in PIXELS (topdown space, 0-1000px).
 Output is directly in servo UNITS (not degrees).
 
 Parameters:
-  kp_x, kp_y          float
-  kd_x, kd_y          float
-  max_output          int
-  servo_center        int
-  arrival_px          float   waypoint-switch radius
-  lookahead_px        float   forward target distance along segment
-  cmd_time_ms         int
-  ff_gain             float
-  invert_x            bool
-  invert_y            bool
-  kalman_q_pos        float   process noise — position (lower = trust model more)
-  kalman_q_vel        float   process noise — velocity (higher = track fast moves)
-  kalman_r_meas       float   measurement noise (higher = trust camera less)
+  kp_x, kp_y           float
+  kd_x, kd_y           float
+  max_output            int
+  servo_center          int
+  arrival_px            float   waypoint-switch radius
+  lookahead_px          float   forward target distance along segment
+  cmd_time_ms           int
+  ff_gain               float
+  invert_x              bool
+  invert_y              bool
+  waypoint_pause_s      float   pause duration (s) after each waypoint advance
+  danger_zone_gain      float   repulsion strength from danger zones
+  danger_zone_radius    float   influence radius (px) of each danger zone
+  danger_zone_path      str     JSON file to persist danger zones
+  predict_latency_s     float   latency compensation — advance error target by this many s
+  kalman_q_pos          float   process noise — position (lower = trust model more)
+  kalman_q_vel          float   process noise — velocity (higher = track fast moves)
+  kalman_r_meas         float   measurement noise (higher = trust camera less)
 
 Services:
-  /controller/start      Trigger
-  /controller/stop       Trigger
-  /controller/calibrate  Trigger
+  /controller/start             Trigger
+  /controller/stop              Trigger
+  /controller/calibrate         Trigger
+  /controller/clear_danger_zones Trigger
 """
 
 import os

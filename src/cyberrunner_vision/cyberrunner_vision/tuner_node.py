@@ -23,31 +23,42 @@ from rcl_interfaces.srv import SetParameters
 # (name, min, max, default, step, is_bool)
 PARAMS = [
     # PD gains
-    ("kp_x",        0.0,  20.0,  0.3,  0.01, False),
-    ("kp_y",        0.0,  20.0,  0.3,  0.01, False),
+    ("kp_x",        0.0,  20.0,  0.3,  0.01,  False),
+    ("kp_y",        0.0,  20.0,  0.3,  0.01,  False),
     ("kd_x",        0.0,  1.0,   0.08, 0.005, False),
     ("kd_y",        0.0,  1.0,   0.08, 0.005, False),
 
     # Output / path
-    ("max_output",  10,   300,   80,   1,    False),
-    ("arrival_px",  5.0,  150.0, 35.0, 1.0,  False),
+    ("max_output",   10,   300,   80,   1,     False),
+    ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
+    ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
 
     # Misc
-    ("cmd_time_ms",      5,    200,   20,    1,     False),
-    ("ff_gain",          0.0,  2.0,   0.0,   0.05,  False),
-    ("invert_x",         0,    1,     0,     1,     True),
-    ("invert_y",         0,    1,     1,     1,     True),
+    ("cmd_time_ms",       5,    200,   20,    1,      False),
+    ("ff_gain",           0.0,  2.0,   0.0,   0.05,   False),
+    ("invert_x",          0,    1,     0,     1,      True),
+    ("invert_y",          0,    1,     1,     1,      True),
 
     # Kalman filter
-    ("kalman_q_pos",     0.1,  50.0,  1.0,   0.1,   False),
-    ("kalman_q_vel",     1.0,  500.0, 50.0,  1.0,   False),
-    ("kalman_r_meas",    1.0,  200.0, 10.0,  1.0,   False),
+    ("kalman_q_pos",      0.1,  50.0,  1.0,   0.1,    False),
+    ("kalman_q_vel",      1.0,  500.0, 50.0,  1.0,    False),
+    ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
+
+    # Danger zones
+    ("danger_zone_gain",   0.0,  100.0, 25.0,  1.0,   False),
+    ("danger_zone_radius", 10.0, 200.0, 80.0,  5.0,   False),
+
+    # Timing / latency
+    ("waypoint_pause_s",   0.0,  2.0,   0.3,   0.05,  False),
+    ("predict_latency_s",  0.0,  0.2,   0.05,  0.005, False),
 ]
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
-    "── Output / Path ──": ["max_output", "arrival_px"],
+    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
+    "── Danger Zones ──":  ["danger_zone_gain", "danger_zone_radius"],
+    "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
     "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
 }
 

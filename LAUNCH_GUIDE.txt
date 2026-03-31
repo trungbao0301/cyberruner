@@ -63,6 +63,12 @@ In the ESTIMATOR window that opens:
 Next time you launch, it loads automatically — no need to click again.
 Press 'c' to clear and redo if the camera is moved.
 
+NOTE: The estimator now tracks moving corners using BLUE DOT MARKERS.
+Stick 4 small blue stickers/dots on the maze board corners (TL,TR,BR,BL).
+If blue dots are not detected, the estimator keeps the last known position.
+Tune detection via: ros2 param set /estimator_node blue_lo "90,80,50"
+                    ros2 param set /estimator_node blue_hi "130,255,255"
+
 ----------------------------------------------------------------
 STEP 5 — DRAW A PATH
 ----------------------------------------------------------------
@@ -94,6 +100,14 @@ STEP 6 — RUN THE CONTROLLER
   # Check marble is detected and board is level
   ros2 service call /controller/calibrate std_srvs/srv/Trigger {}
 
+  # Clear saved danger zones (positions where marble was lost)
+  ros2 service call /controller/clear_danger_zones std_srvs/srv/Trigger {}
+
+NOTE: The controller auto-restarts when the marble is reacquired after
+being lost mid-run. Use /controller/stop to fully stop it.
+Danger zones are saved to ~/cyberrunner_danger_zones.json and persist
+across sessions. Clear them if you change the path or board layout.
+
 ----------------------------------------------------------------
 OPTIONAL — LIVE PARAMETER TUNING
 ----------------------------------------------------------------
@@ -103,12 +117,17 @@ In a new terminal:
 
 Sliders update controller parameters instantly while running.
 Useful parameters to tune first:
-  kp_x / kp_y     — increase if marble is sluggish
-  kd_x / kd_y     — increase if marble oscillates
-  max_output       — limits max board tilt (start low ~60)
-  arrival_px       — how close to waypoint before advancing (default 35)
-  kalman_r_meas    — from calibration Test 4 (measurement noise)
-  kalman_q_vel     — from calibration Test 6 (velocity tracking)
+  kp_x / kp_y          — increase if marble is sluggish
+  kd_x / kd_y          — increase if marble oscillates
+  max_output            — limits max board tilt (start low ~60)
+  arrival_px            — how close to waypoint before advancing (default 35)
+  lookahead_px          — how far ahead on segment to target (default 25)
+  kalman_r_meas         — from calibration Test 4 (measurement noise)
+  kalman_q_vel          — from calibration Test 6 (velocity tracking)
+  danger_zone_gain      — how hard to repel from known loss spots (default 25)
+  danger_zone_radius    — influence radius of danger zones in px (default 80)
+  waypoint_pause_s      — pause at each waypoint (default 0.3s)
+  predict_latency_s     — latency compensation in seconds (default 0.05)
 
 ----------------------------------------------------------------
 OPTIONAL — KALMAN CALIBRATION
