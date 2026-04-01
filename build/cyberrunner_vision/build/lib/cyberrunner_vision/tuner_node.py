@@ -37,12 +37,18 @@ PARAMS = [
     ("max_output",   10,   300,   80,   1,     False),
     ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
     ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
+    ("line_stick_gain", 0.0,  3.0,  0.6,  0.05,  False),
 
     # Misc
     ("cmd_time_ms",       5,    200,   20,    1,      False),
     ("ff_gain",           0.0,  2.0,   0.0,   0.05,   False),
     ("invert_x",          0,    1,     0,     1,      True),
     ("invert_y",          0,    1,     1,     1,      True),
+    ("tilt_balance_enabled", 0, 1,     1,     1,      True),
+    ("tilt_balance_kp",  -40.0, 40.0,  8.0,   0.5,    False),
+    ("tilt_balance_ki",  -10.0, 10.0,  1.0,   0.1,    False),
+    ("tilt_balance_deadband", 0.0, 2.0, 0.2,  0.05,   False),
+    ("tilt_balance_max_trim", 0.0, 250.0, 120.0, 5.0, False),
 
     # Kalman filter
     ("kalman_q_pos",      0.1,  50.0,  1.0,   0.1,    False),
@@ -81,7 +87,8 @@ PARAMS = [
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
-    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
+    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px",
+                            "line_stick_gain"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
     "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
     "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
@@ -89,7 +96,10 @@ GROUPS = {
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
                             "settle_frames", "settle_timeout_s"],
     "── ILC ──":           ["ilc_enabled", "ilc_gain"],
-    "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
+    "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y",
+                            "tilt_balance_enabled", "tilt_balance_kp",
+                            "tilt_balance_ki", "tilt_balance_deadband",
+                            "tilt_balance_max_trim"],
     "── Physics Model ──": ["deg_per_unit", "omega_n_x", "omega_n_y", "zeta",
                             "friction_rho", "friction_eta"],
 }

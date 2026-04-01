@@ -22,6 +22,7 @@ Parameters:
   servo_center          int
   arrival_px            float   waypoint-switch radius
   lookahead_px          float   forward target distance along segment
+  line_stick_gain       float   extra cross-track pull back toward current path segment
   cmd_time_ms           int
   ff_gain               float
   invert_x              bool
@@ -39,6 +40,11 @@ Parameters:
   zeta                  float   1.0   desired damping ratio (1.0 = critically damped)
   friction_rho          float   0.0   Coulomb friction magnitude (servo units, 0=disabled)
   friction_eta          float   10.0  Coulomb friction sharpness (high=sign, low=smooth)
+  tilt_balance_enabled  bool    True  keep flat/neutral using measured tilt_x/tilt_y
+  tilt_balance_kp       float   8.0   servo-unit trim per degree of tilt error
+  tilt_balance_ki       float   1.0   integral trim per degree-second of tilt error
+  tilt_balance_deadband float   0.2   ignore tiny tilt noise around level
+  tilt_balance_max_trim float   120.0 max neutral trim in servo units per axis
 
 Services:
   /controller/start             Trigger
@@ -235,13 +241,19 @@ class PathFollower:
 
         if len(self.path) == 0:
             self.done = True
-            return np.array([0.0, 0.0], dtype=np.float32), -1, True
+            return (
+                np.array([0.0, 0.0], dtype=np.float32),
+                np.array([0.0, 0.0], dtype=np.float32),
+                -1,
+                True,
+                0.0,
+            )
 
         if len(self.path) == 1:
             target = self.path[0]
             if np.linalg.norm(p - target) < self.arrival:
                 self.done = True
-            return target, 0, self.done
+            return target, target.copy(), 0, self.done, 0.0
 
         # Keep idx valid
         self.idx = int(np.clip(self.idx, 0, len(self.path) - 2))
@@ -258,6 +270,7 @@ class PathFollower:
         b = self.path[self.idx + 1]
 
         proj, t, seg_len = self._project_to_segment(p, a, b)
+        line_stick_blend = 1.0
 
         # Look ahead along the path — if the lookahead overflows the current
         # segment, continue into the next segment(s).  This lets the controller
@@ -265,6 +278,13 @@ class PathFollower:
         # giving more time to execute sharp turns before reaching a hole.
         if seg_len > 1e-9:
             dist_to_end = (1.0 - t) * seg_len
+            if self.lookahead > 1e-9:
+                # Fade cross-track pull out near corners so line-sticking does
+                # not fight the lookahead target as it starts to preview the
+                # next segment.
+                line_stick_blend = max(
+                    0.0, min(1.0, dist_to_end / self.lookahead)
+                )
             if self.lookahead <= dist_to_end:
                 # Lookahead stays within current segment — normal case
                 t_look = t + self.lookahead / seg_len
@@ -295,8 +315,10 @@ class PathFollower:
         if np.linalg.norm(p - final_wp) < self.arrival:
             self.done = True
             target = final_wp.copy()
+            proj = final_wp.copy()
+            line_stick_blend = 0.0
 
-        return target, self.idx, self.done
+        return target, proj, self.idx, self.done, line_stick_blend
 
 
 # ── Controller Node ───────────────────────────────────────────────────────────
@@ -313,6 +335,7 @@ class ControllerNode(Node):
         self.declare_parameter("servo_center", 500)
         self.declare_parameter("arrival_px", 35.0)
         self.declare_parameter("lookahead_px", 25.0)
+        self.declare_parameter("line_stick_gain", 0.6)
         self.declare_parameter("cmd_time_ms", 20)
         self.declare_parameter("ff_gain", 0.0)
         self.declare_parameter("ff_board_scale", 10.0)  # est_state board-angle → servo unit scale
@@ -333,6 +356,11 @@ class ControllerNode(Node):
         # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
         self.declare_parameter("friction_rho", 0.0)   # magnitude (0 = disabled)
         self.declare_parameter("friction_eta", 10.0)  # sharpness
+        self.declare_parameter("tilt_balance_enabled", True)
+        self.declare_parameter("tilt_balance_kp", 8.0)
+        self.declare_parameter("tilt_balance_ki", 1.0)
+        self.declare_parameter("tilt_balance_deadband", 0.2)
+        self.declare_parameter("tilt_balance_max_trim", 120.0)
 
         # Corner gain scheduling — ramp Kp and Kd up near sharp turns
         self.declare_parameter("corner_kp_scale",     2.0)   # max Kp multiplier at corner
@@ -387,6 +415,10 @@ class ControllerNode(Node):
         self._current_path_hash = None
 
         self.board_M_inv  = None  # inverse of flat→current board homography
+        self._tilt_trim_x = 0.0
+        self._tilt_trim_y = 0.0
+        self._tilt_int_x = 0.0
+        self._tilt_int_y = 0.0
 
         # Lock protecting shared state written from subscriptions and read from
         # the timer tick when a MultiThreadedExecutor is used.
@@ -437,61 +469,75 @@ class ControllerNode(Node):
         )
 
     def _on_params_changed(self, params):
-        self._load_params()
+        overrides = {param.name: param.value for param in params}
+        self._load_params(overrides)
         return SetParametersResult(successful=True)
 
-    def _load_params(self):
-        mx = float(self.get_parameter("max_output").value)
+    def _load_params(self, overrides=None):
+        overrides = overrides or {}
 
-        self.servo_center = int(self.get_parameter("servo_center").value)
-        self.arrival_px = float(self.get_parameter("arrival_px").value)
-        self.lookahead_px = float(self.get_parameter("lookahead_px").value)
-        self.cmd_time_ms = int(self.get_parameter("cmd_time_ms").value)
-        self.ff_gain        = float(self.get_parameter("ff_gain").value)
-        self.ff_board_scale = float(self.get_parameter("ff_board_scale").value)
-        self.invert_x = bool(self.get_parameter("invert_x").value)
-        self.invert_y = bool(self.get_parameter("invert_y").value)
-        self.waypoint_pause_s  = float(self.get_parameter("waypoint_pause_s").value)
-        self.predict_latency_s = float(self.get_parameter("predict_latency_s").value)
+        def pv(name):
+            if name in overrides:
+                return overrides[name]
+            return self.get_parameter(name).value
 
-        self.kalman.q_pos  = float(self.get_parameter("kalman_q_pos").value)
-        self.kalman.q_vel  = float(self.get_parameter("kalman_q_vel").value)
-        self.kalman.r_meas = float(self.get_parameter("kalman_r_meas").value)
+        mx = float(pv("max_output"))
 
-        self.corner_kp_scale     = float(self.get_parameter("corner_kp_scale").value)
-        self.corner_kd_scale     = float(self.get_parameter("corner_kd_scale").value)
-        self.corner_angle_thresh = float(self.get_parameter("corner_angle_thresh").value)
-        self.corner_preview_px   = float(self.get_parameter("corner_preview_px").value)
+        self.servo_center = int(pv("servo_center"))
+        self.arrival_px = float(pv("arrival_px"))
+        self.lookahead_px = float(pv("lookahead_px"))
+        self.line_stick_gain = float(pv("line_stick_gain"))
+        self.cmd_time_ms = int(pv("cmd_time_ms"))
+        self.ff_gain        = float(pv("ff_gain"))
+        self.ff_board_scale = float(pv("ff_board_scale"))
+        self.invert_x = bool(pv("invert_x"))
+        self.invert_y = bool(pv("invert_y"))
+        self.waypoint_pause_s  = float(pv("waypoint_pause_s"))
+        self.predict_latency_s = float(pv("predict_latency_s"))
 
-        self.auto_start       = bool(self.get_parameter("auto_start").value)
-        self.settle_speed_px  = float(self.get_parameter("settle_speed_px").value)
-        self.settle_frames    = int(self.get_parameter("settle_frames").value)
-        self.settle_timeout_s = float(self.get_parameter("settle_timeout_s").value)
-        self.recovery_wait_s  = float(self.get_parameter("recovery_wait_s").value)
+        self.kalman.q_pos  = float(pv("kalman_q_pos"))
+        self.kalman.q_vel  = float(pv("kalman_q_vel"))
+        self.kalman.r_meas = float(pv("kalman_r_meas"))
 
-        self.ilc_enabled = bool(self.get_parameter("ilc_enabled").value)
-        self.ilc_gain    = float(self.get_parameter("ilc_gain").value)
-        self._ilc_path   = self.get_parameter("ilc_path").value
+        self.corner_kp_scale     = float(pv("corner_kp_scale"))
+        self.corner_kd_scale     = float(pv("corner_kd_scale"))
+        self.corner_angle_thresh = float(pv("corner_angle_thresh"))
+        self.corner_preview_px   = float(pv("corner_preview_px"))
+
+        self.auto_start       = bool(pv("auto_start"))
+        self.settle_speed_px  = float(pv("settle_speed_px"))
+        self.settle_frames    = int(pv("settle_frames"))
+        self.settle_timeout_s = float(pv("settle_timeout_s"))
+        self.recovery_wait_s  = float(pv("recovery_wait_s"))
+
+        self.ilc_enabled = bool(pv("ilc_enabled"))
+        self.ilc_gain    = float(pv("ilc_gain"))
+        self._ilc_path   = pv("ilc_path")
 
         self.pid_x.set_gains_and_limits(
-            float(self.get_parameter("kp_x").value),
-            float(self.get_parameter("kd_x").value),
+            float(pv("kp_x")),
+            float(pv("kd_x")),
             -mx,
             mx,
         )
         self.pid_y.set_gains_and_limits(
-            float(self.get_parameter("kp_y").value),
-            float(self.get_parameter("kd_y").value),
+            float(pv("kp_y")),
+            float(pv("kd_y")),
             -mx,
             mx,
         )
 
-        self.deg_per_unit  = float(self.get_parameter("deg_per_unit").value)
-        self.omega_n_x     = float(self.get_parameter("omega_n_x").value)
-        self.omega_n_y     = float(self.get_parameter("omega_n_y").value)
-        self.zeta          = float(self.get_parameter("zeta").value)
-        self.friction_rho  = float(self.get_parameter("friction_rho").value)
-        self.friction_eta  = float(self.get_parameter("friction_eta").value)
+        self.deg_per_unit  = float(pv("deg_per_unit"))
+        self.omega_n_x     = float(pv("omega_n_x"))
+        self.omega_n_y     = float(pv("omega_n_y"))
+        self.zeta          = float(pv("zeta"))
+        self.friction_rho  = float(pv("friction_rho"))
+        self.friction_eta  = float(pv("friction_eta"))
+        self.tilt_balance_enabled = bool(pv("tilt_balance_enabled"))
+        self.tilt_balance_kp = float(pv("tilt_balance_kp"))
+        self.tilt_balance_ki = float(pv("tilt_balance_ki"))
+        self.tilt_balance_deadband = float(pv("tilt_balance_deadband"))
+        self.tilt_balance_max_trim = float(pv("tilt_balance_max_trim"))
         if self.deg_per_unit > 0.0:
             self._apply_physics_gains(mx)
 
@@ -560,8 +606,53 @@ class ControllerNode(Node):
 
         self._paused_at_wp = False
         self._publish_wp_idx(-1)
-        self._send_servo(0, 0, time_ms=60)
+        self._send_servo(0, 0, time_ms=60, level_hold=True)
         self.get_logger().info("Marble lost — reset controller state")
+
+    def _tilt_balance_valid(self):
+        return (
+            self.tilt_balance_enabled
+            and self.est_state is not None
+            and len(self.est_state) > 5
+            and float(self.est_state[5]) > 0.5
+        )
+
+    def _reset_tilt_balance(self):
+        self._tilt_trim_x = 0.0
+        self._tilt_trim_y = 0.0
+        self._tilt_int_x = 0.0
+        self._tilt_int_y = 0.0
+
+    def _update_tilt_trim(self, dt):
+        if not self._tilt_balance_valid():
+            return
+
+        tilt_x = float(self.est_state[3])
+        tilt_y = float(self.est_state[4])
+
+        if abs(tilt_x) < self.tilt_balance_deadband:
+            tilt_x = 0.0
+        if abs(tilt_y) < self.tilt_balance_deadband:
+            tilt_y = 0.0
+
+        self._tilt_int_x += tilt_x * dt
+        self._tilt_int_y += tilt_y * dt
+
+        if self.tilt_balance_ki > 1e-9:
+            max_int = self.tilt_balance_max_trim / self.tilt_balance_ki
+            self._tilt_int_x = float(np.clip(self._tilt_int_x, -max_int, max_int))
+            self._tilt_int_y = float(np.clip(self._tilt_int_y, -max_int, max_int))
+
+        self._tilt_trim_x = float(np.clip(
+            -(self.tilt_balance_kp * tilt_x + self.tilt_balance_ki * self._tilt_int_x),
+            -self.tilt_balance_max_trim,
+            self.tilt_balance_max_trim,
+        ))
+        self._tilt_trim_y = float(np.clip(
+            -(self.tilt_balance_kp * tilt_y + self.tilt_balance_ki * self._tilt_int_y),
+            -self.tilt_balance_max_trim,
+            self.tilt_balance_max_trim,
+        ))
 
     def _start_active(self):
         """Transition from SETTLING to ACTIVE. Kalman is already warmed up — do not reset it."""
@@ -596,6 +687,7 @@ class ControllerNode(Node):
                 self._reset_all()
         else:
             if was_none and self.marble_lost_frames >= self.marble_lost_threshold:
+                self._levelling = False
                 self.get_logger().info("Marble reacquired")
                 if self.follower is not None and (self._was_active or self.auto_start):
                     # Guide marble back to start position, wait, then run from beginning
@@ -609,7 +701,6 @@ class ControllerNode(Node):
                     self.get_logger().info(
                         "Marble reacquired — guiding to start position")
             self.marble_lost_frames = 0
-            self._levelling = False
             self.marble_pos = new_pos
 
     def _on_board_transform(self, msg):
@@ -653,15 +744,21 @@ class ControllerNode(Node):
             f"Loaded new path with {len(self.follower.path)} waypoints"
         )
 
-    def _send_servo(self, out_x, out_y, time_ms=None):
+    def _send_servo(self, out_x, out_y, time_ms=None, level_hold=False):
         if time_ms is None:
             time_ms = self.cmd_time_ms
+
+        if level_hold:
+            self._update_tilt_trim(max(float(time_ms) / 1000.0, 1e-3))
 
         sx = -1 if self.invert_x else 1
         sy = -1 if self.invert_y else 1
 
-        pos1 = int(np.clip(self.servo_center + sx * out_x, 0, 1000))
-        pos2 = int(np.clip(self.servo_center + sy * out_y, 0, 1000))
+        out_x_eff = float(out_x) + self._tilt_trim_x
+        out_y_eff = float(out_y) + self._tilt_trim_y
+
+        pos1 = int(np.clip(self.servo_center + sx * out_x_eff, 0, 1000))
+        pos2 = int(np.clip(self.servo_center + sy * out_y_eff, 0, 1000))
 
         cmd = Int32MultiArray()
         cmd.data = [pos1, pos2, int(time_ms)]
@@ -676,7 +773,7 @@ class ControllerNode(Node):
         if not self.active and not self._settling and not self._recovering:
             self._publish_wp_idx(-1)
             if self._levelling:
-                self._send_servo(0, 0)
+                self._send_servo(0, 0, level_hold=True)
             return
 
         with self._state_lock:
@@ -708,7 +805,7 @@ class ControllerNode(Node):
 
         # ── SETTLING ─────────────────────────────────────────────────────────
         if self._settling:
-            self._send_servo(0, 0)   # hold board level while marble decelerates
+            self._send_servo(0, 0, level_hold=True)   # hold board flat from measured tilt
             speed = math.sqrt(vx * vx + vy * vy)
             if speed < self.settle_speed_px:
                 self._settle_count += 1
@@ -741,7 +838,7 @@ class ControllerNode(Node):
                 if dist < self.arrival_px:
                     self._recovery_arrived    = True
                     self._recovery_wait_until = now + self.recovery_wait_s
-                    self._send_servo(0, 0)
+                    self._send_servo(0, 0, level_hold=True)
                     self.get_logger().info(
                         f"Reached start — waiting {self.recovery_wait_s:.1f}s before run")
                 else:
@@ -752,7 +849,7 @@ class ControllerNode(Node):
                         f"Recovering  dist={round(dist)}px",
                         throttle_duration_sec=0.3)
             else:
-                self._send_servo(0, 0)
+                self._send_servo(0, 0, level_hold=True)
                 remaining = self._recovery_wait_until - now
                 self.get_logger().info(
                     f"Waiting at start  {round(remaining, 1)}s remaining",
@@ -765,7 +862,9 @@ class ControllerNode(Node):
         # ── ACTIVE ───────────────────────────────────────────────────────────
         filtered_pos = (kx, ky)
 
-        target, seg_idx, done = self.follower.update(filtered_pos)
+        target, proj, seg_idx, done, line_stick_blend = self.follower.update(
+            filtered_pos
+        )
 
         # Detect waypoint advance → pause briefly
         if (self._last_wp_idx is not None
@@ -776,7 +875,7 @@ class ControllerNode(Node):
             self._pause_until  = now + self.waypoint_pause_s
             self.pid_x.reset()
             self.pid_y.reset()
-            self._send_servo(0, 0, time_ms=60)
+            self._send_servo(0, 0, time_ms=60, level_hold=True)
             self.get_logger().info(
                 f"Waypoint {seg_idx} reached — pausing {self.waypoint_pause_s:.1f}s")
 
@@ -806,6 +905,13 @@ class ControllerNode(Node):
             ))
 
         tx, ty = float(target[0]), float(target[1])
+
+        # Add extra weight to cross-track error so the marble hugs the current
+        # segment more tightly instead of cutting wide around it. The effect
+        # fades out near corners so it does not fight the next-segment preview.
+        if self.line_stick_gain > 0.0:
+            tx += self.line_stick_gain * line_stick_blend * (float(proj[0]) - kx)
+            ty += self.line_stick_gain * line_stick_blend * (float(proj[1]) - ky)
 
         # ILC feedforward — pre-correct systematic error learned from past runs.
         if (self.ilc_enabled
@@ -865,6 +971,7 @@ class ControllerNode(Node):
         self.get_logger().info(
             f"seg={seg_idx}/{len(self.follower.path)-2}"
             f"  target=({round(float(target[0]))},{round(float(target[1]))})"
+            f"  cte={round(float(np.linalg.norm(np.array([kx, ky]) - proj)),1)}"
             f"  err=({round(err_x,1)},{round(err_y,1)})"
             f"  vel=({round(vx,1)},{round(vy,1)})"
             f"  out=({round(out_x,1)},{round(out_y,1)})"
@@ -889,7 +996,7 @@ class ControllerNode(Node):
         self.pid_x.reset()
         self.pid_y.reset()
         self.kalman.reset()
-        self._send_servo(0, 0, time_ms=60)
+        self._send_servo(0, 0, time_ms=60, level_hold=True)
 
     def _svc_start(self, req, res):
         if self.follower is None and self.waypoints:
@@ -929,28 +1036,32 @@ class ControllerNode(Node):
         self.active      = False
         self._was_active = False   # manual stop — don't auto-restart
         self._settling   = False
-        self._levelling  = False
+        self._recovering = False
+        self._levelling  = True
         self._stop_and_level()
         self._publish_wp_idx(-1)
 
         res.success = True
-        res.message = "Stopped, board levelled"
+        res.message = "Stopped, levelling board from measured tilt"
         self.get_logger().info("Controller STOPPED")
         return res
 
     def _svc_calibrate(self, req, res):
         self.active = False
+        self._settling = False
+        self._recovering = False
+        self._levelling = True
         self._stop_and_level()
 
         if self.marble_pos is not None:
             res.message = (
-                "Board levelled. Marble at ("
+                "Board levelling from measured tilt. Marble at ("
                 + str(round(self.marble_pos[0])) + ","
                 + str(round(self.marble_pos[1]))
                 + ") in topdown space (0-1000)"
             )
         else:
-            res.message = "Board levelled. Marble NOT detected."
+            res.message = "Board levelling from measured tilt. Marble NOT detected."
 
         res.success = True
         self.get_logger().info(res.message)
