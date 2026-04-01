@@ -36,13 +36,13 @@ def generate_launch_description():
             "camera_index", default_value="0",
             description="Camera index (used only if device_path is empty)."),
 
-        # Board physical dimensions (mm) — measure your actual playable area
+        # Board physical dimensions (mm) — inside the 4 blue calibration dots
         DeclareLaunchArgument(
-            "board_width_mm", default_value="320.0",
-            description="Playable board width in mm (left-right)."),
+            "board_width_mm", default_value="280.0",
+            description="Playable board width in mm (left-right, horizontal)."),
         DeclareLaunchArgument(
-            "board_height_mm", default_value="295.0",
-            description="Playable board height in mm (top-bottom)."),
+            "board_height_mm", default_value="230.0",
+            description="Playable board height in mm (top-bottom, vertical)."),
 
         # GUI: set false on headless machines (no display)
         DeclareLaunchArgument(

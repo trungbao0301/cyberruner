@@ -9,8 +9,8 @@ marble_node  (improved stability for dark/deep green marble)
 Parameters
   hsv_lo        str   "40,80,20"
   hsv_hi        str   "85,255,255"
-  min_radius    int   6
-  max_radius    int   30
+  min_radius    int   15    (marble ⌀12.77mm → ~23 px radius at 3.571 px/mm scale)
+  max_radius    int   29
   hough_param2  int   18
   smooth_alpha  float 0.4    (0=very smooth/laggy  1=raw/jumpy)
   lost_frames   int   8      (frames to keep last pos before publishing -1)
@@ -31,8 +31,8 @@ class MarbleNode(Node):
         super().__init__("marble_node")
         self.declare_parameter("hsv_lo",       "40,80,20")
         self.declare_parameter("hsv_hi",       "85,255,255")
-        self.declare_parameter("min_radius",   6)
-        self.declare_parameter("max_radius",   30)
+        self.declare_parameter("min_radius",   15)   # marble ⌀12.77 mm → ~23 px
+        self.declare_parameter("max_radius",   29)
         self.declare_parameter("hough_param2", 18)
         self.declare_parameter("smooth_alpha", 0.4)
         self.declare_parameter("lost_frames",  8)

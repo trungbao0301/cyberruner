@@ -336,6 +336,7 @@ class ControllerNode(Node):
         self.declare_parameter("settle_speed_px",   15.0)   # px/s below which marble is settled
         self.declare_parameter("settle_frames",     10)     # consecutive frames required
         self.declare_parameter("settle_timeout_s",  5.0)    # give up if marble hasn't settled
+        self.declare_parameter("recovery_wait_s",   3.0)    # seconds to wait at start pos before running
 
         # Speed ceiling — active braking when marble exceeds max speed
         self.declare_parameter("max_speed_px",    0.0)   # px/s  (0 = disabled)
@@ -368,6 +369,11 @@ class ControllerNode(Node):
         self._settling      = False
         self._settle_count  = 0       # consecutive frames below speed threshold
         self._settle_start  = 0.0     # time.time() when settling began
+
+        # Recovery state — guide marble back to start after loss, then wait
+        self._recovering          = False
+        self._recovery_arrived    = False
+        self._recovery_wait_until = 0.0
 
         # ILC state
         self._ilc_ff          = None  # np.array (n_segments, 2) — feedforward corrections
@@ -467,6 +473,7 @@ class ControllerNode(Node):
         self.settle_speed_px  = float(self.get_parameter("settle_speed_px").value)
         self.settle_frames    = int(self.get_parameter("settle_frames").value)
         self.settle_timeout_s = float(self.get_parameter("settle_timeout_s").value)
+        self.recovery_wait_s  = float(self.get_parameter("recovery_wait_s").value)
 
         self.max_speed_px    = float(self.get_parameter("max_speed_px").value)
         self.speed_brake_gain = float(self.get_parameter("speed_brake_gain").value)
@@ -561,28 +568,17 @@ class ControllerNode(Node):
         else:
             if was_none and self.marble_lost_frames >= self.marble_lost_threshold:
                 self.get_logger().info("Marble reacquired")
-                if self._was_active and self.follower is not None:
-                    # Mid-run loss recovery — resume from nearest segment so the
-                    # controller doesn't roll the marble back to WP 0.
+                if self.follower is not None and (self._was_active or self.auto_start):
+                    # Guide marble back to start position, wait, then run from beginning
                     self.pid_x.reset()
                     self.pid_y.reset()
                     self._pending_kalman_reset = True
-                    nearest = self._find_nearest_segment(new_pos)
-                    self.follower.idx  = nearest
-                    self.follower.done = False
-                    self._paused_at_wp = False
-                    self.active  = True
-                    self.t_last  = time.time()
-                    self._was_active = False
+                    self._recovering          = True
+                    self._recovery_arrived    = False
+                    self._paused_at_wp        = False
+                    self._was_active          = False
                     self.get_logger().info(
-                        f"Controller auto-restarted at segment {nearest}")
-                elif self.auto_start and not self._settling and self.follower is not None:
-                    # Fresh reload — wait for marble to settle before running
-                    self._pending_kalman_reset = True
-                    self._settling     = True
-                    self._settle_count = 0
-                    self._settle_start = time.time()
-                    self.get_logger().info("Marble detected — waiting for it to settle...")
+                        "Marble reacquired — guiding to start position")
             self.marble_lost_frames = 0
             self._levelling = False
             self.marble_pos = new_pos
@@ -663,7 +659,7 @@ class ControllerNode(Node):
         dt = max(now - self.t_last, 1e-3)
         self.t_last = now
 
-        if not self.active and not self._settling:
+        if not self.active and not self._settling and not self._recovering:
             self._publish_wp_idx(-1)
             if self._levelling:
                 self._send_servo(0, 0)
@@ -722,6 +718,38 @@ class ControllerNode(Node):
                 self.get_logger().warn(
                     f"Settling timeout ({self.settle_timeout_s}s)"
                     f" — marble did not settle, staying idle")
+            return
+
+        # ── RECOVERING ───────────────────────────────────────────────────────
+        # Guide marble to path start, hold flat for recovery_wait_s, then run
+        if self._recovering:
+            start_xy = self.follower.path[0]
+            err_x = float(start_xy[0]) - kx
+            err_y = float(start_xy[1]) - ky
+            dist  = math.sqrt(err_x * err_x + err_y * err_y)
+            if not self._recovery_arrived:
+                if dist < self.arrival_px:
+                    self._recovery_arrived    = True
+                    self._recovery_wait_until = now + self.recovery_wait_s
+                    self._send_servo(0, 0)
+                    self.get_logger().info(
+                        f"Reached start — waiting {self.recovery_wait_s:.1f}s before run")
+                else:
+                    out_x = self.pid_x.update(err_x, vx)
+                    out_y = self.pid_y.update(err_y, vy)
+                    self._send_servo(out_x, out_y)
+                    self.get_logger().info(
+                        f"Recovering  dist={round(dist)}px",
+                        throttle_duration_sec=0.3)
+            else:
+                self._send_servo(0, 0)
+                remaining = self._recovery_wait_until - now
+                self.get_logger().info(
+                    f"Waiting at start  {round(remaining, 1)}s remaining",
+                    throttle_duration_sec=0.5)
+                if now >= self._recovery_wait_until:
+                    self._recovering = False
+                    self._start_active()
             return
 
         # ── ACTIVE ───────────────────────────────────────────────────────────
