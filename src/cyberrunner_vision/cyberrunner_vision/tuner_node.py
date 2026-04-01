@@ -76,6 +76,15 @@ PARAMS = [
     # Speed ceiling
     ("max_speed_px",     0.0,  500.0, 0.0,  5.0,   False),
     ("speed_brake_gain", 0.0,  5.0,   0.5,  0.05,  False),
+
+    # Physics model (Nokhbeh & Khashabi 2011) — set deg_per_unit>0 to enable
+    ("deg_per_unit", 0.0,  0.1,   0.0,   0.001, False),
+    ("omega_n_x",    0.5,  15.0,  3.0,   0.1,   False),
+    ("omega_n_y",    0.5,  15.0,  2.0,   0.1,   False),
+    ("zeta",         0.3,  2.0,   1.0,   0.05,  False),
+    # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
+    ("friction_rho", 0.0,  20.0,  0.0,   0.5,   False),
+    ("friction_eta", 0.1,  50.0,  10.0,  0.5,   False),
 ]
 
 GROUPS = {
@@ -91,6 +100,8 @@ GROUPS = {
     "── ILC ──":           ["ilc_enabled", "ilc_gain"],
     "── Speed ──":         ["max_speed_px", "speed_brake_gain"],
     "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
+    "── Physics Model ──": ["deg_per_unit", "omega_n_x", "omega_n_y", "zeta",
+                            "friction_rho", "friction_eta"],
 }
 
 INT_PARAMS  = {"max_output", "cmd_time_ms", "settle_frames"}

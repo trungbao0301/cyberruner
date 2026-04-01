@@ -35,6 +35,14 @@ Parameters:
   kalman_q_pos          float   process noise — position (lower = trust model more)
   kalman_q_vel          float   process noise — velocity (higher = track fast moves)
   kalman_r_meas         float   measurement noise (higher = trust camera less)
+  deg_per_unit          float   0.0   degrees of plate tilt per servo unit away from centre
+                                      (0 = disabled, use manual kp/kd)
+  omega_n_x             float   3.0   desired natural frequency X axis (rad/s)
+  omega_n_y             float   2.0   desired natural frequency Y axis (rad/s)
+                                      (use different values to reduce 2D overshoot)
+  zeta                  float   1.0   desired damping ratio (1.0 = critically damped)
+  friction_rho          float   0.0   Coulomb friction magnitude (servo units, 0=disabled)
+  friction_eta          float   10.0  Coulomb friction sharpness (high=sign, low=smooth)
 
 Services:
   /controller/start             Trigger
@@ -325,6 +333,15 @@ class ControllerNode(Node):
         self.declare_parameter("kalman_q_vel",  50.0)
         self.declare_parameter("kalman_r_meas", 10.0)
 
+        # Physics-model gains (Nokhbeh & Khashabi 2011, eq.25)
+        self.declare_parameter("deg_per_unit", 0.0)   # 0 = disabled, use manual kp/kd
+        self.declare_parameter("omega_n_x",    3.0)   # natural frequency X (rad/s)
+        self.declare_parameter("omega_n_y",    2.0)   # natural frequency Y (rad/s)
+        self.declare_parameter("zeta",         1.0)   # damping ratio
+        # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
+        self.declare_parameter("friction_rho", 0.0)   # magnitude (0 = disabled)
+        self.declare_parameter("friction_eta", 10.0)  # sharpness
+
         # Corner gain scheduling — ramp Kp and Kd up near sharp turns
         self.declare_parameter("corner_kp_scale",     2.0)   # max Kp multiplier at corner
         self.declare_parameter("corner_kd_scale",     2.5)   # max Kd multiplier at corner
@@ -406,11 +423,7 @@ class ControllerNode(Node):
             Float32MultiArray, "/path/waypoints", self._on_waypoints, 2
         )
         self.sub_state = self.create_subscription(
-            Float32MultiArray,
-            "/estimator/state",
-            lambda m: setattr(self, "est_state", list(m.data)),
-            10,
-        )
+            Float32MultiArray, "/estimator/state", self._on_est_state, 10)
         self.sub_board_xfm = self.create_subscription(
             Float32MultiArray, "/estimator/board_transform",
             self._on_board_transform, 2
@@ -488,9 +501,58 @@ class ControllerNode(Node):
             mx,
         )
 
+        self.deg_per_unit  = float(self.get_parameter("deg_per_unit").value)
+        self.omega_n_x     = float(self.get_parameter("omega_n_x").value)
+        self.omega_n_y     = float(self.get_parameter("omega_n_y").value)
+        self.zeta          = float(self.get_parameter("zeta").value)
+        self.friction_rho  = float(self.get_parameter("friction_rho").value)
+        self.friction_eta  = float(self.get_parameter("friction_eta").value)
+        if self.deg_per_unit > 0.0:
+            self._apply_physics_gains(mx)
+
         if self.follower is not None:
             self.follower.arrival = self.arrival_px
             self.follower.lookahead = self.lookahead_px
+
+    def _apply_physics_gains(self, mx):
+        """Derive kp/kd from the ball-plate physics model (Nokhbeh & Khashabi 2011, eq.25).
+
+        Plant:   x_ddot = -13.73 * alpha   [m/s² per rad]  (universal for solid sphere)
+        K_plant = 13.73 * deg_per_unit*(π/180) * scale_px_m   [px/s² per servo-unit]
+        kp = ωn² / K_plant,  kd = 2ζωn / K_plant
+
+        X and Y use separate ωn (§5.2: equal ωn gives worst 2D overshoot).
+        """
+        scale_px_mm = (self.est_state[2]
+                       if self.est_state and len(self.est_state) > 2
+                       else 1.0)
+        scale_px_m  = scale_px_mm * 1000.0
+        K_plant = 13.73 * (self.deg_per_unit * math.pi / 180.0) * scale_px_m
+        if K_plant < 1e-6:
+            self.get_logger().warn("Physics gains: K_plant too small — check deg_per_unit")
+            return
+        kp_x = self.omega_n_x ** 2 / K_plant
+        kd_x = 2.0 * self.zeta * self.omega_n_x / K_plant
+        kp_y = self.omega_n_y ** 2 / K_plant
+        kd_y = 2.0 * self.zeta * self.omega_n_y / K_plant
+        self.pid_x.set_gains_and_limits(kp_x, kd_x, -mx, mx)
+        self.pid_y.set_gains_and_limits(kp_y, kd_y, -mx, mx)
+        self.get_logger().info(
+            f"Physics gains: scale={scale_px_mm:.2f}px/mm  K_plant={K_plant:.4f}"
+            f"  x: kp={kp_x:.4f} kd={kd_x:.4f} (ωn={self.omega_n_x})"
+            f"  y: kp={kp_y:.4f} kd={kd_y:.4f} (ωn={self.omega_n_y})"
+            f"  ζ={self.zeta}"
+        )
+
+    def _on_est_state(self, msg):
+        prev_scale = (self.est_state[2]
+                      if self.est_state and len(self.est_state) > 2
+                      else None)
+        self.est_state = list(msg.data)
+        # Recompute physics gains only when scale changes (happens on corner re-click)
+        if self.deg_per_unit > 0.0 and prev_scale != self.est_state[2]:
+            mx = float(self.get_parameter("max_output").value)
+            self._apply_physics_gains(mx)
 
     def _publish_wp_idx(self, idx):
         if idx == self._last_wp_idx:
@@ -836,6 +898,12 @@ class ControllerNode(Node):
         if self.est_state and len(self.est_state) > 5 and self.ff_gain > 0 and self.est_state[5] > 0.5:
             out_x += self.ff_gain * self.est_state[3] * self.ff_board_scale
             out_y += self.ff_gain * self.est_state[4] * self.ff_board_scale
+
+        # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
+        # Tf = ρ * tanh(η * ẋ) — tilts board extra to overcome static/kinetic friction
+        if self.friction_rho > 0.0:
+            out_x += self.friction_rho * math.tanh(self.friction_eta * vx)
+            out_y += self.friction_rho * math.tanh(self.friction_eta * vy)
 
         out_x = float(np.clip(out_x, -mx, mx))
         out_y = float(np.clip(out_y, -mx, mx))
