@@ -10,7 +10,7 @@ Parameters
   height        int     default 1200
   fps           int     default 114
 """
-import sys
+import signal
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
@@ -118,7 +118,12 @@ class CameraNode(Node):
         fy     = self.get_parameter("fy").value
         width  = self.get_parameter("width").value
         height = self.get_parameter("height").value
-        fps    = self.get_parameter("fps").value
+        requested_fps = int(self.get_parameter("fps").value)
+        fps = max(requested_fps, 0)
+        if requested_fps <= 0:
+            self.get_logger().warn(
+                "fps must be > 0 for a fixed publish rate; using camera-negotiated mode"
+            )
 
         self.map_x, self.map_y = build_rectify_map(OCAM, OUT_W, OUT_H, fx, fy)
         self.bridge = CvBridge()
@@ -134,18 +139,21 @@ class CameraNode(Node):
         actual_w = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         actual_h = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         actual_fps = float(self.cap.get(cv2.CAP_PROP_FPS))
+        fallback_fps = float(requested_fps if requested_fps > 0 else 30.0)
+        timer_fps = actual_fps if np.isfinite(actual_fps) and actual_fps > 1.0 else fallback_fps
         src_str = dpath if dpath else str(idx)
         self.get_logger().info(
             f"Camera opened  source={src_str}"
             f"  backend={backend}"
             f"  resolution={actual_w}x{actual_h}"
-            f"  requested_fps={fps}"
+            f"  requested_fps={requested_fps}"
             f"  actual_fps={actual_fps:.1f}"
+            f"  timer_fps={timer_fps:.1f}"
             f"  fx={fx}  fy={fy}")
 
         self.show_preview = bool(self.get_parameter("show_preview").value)
         self.pub   = self.create_publisher(Image, "/camera/rectified", 2)
-        self.timer = self.create_timer(1.0 / fps, self._tick)
+        self.timer = self.create_timer(1.0 / timer_fps, self._tick)
 
     def _tick(self):
         ok, frame = self.cap.read()
@@ -174,6 +182,7 @@ class CameraNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = CameraNode()
+    signal.signal(signal.SIGTERM, lambda *_: rclpy.shutdown())
     try:
         rclpy.spin(node)
     finally:

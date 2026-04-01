@@ -10,6 +10,7 @@ Parameters
   height        int     default 1200
   fps           int     default 114
 """
+import signal
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Image
@@ -181,6 +182,7 @@ class CameraNode(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = CameraNode()
+    signal.signal(signal.SIGTERM, lambda *_: rclpy.shutdown())
     try:
         rclpy.spin(node)
     finally:

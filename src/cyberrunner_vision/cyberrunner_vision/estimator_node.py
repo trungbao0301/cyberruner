@@ -231,8 +231,8 @@ class EstimatorNode(Node):
             color = (0, 100, 255)
         else:
             tx = self.state[3]; ty = self.state[4]
-            msg = ("ACTIVE  tiltX=" + str(round(float(tx), 1)) +
-                   "  tiltY=" + str(round(float(ty), 1)) +
+            msg = ("ACTIVE  tiltX=" + str(round(float(tx), 1)) + " deg" +
+                   "  tiltY=" + str(round(float(ty), 1)) + " deg" +
                    "  c=clear  s=save")
             color = (0, 255, 255)
 
@@ -284,29 +284,27 @@ class EstimatorNode(Node):
         if self.H is None or len(self.moving_pts) != 4:
             return 0.0, 0.0, self.TOP / 2.0, self.TOP / 2.0
 
-        cur = np.array(self.moving_pts, dtype=np.float32).reshape(-1, 1, 2)
+        raw = np.array(self.moving_pts, dtype=np.float32)
 
-        # Project moving pts into topdown space
-        td_pts = cv2.perspectiveTransform(cur, self.H).reshape(-1, 2)
+        # Measure edge lengths in raw image space — perspective distortion here encodes tilt
+        top_w   = float(np.linalg.norm(raw[1] - raw[0]))
+        bot_w   = float(np.linalg.norm(raw[2] - raw[3]))
+        left_h  = float(np.linalg.norm(raw[3] - raw[0]))
+        right_h = float(np.linalg.norm(raw[2] - raw[1]))
 
-        # Origin = centroid of moving corners in topdown
-        origin = td_pts.mean(axis=0)
-
-        # Estimate tilt from width/height asymmetry of projected quad
-        # Top edge vs bottom edge width → X tilt
-        top_w    = float(np.linalg.norm(td_pts[1] - td_pts[0]))
-        bot_w    = float(np.linalg.norm(td_pts[2] - td_pts[3]))
-        left_h   = float(np.linalg.norm(td_pts[3] - td_pts[0]))
-        right_h  = float(np.linalg.norm(td_pts[2] - td_pts[1]))
-
-        # Normalise against flat reference — use cached value (recomputed only on click)
-        if self._flat_ref_wh is not None:
-            ref_w, ref_h = self._flat_ref_wh
+        # Flat reference also in raw image space
+        if self.moving_flat is not None:
+            f     = self.moving_flat
+            ref_w = max((np.linalg.norm(f[1] - f[0]) + np.linalg.norm(f[2] - f[3])) / 2.0, 1.0)
+            ref_h = max((np.linalg.norm(f[3] - f[0]) + np.linalg.norm(f[2] - f[1])) / 2.0, 1.0)
         else:
             ref_w = max((top_w + bot_w) / 2.0, 1.0)
             ref_h = max((left_h + right_h) / 2.0, 1.0)
 
-        # Ratio → angle (small angle approx, scale factor ~30 for degrees)
+        # Origin from topdown space
+        td_pts = cv2.perspectiveTransform(raw.reshape(-1, 1, 2), self.H).reshape(-1, 2)
+        origin = td_pts.mean(axis=0)
+
         tilt_x = math.degrees(math.atan2(bot_w - top_w,   ref_w * 2.0))
         tilt_y = math.degrees(math.atan2(right_h - left_h, ref_h * 2.0))
 

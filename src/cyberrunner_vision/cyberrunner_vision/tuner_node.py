@@ -54,7 +54,6 @@ PARAMS = [
     ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
 
     # Timing / latency
-    ("waypoint_pause_s",   0.0,  2.0,   0.3,   0.05,  False),
     ("predict_latency_s",  0.0,  1.0,   0.05,  0.005, False),
 
     # Corner gain scheduling
@@ -72,22 +71,13 @@ PARAMS = [
     # ILC
     ("ilc_enabled",       0,    1,     1,    1,     True),
     ("ilc_gain",          0.01, 0.5,   0.1,  0.01,  False),
-
-    # Physics model (Nokhbeh & Khashabi 2011) — set deg_per_unit>0 to enable
-    ("deg_per_unit", 0.0,  0.5,   0.0,   0.001, False),
-    ("omega_n_x",    0.5,  15.0,  3.0,   0.1,   False),
-    ("omega_n_y",    0.5,  15.0,  2.0,   0.1,   False),
-    ("zeta",         0.3,  2.0,   1.0,   0.05,  False),
-    # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
-    ("friction_rho", 0.0,  20.0,  0.0,   0.5,   False),
-    ("friction_eta", 0.1,  50.0,  10.0,  0.5,   False),
 ]
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
     "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
-    "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
+    "── Timing ──":        ["predict_latency_s"],
     "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
                             "corner_angle_thresh", "corner_preview_px"],
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
@@ -97,8 +87,6 @@ GROUPS = {
                             "tilt_balance_enabled", "tilt_balance_kp",
                             "tilt_balance_ki", "tilt_balance_deadband",
                             "tilt_balance_max_trim"],
-    "── Physics Model ──": ["deg_per_unit", "omega_n_x", "omega_n_y", "zeta",
-                            "friction_rho", "friction_eta"],
 }
 
 INT_PARAMS  = {"max_output", "cmd_time_ms", "settle_frames"}

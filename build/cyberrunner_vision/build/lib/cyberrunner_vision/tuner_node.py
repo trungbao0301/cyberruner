@@ -37,11 +37,9 @@ PARAMS = [
     ("max_output",   10,   300,   80,   1,     False),
     ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
     ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
-    ("line_stick_gain", 0.0,  3.0,  0.6,  0.05,  False),
 
     # Misc
     ("cmd_time_ms",       5,    200,   20,    1,      False),
-    ("ff_gain",           0.0,  2.0,   0.0,   0.05,   False),
     ("invert_x",          0,    1,     0,     1,      True),
     ("invert_y",          0,    1,     1,     1,      True),
     ("tilt_balance_enabled", 0, 1,     1,     1,      True),
@@ -87,8 +85,7 @@ PARAMS = [
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
-    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px",
-                            "line_stick_gain"],
+    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
     "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
     "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
@@ -96,7 +93,7 @@ GROUPS = {
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
                             "settle_frames", "settle_timeout_s"],
     "── ILC ──":           ["ilc_enabled", "ilc_gain"],
-    "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y",
+    "── Misc ──":          ["cmd_time_ms", "invert_x", "invert_y",
                             "tilt_balance_enabled", "tilt_balance_kp",
                             "tilt_balance_ki", "tilt_balance_deadband",
                             "tilt_balance_max_trim"],
@@ -176,7 +173,7 @@ class TunerNode(Node):
         req = SetParameters.Request()
         req.parameters = [build_param_msg(name, value, is_bool)]
         future = self._client.call_async(req)
-        future.add_done_callback(lambda f, n=name: self._on_done(f, n))
+        future.add_done_callback(lambda f, names=(name,): self._on_done(f, names))
 
     def reset_all_params(self):
         """Send all parameters in a single batched SetParameters request."""
@@ -193,7 +190,9 @@ class TunerNode(Node):
             for name, _, _, default, _, is_bool in PARAMS
         ]
         future = self._client.call_async(req)
-        future.add_done_callback(lambda f: self._on_done(f, "reset_all"))
+        future.add_done_callback(
+            lambda f, names=tuple(name for name, *_ in PARAMS): self._on_done(f, names)
+        )
 
     def set_params_batch(self, params):
         """Send an arbitrary list of (name, value, is_bool) in one request."""
@@ -209,19 +208,29 @@ class TunerNode(Node):
             for name, value, is_bool in params
         ]
         future = self._client.call_async(req)
-        future.add_done_callback(lambda f: self._on_done(f, "load_all"))
+        future.add_done_callback(
+            lambda f, names=tuple(name for name, _, _ in params): self._on_done(f, names)
+        )
 
-    def _on_done(self, future, name):
+    def _on_done(self, future, names):
         try:
             result = future.result()
             if result is None or len(result.results) == 0:
-                self.get_logger().warn(f"No response when setting {name}")
+                label = names[0] if len(names) == 1 else f"{len(names)} parameters"
+                self.get_logger().warn(f"No response when setting {label}")
                 return
 
-            if not result.results[0].successful:
+            if len(result.results) != len(names):
                 self.get_logger().warn(
-                    "Failed to set " + name + ": " + result.results[0].reason
+                    f"SetParameters returned {len(result.results)} results"
+                    f" for {len(names)} requested parameters"
                 )
+
+            for idx, param_result in enumerate(result.results):
+                name = names[idx] if idx < len(names) else f"param[{idx}]"
+                if not param_result.successful:
+                    reason = param_result.reason or "unknown reason"
+                    self.get_logger().warn(f"Failed to set {name}: {reason}")
         except Exception as e:
             self.get_logger().error("set_param error: " + str(e))
 

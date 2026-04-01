@@ -180,6 +180,10 @@ class PathNode(Node):
             self._close_gui()
 
     def _open_gui(self):
+        if self.board_M_inv is None:
+            self.get_logger().warn(
+                "board_transform not received yet — waypoints will be stored in raw "
+                "topdown space. Ensure estimator is calibrated before drawing.")
         cv2.namedWindow(self.WIN, cv2.WINDOW_NORMAL)
         cv2.setMouseCallback(self.WIN, self._on_mouse)
         self.gui_open = True
@@ -256,11 +260,16 @@ class PathNode(Node):
                     "  | left=add  right=remove  z=undo  x=clear  s=save",
                     (10, 28), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 255, 255), 2)
 
+        if self.board_M_inv is None:
+            cv2.putText(img,
+                        "WARNING: board not calibrated — points stored in raw topdown space!",
+                        (10, 55), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 255), 2)
+
         if self.hover_pt is not None:
             cv2.putText(img,
                         "cursor: (" + str(self.hover_pt[0]) +
                         ", " + str(self.hover_pt[1]) + ")",
-                        (10, 55), cv2.FONT_HERSHEY_SIMPLEX,
+                        (10, 80), cv2.FONT_HERSHEY_SIMPLEX,
                         0.5, (150, 150, 150), 1)
 
     # ── Publish ───────────────────────────────────────────────────────────────

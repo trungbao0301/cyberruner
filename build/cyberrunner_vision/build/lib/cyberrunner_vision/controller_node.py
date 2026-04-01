@@ -1,13 +1,13 @@
 """
-controller_node  (segment-following PD + Kalman filter)
---------------------------------------------------------
+controller_node  (path-projection PD + Kalman filter)
+------------------------------------------------------
 Servo mapping (Hiwonder 0-1000, centre=500):
   servo 1 → X-axis tilt  (right = >500, left = <500)
   servo 2 → Y-axis tilt  (down  = >500, up   = <500)
 
 Control idea:
 - Kalman filter estimates marble position + velocity from noisy detections
-- Follow path segments with lookahead; PD error in filtered position space
+- Project onto the hand-drawn reference path and look ahead along arc length
 - Kd acts on Kalman velocity directly (no noisy finite-difference needed)
 - Latency prediction shifts the error target by predict_latency_s seconds
 - Auto-restarts when marble is reacquired after being lost mid-run
@@ -21,10 +21,8 @@ Parameters:
   max_output            int
   servo_center          int
   arrival_px            float   waypoint-switch radius
-  lookahead_px          float   forward target distance along segment
-  line_stick_gain       float   extra cross-track pull back toward current path segment
+  lookahead_px          float   forward target distance along path
   cmd_time_ms           int
-  ff_gain               float
   invert_x              bool
   invert_y              bool
   waypoint_pause_s      float   pause duration (s) after each waypoint advance
@@ -32,14 +30,13 @@ Parameters:
   kalman_q_pos          float   process noise — position (lower = trust model more)
   kalman_q_vel          float   process noise — velocity (higher = track fast moves)
   kalman_r_meas         float   measurement noise (higher = trust camera less)
-  deg_per_unit          float   0.0   degrees of plate tilt per servo unit away from centre
-                                      (0 = disabled, use manual kp/kd)
+  deg_per_unit          float   0.0   optional tilt-per-servo calibration for deriving PD gains
   omega_n_x             float   3.0   desired natural frequency X axis (rad/s)
   omega_n_y             float   2.0   desired natural frequency Y axis (rad/s)
                                       (use different values to reduce 2D overshoot)
   zeta                  float   1.0   desired damping ratio (1.0 = critically damped)
-  friction_rho          float   0.0   Coulomb friction magnitude (servo units, 0=disabled)
-  friction_eta          float   10.0  Coulomb friction sharpness (high=sign, low=smooth)
+  friction_rho          float   0.0   optional friction compensation magnitude
+  friction_eta          float   10.0  friction compensation sharpness
   tilt_balance_enabled  bool    True  keep flat/neutral using measured tilt_x/tilt_y
   tilt_balance_kp       float   8.0   servo-unit trim per degree of tilt error
   tilt_balance_ki       float   1.0   integral trim per degree-second of tilt error
@@ -241,19 +238,13 @@ class PathFollower:
 
         if len(self.path) == 0:
             self.done = True
-            return (
-                np.array([0.0, 0.0], dtype=np.float32),
-                np.array([0.0, 0.0], dtype=np.float32),
-                -1,
-                True,
-                0.0,
-            )
+            return np.array([0.0, 0.0], dtype=np.float32), -1, True
 
         if len(self.path) == 1:
             target = self.path[0]
             if np.linalg.norm(p - target) < self.arrival:
                 self.done = True
-            return target, target.copy(), 0, self.done, 0.0
+            return target, 0, self.done
 
         # Keep idx valid
         self.idx = int(np.clip(self.idx, 0, len(self.path) - 2))
@@ -270,7 +261,6 @@ class PathFollower:
         b = self.path[self.idx + 1]
 
         proj, t, seg_len = self._project_to_segment(p, a, b)
-        line_stick_blend = 1.0
 
         # Look ahead along the path — if the lookahead overflows the current
         # segment, continue into the next segment(s).  This lets the controller
@@ -278,13 +268,6 @@ class PathFollower:
         # giving more time to execute sharp turns before reaching a hole.
         if seg_len > 1e-9:
             dist_to_end = (1.0 - t) * seg_len
-            if self.lookahead > 1e-9:
-                # Fade cross-track pull out near corners so line-sticking does
-                # not fight the lookahead target as it starts to preview the
-                # next segment.
-                line_stick_blend = max(
-                    0.0, min(1.0, dist_to_end / self.lookahead)
-                )
             if self.lookahead <= dist_to_end:
                 # Lookahead stays within current segment — normal case
                 t_look = t + self.lookahead / seg_len
@@ -315,10 +298,211 @@ class PathFollower:
         if np.linalg.norm(p - final_wp) < self.arrival:
             self.done = True
             target = final_wp.copy()
-            proj = final_wp.copy()
-            line_stick_blend = 0.0
 
-        return target, proj, self.idx, self.done, line_stick_blend
+        return target, self.idx, self.done
+
+
+class ProjectedPathFollower:
+    def __init__(self, waypoints_flat, arrival_px, lookahead_px=25.0,
+                 sample_spacing_px=8.0):
+        self.raw_path = np.array(waypoints_flat, dtype=np.float32).reshape(-1, 2)
+        self.arrival = float(arrival_px)
+        self.lookahead = float(lookahead_px)
+        self.sample_spacing_px = float(sample_spacing_px)
+
+        # Resample the exact hand-drawn path densely so we can do global
+        # projection/lookahead without cutting across maze corners.
+        self.path, self.path_parent_idx = self._build_sampled_path(self.raw_path)
+        self.seg_lengths = self._compute_segment_lengths(self.path)
+        self.seg_starts = self._compute_segment_starts(self.seg_lengths)
+        self.total_length = float(np.sum(self.seg_lengths))
+        self.corner_angles = self._compute_corner_angles(self.raw_path)
+        self.num_segments = max(len(self.raw_path) - 1, 0)
+        self._raw_wp_s = self._compute_raw_wp_s()
+
+        self.idx = 0
+        self.progress_s = 0.0
+        self.done = False
+
+    @staticmethod
+    def _compute_corner_angles(path):
+        n = len(path)
+        angles = np.zeros(n, dtype=np.float32)
+        for i in range(1, n - 1):
+            ab = path[i] - path[i - 1]
+            bc = path[i + 1] - path[i]
+            len_ab = float(np.linalg.norm(ab))
+            len_bc = float(np.linalg.norm(bc))
+            if len_ab < 1e-9 or len_bc < 1e-9:
+                continue
+            cos_a = float(np.dot(ab, bc) / (len_ab * len_bc))
+            angles[i] = math.degrees(math.acos(max(-1.0, min(1.0, cos_a))))
+        return angles
+
+    @staticmethod
+    def _compute_segment_lengths(path):
+        if len(path) < 2:
+            return np.zeros(0, dtype=np.float64)
+        return np.linalg.norm(path[1:] - path[:-1], axis=1).astype(np.float64)
+
+    @staticmethod
+    def _compute_segment_starts(seg_lengths):
+        starts = np.zeros(len(seg_lengths), dtype=np.float64)
+        if len(seg_lengths) > 1:
+            starts[1:] = np.cumsum(seg_lengths[:-1])
+        return starts
+
+    def _compute_raw_wp_s(self):
+        """Arc-length s value for each raw waypoint on the sampled path.
+        Raw waypoint wi is the endpoint of segment wi-1, which corresponds to
+        the last sampled point whose parent_idx == wi-1."""
+        s_vals = np.zeros(len(self.raw_path), dtype=np.float64)
+        if len(self.path_parent_idx) == 0:
+            return s_vals
+        for wi in range(1, len(self.raw_path)):
+            matches = np.where(self.path_parent_idx == wi - 1)[0]
+            if len(matches) == 0:
+                s_vals[wi] = self.total_length
+            else:
+                s_vals[wi] = float(self.seg_starts[matches[-1]])
+        return s_vals
+
+    def _build_sampled_path(self, raw_path):
+        if len(raw_path) == 0:
+            return np.zeros((0, 2), dtype=np.float32), np.zeros(0, dtype=np.int32)
+        if len(raw_path) == 1:
+            return raw_path.copy(), np.zeros(0, dtype=np.int32)
+
+        pts = raw_path.astype(np.float64)
+        sampled = [pts[0].astype(np.float32)]
+        parent_idx = []
+
+        for i in range(len(pts) - 1):
+            seg = pts[i + 1] - pts[i]
+            seg_len = float(np.linalg.norm(seg))
+            if seg_len < 1e-9:
+                continue
+
+            steps = max(int(math.ceil(seg_len / self.sample_spacing_px)), 1)
+            for step in range(1, steps + 1):
+                t = step / steps
+                pt = pts[i] + t * seg
+                if np.linalg.norm(pt - sampled[-1]) < 1e-6:
+                    continue
+                sampled.append(pt.astype(np.float32))
+                parent_idx.append(i)
+
+        if len(sampled) == 1:
+            sampled.append(pts[-1].astype(np.float32))
+            parent_idx.append(max(len(pts) - 2, 0))
+
+        return (np.array(sampled, dtype=np.float32),
+                np.array(parent_idx, dtype=np.int32))
+
+    def reset(self):
+        self.idx = 0
+        self.progress_s = 0.0
+        self.done = False
+
+    @staticmethod
+    def _project_to_segment(p, a, b):
+        ab = b - a
+        ap = p - a
+        ab2 = float(np.dot(ab, ab))
+
+        if ab2 < 1e-9:
+            return a.copy(), 0.0, 0.0
+
+        t = float(np.dot(ap, ab) / ab2)
+        t_clamped = max(0.0, min(1.0, t))
+        proj = a + t_clamped * ab
+        seg_len = float(np.linalg.norm(ab))
+        return proj, t_clamped, seg_len
+
+    def _project_to_path(self, p):
+        best_dist2 = float("inf")
+        best_idx = 0
+        best_t = 0.0
+        best_len = 0.0
+
+        for i in range(len(self.path) - 1):
+            proj, t, seg_len = self._project_to_segment(
+                p, self.path[i], self.path[i + 1])
+            d = p - proj
+            dist2 = float(np.dot(d, d))
+            if dist2 < best_dist2:
+                best_dist2 = dist2
+                best_idx = i
+                best_t = t
+                best_len = seg_len
+
+        s_proj = float(self.seg_starts[best_idx] + best_t * best_len)
+        return best_idx, s_proj
+
+    def _point_at_s(self, s):
+        if len(self.path) == 0:
+            return np.array([0.0, 0.0], dtype=np.float32)
+        if len(self.path) == 1 or len(self.seg_lengths) == 0:
+            return self.path[0].copy()
+
+        s = float(np.clip(s, 0.0, self.total_length))
+        seg_idx = int(np.searchsorted(self.seg_starts, s, side="right") - 1)
+        seg_idx = int(np.clip(seg_idx, 0, len(self.seg_lengths) - 1))
+        seg_len = float(self.seg_lengths[seg_idx])
+        if seg_len < 1e-9:
+            return self.path[seg_idx].copy()
+
+        t = (s - self.seg_starts[seg_idx]) / seg_len
+        return self.path[seg_idx] + t * (self.path[seg_idx + 1] - self.path[seg_idx])
+
+    def update(self, marble_xy):
+        p = np.array(marble_xy, dtype=np.float32)
+
+        if len(self.path) == 0:
+            self.done = True
+            return np.array([0.0, 0.0], dtype=np.float32), -1, True
+
+        if len(self.path) == 1:
+            target = self.path[0]
+            if np.linalg.norm(p - target) < self.arrival:
+                self.done = True
+            return target, 0, self.done
+
+        _, s_proj = self._project_to_path(p)
+        max_step = max(self.lookahead * 2.0, 60.0)
+        s_proj = min(max(s_proj, self.progress_s), self.progress_s + max_step)
+        self.progress_s = max(self.progress_s, s_proj)
+
+        # Force advance past any raw waypoint the marble is close enough to.
+        # Handles the case where the marble approaches from the side and the
+        # arc-length projection stalls before reaching the waypoint's s value.
+        for wi, wp_s in enumerate(self._raw_wp_s):
+            if (wp_s > self.progress_s
+                    and np.linalg.norm(p - self.raw_path[wi]) < self.arrival):
+                self.progress_s = wp_s
+                break
+
+        target_s = min(self.progress_s + self.lookahead, self.total_length)
+        target = self._point_at_s(target_s)
+
+        sample_seg_idx = int(np.searchsorted(
+            self.seg_starts, self.progress_s, side="right") - 1)
+        sample_seg_idx = int(np.clip(sample_seg_idx, 0, len(self.path) - 2))
+
+        if len(self.path_parent_idx) > 0:
+            raw_idx = int(self.path_parent_idx[
+                int(np.clip(sample_seg_idx, 0, len(self.path_parent_idx) - 1))])
+        else:
+            raw_idx = 0
+        self.idx = raw_idx
+
+        final_wp = self.raw_path[-1]
+        if (np.linalg.norm(p - final_wp) < self.arrival
+                or self.total_length - self.progress_s < self.arrival):
+            self.done = True
+            target = final_wp.copy()
+
+        return target, self.idx, self.done
 
 
 # ── Controller Node ───────────────────────────────────────────────────────────
@@ -335,10 +519,7 @@ class ControllerNode(Node):
         self.declare_parameter("servo_center", 500)
         self.declare_parameter("arrival_px", 35.0)
         self.declare_parameter("lookahead_px", 25.0)
-        self.declare_parameter("line_stick_gain", 0.6)
         self.declare_parameter("cmd_time_ms", 20)
-        self.declare_parameter("ff_gain", 0.0)
-        self.declare_parameter("ff_board_scale", 10.0)  # est_state board-angle → servo unit scale
         self.declare_parameter("invert_x", False)
         self.declare_parameter("invert_y", True)
         self.declare_parameter("loop_hz", 114.0)
@@ -348,12 +529,12 @@ class ControllerNode(Node):
         self.declare_parameter("kalman_q_vel",  50.0)
         self.declare_parameter("kalman_r_meas", 10.0)
 
-        # Physics-model gains (Nokhbeh & Khashabi 2011, eq.25)
+        # Optional PD gain derivation from a simple ball-plate model
         self.declare_parameter("deg_per_unit", 0.0)   # 0 = disabled, use manual kp/kd
         self.declare_parameter("omega_n_x",    3.0)   # natural frequency X (rad/s)
         self.declare_parameter("omega_n_y",    2.0)   # natural frequency Y (rad/s)
         self.declare_parameter("zeta",         1.0)   # damping ratio
-        # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
+        # Optional friction compensation
         self.declare_parameter("friction_rho", 0.0)   # magnitude (0 = disabled)
         self.declare_parameter("friction_eta", 10.0)  # sharpness
         self.declare_parameter("tilt_balance_enabled", True)
@@ -486,33 +667,30 @@ class ControllerNode(Node):
         self.servo_center = int(pv("servo_center"))
         self.arrival_px = float(pv("arrival_px"))
         self.lookahead_px = float(pv("lookahead_px"))
-        self.line_stick_gain = float(pv("line_stick_gain"))
         self.cmd_time_ms = int(pv("cmd_time_ms"))
-        self.ff_gain        = float(pv("ff_gain"))
-        self.ff_board_scale = float(pv("ff_board_scale"))
         self.invert_x = bool(pv("invert_x"))
         self.invert_y = bool(pv("invert_y"))
-        self.waypoint_pause_s  = float(pv("waypoint_pause_s"))
+        self.waypoint_pause_s = float(pv("waypoint_pause_s"))
         self.predict_latency_s = float(pv("predict_latency_s"))
 
-        self.kalman.q_pos  = float(pv("kalman_q_pos"))
-        self.kalman.q_vel  = float(pv("kalman_q_vel"))
+        self.kalman.q_pos = float(pv("kalman_q_pos"))
+        self.kalman.q_vel = float(pv("kalman_q_vel"))
         self.kalman.r_meas = float(pv("kalman_r_meas"))
 
-        self.corner_kp_scale     = float(pv("corner_kp_scale"))
-        self.corner_kd_scale     = float(pv("corner_kd_scale"))
+        self.corner_kp_scale = float(pv("corner_kp_scale"))
+        self.corner_kd_scale = float(pv("corner_kd_scale"))
         self.corner_angle_thresh = float(pv("corner_angle_thresh"))
-        self.corner_preview_px   = float(pv("corner_preview_px"))
+        self.corner_preview_px = float(pv("corner_preview_px"))
 
-        self.auto_start       = bool(pv("auto_start"))
-        self.settle_speed_px  = float(pv("settle_speed_px"))
-        self.settle_frames    = int(pv("settle_frames"))
+        self.auto_start = bool(pv("auto_start"))
+        self.settle_speed_px = float(pv("settle_speed_px"))
+        self.settle_frames = int(pv("settle_frames"))
         self.settle_timeout_s = float(pv("settle_timeout_s"))
-        self.recovery_wait_s  = float(pv("recovery_wait_s"))
+        self.recovery_wait_s = float(pv("recovery_wait_s"))
 
         self.ilc_enabled = bool(pv("ilc_enabled"))
-        self.ilc_gain    = float(pv("ilc_gain"))
-        self._ilc_path   = pv("ilc_path")
+        self.ilc_gain = float(pv("ilc_gain"))
+        self._ilc_path = pv("ilc_path")
 
         self.pid_x.set_gains_and_limits(
             float(pv("kp_x")),
@@ -527,17 +705,19 @@ class ControllerNode(Node):
             mx,
         )
 
-        self.deg_per_unit  = float(pv("deg_per_unit"))
-        self.omega_n_x     = float(pv("omega_n_x"))
-        self.omega_n_y     = float(pv("omega_n_y"))
-        self.zeta          = float(pv("zeta"))
-        self.friction_rho  = float(pv("friction_rho"))
-        self.friction_eta  = float(pv("friction_eta"))
+        self.deg_per_unit = float(pv("deg_per_unit"))
+        self.omega_n_x = float(pv("omega_n_x"))
+        self.omega_n_y = float(pv("omega_n_y"))
+        self.zeta = float(pv("zeta"))
+        self.friction_rho = float(pv("friction_rho"))
+        self.friction_eta = float(pv("friction_eta"))
         self.tilt_balance_enabled = bool(pv("tilt_balance_enabled"))
         self.tilt_balance_kp = float(pv("tilt_balance_kp"))
         self.tilt_balance_ki = float(pv("tilt_balance_ki"))
         self.tilt_balance_deadband = float(pv("tilt_balance_deadband"))
         self.tilt_balance_max_trim = float(pv("tilt_balance_max_trim"))
+        if not self.tilt_balance_enabled:
+            self._reset_tilt_balance()
         if self.deg_per_unit > 0.0:
             self._apply_physics_gains(mx)
 
@@ -546,13 +726,13 @@ class ControllerNode(Node):
             self.follower.lookahead = self.lookahead_px
 
     def _apply_physics_gains(self, mx):
-        """Derive kp/kd from the ball-plate physics model (Nokhbeh & Khashabi 2011, eq.25).
+        """Derive kp/kd from a simple linearised ball-plate model.
 
         Plant:   x_ddot = -13.73 * alpha   [m/s² per rad]  (universal for solid sphere)
         K_plant = 13.73 * deg_per_unit*(π/180) * scale_px_m   [px/s² per servo-unit]
         kp = ωn² / K_plant,  kd = 2ζωn / K_plant
 
-        X and Y use separate ωn (§5.2: equal ωn gives worst 2D overshoot).
+        X and Y use separate ωn so the two axes can be tuned independently.
         """
         scale_px_mm = (self.est_state[2]
                        if self.est_state and len(self.est_state) > 2
@@ -708,7 +888,8 @@ class ControllerNode(Node):
         We store its inverse (current→flat) to map marble pos into flat space."""
         M = np.array(msg.data, dtype=np.float64).reshape(3, 3)
         try:
-            if np.linalg.cond(M) > 1e10:
+            if (not np.all(np.isfinite(M))
+                    or np.linalg.cond(M) > 1e10):
                 self.board_M_inv = None
                 return
             self.board_M_inv = np.linalg.inv(M)
@@ -729,27 +910,27 @@ class ControllerNode(Node):
             return
 
         self.waypoints = new_waypoints
-        self.follower = PathFollower(
+        self.follower = ProjectedPathFollower(
             self.waypoints,
             self.arrival_px,
             self.lookahead_px
         )
         # Initialise ILC for this path (loads saved data if path unchanged)
-        n_seg = len(self.follower.path) - 1
+        n_seg = self.follower.num_segments
         if n_seg > 0:
             self._current_path_hash = self._path_hash(new_waypoints)
             self._ilc_init(n_seg)
             self._ilc_reset_log()
         self.get_logger().info(
-            f"Loaded new path with {len(self.follower.path)} waypoints"
+            f"Loaded new path with {len(self.follower.raw_path)} waypoints"
+            f" and {len(self.follower.path)} sampled points"
         )
 
     def _send_servo(self, out_x, out_y, time_ms=None, level_hold=False):
         if time_ms is None:
             time_ms = self.cmd_time_ms
 
-        if level_hold:
-            self._update_tilt_trim(max(float(time_ms) / 1000.0, 1e-3))
+        self._update_tilt_trim(max(float(time_ms) / 1000.0, 1e-3))
 
         sx = -1 if self.invert_x else 1
         sy = -1 if self.invert_y else 1
@@ -772,13 +953,12 @@ class ControllerNode(Node):
 
         if not self.active and not self._settling and not self._recovering:
             self._publish_wp_idx(-1)
-            if self._levelling:
-                self._send_servo(0, 0, level_hold=True)
+            self._send_servo(0, 0, level_hold=True)
             return
 
         with self._state_lock:
-            marble_pos_snap        = self.marble_pos
-            pending_kalman_reset   = self._pending_kalman_reset
+            marble_pos_snap      = self.marble_pos
+            pending_kalman_reset = self._pending_kalman_reset
             self._pending_kalman_reset = False
 
         if pending_kalman_reset:
@@ -791,6 +971,7 @@ class ControllerNode(Node):
             else:
                 self.get_logger().warn(
                     "Waiting for marble...", throttle_duration_sec=1.0)
+            self._send_servo(0, 0)
             return
 
         # Map marble from current topdown space → flat board space so that
@@ -805,7 +986,7 @@ class ControllerNode(Node):
 
         # ── SETTLING ─────────────────────────────────────────────────────────
         if self._settling:
-            self._send_servo(0, 0, level_hold=True)   # hold board flat from measured tilt
+            self._send_servo(0, 0, level_hold=True)
             speed = math.sqrt(vx * vx + vy * vy)
             if speed < self.settle_speed_px:
                 self._settle_count += 1
@@ -830,7 +1011,7 @@ class ControllerNode(Node):
         # ── RECOVERING ───────────────────────────────────────────────────────
         # Guide marble to path start, hold flat for recovery_wait_s, then run
         if self._recovering:
-            start_xy = self.follower.path[0]
+            start_xy = self.follower.raw_path[0]
             err_x = float(start_xy[0]) - kx
             err_y = float(start_xy[1]) - ky
             dist  = math.sqrt(err_x * err_x + err_y * err_y)
@@ -862,9 +1043,7 @@ class ControllerNode(Node):
         # ── ACTIVE ───────────────────────────────────────────────────────────
         filtered_pos = (kx, ky)
 
-        target, proj, seg_idx, done, line_stick_blend = self.follower.update(
-            filtered_pos
-        )
+        target, seg_idx, done = self.follower.update(filtered_pos)
 
         # Detect waypoint advance → pause briefly
         if (self._last_wp_idx is not None
@@ -906,13 +1085,6 @@ class ControllerNode(Node):
 
         tx, ty = float(target[0]), float(target[1])
 
-        # Add extra weight to cross-track error so the marble hugs the current
-        # segment more tightly instead of cutting wide around it. The effect
-        # fades out near corners so it does not fight the next-segment preview.
-        if self.line_stick_gain > 0.0:
-            tx += self.line_stick_gain * line_stick_blend * (float(proj[0]) - kx)
-            ty += self.line_stick_gain * line_stick_blend * (float(proj[1]) - ky)
-
         # ILC feedforward — pre-correct systematic error learned from past runs.
         if (self.ilc_enabled
                 and self._ilc_ff is not None
@@ -933,10 +1105,10 @@ class ControllerNode(Node):
         # Both scale linearly with blend (proximity) × angle_factor (sharpness).
         kp_scale = kd_scale = 1.0
         next_idx = seg_idx + 1
-        if next_idx < len(self.follower.path):
+        if next_idx < len(self.follower.raw_path):
             corner_angle = float(self.follower.corner_angles[next_idx])
             if corner_angle > self.corner_angle_thresh:
-                nwp  = self.follower.path[next_idx]
+                nwp  = self.follower.raw_path[next_idx]
                 dist = math.sqrt((kx - float(nwp[0])) ** 2 +
                                  (ky - float(nwp[1])) ** 2)
                 if dist < self.corner_preview_px:
@@ -952,13 +1124,8 @@ class ControllerNode(Node):
 
         mx = float(self.pid_x.hi)
 
-        # Feed-forward
-        if self.est_state and len(self.est_state) > 5 and self.ff_gain > 0 and self.est_state[5] > 0.5:
-            out_x += self.ff_gain * self.est_state[3] * self.ff_board_scale
-            out_y += self.ff_gain * self.est_state[4] * self.ff_board_scale
-
-        # Coulomb friction feedforward (Nokhbeh & Khashabi 2011, §5.1.2)
-        # Tf = ρ * tanh(η * ẋ) — tilts board extra to overcome static/kinetic friction
+        # Optional friction compensation:
+        # Tf = ρ * tanh(η * v) adds extra tilt to overcome static/kinetic friction.
         if self.friction_rho > 0.0:
             out_x += self.friction_rho * math.tanh(self.friction_eta * vx)
             out_y += self.friction_rho * math.tanh(self.friction_eta * vy)
@@ -969,9 +1136,8 @@ class ControllerNode(Node):
         self._send_servo(out_x, out_y)
 
         self.get_logger().info(
-            f"seg={seg_idx}/{len(self.follower.path)-2}"
+            f"seg={seg_idx}/{max(self.follower.num_segments - 1, 0)}"
             f"  target=({round(float(target[0]))},{round(float(target[1]))})"
-            f"  cte={round(float(np.linalg.norm(np.array([kx, ky]) - proj)),1)}"
             f"  err=({round(err_x,1)},{round(err_y,1)})"
             f"  vel=({round(vx,1)},{round(vy,1)})"
             f"  out=({round(out_x,1)},{round(out_y,1)})"
@@ -983,9 +1149,9 @@ class ControllerNode(Node):
         """Return the follower segment index whose projection is closest to pos."""
         p = np.array(pos, dtype=np.float32)
         best_idx, best_dist = 0, float('inf')
-        for i in range(len(self.follower.path) - 1):
+        for i in range(len(self.follower.raw_path) - 1):
             proj, _, _ = PathFollower._project_to_segment(
-                p, self.follower.path[i], self.follower.path[i + 1])
+                p, self.follower.raw_path[i], self.follower.raw_path[i + 1])
             d = float(np.linalg.norm(p - proj))
             if d < best_dist:
                 best_dist = d
@@ -1000,7 +1166,7 @@ class ControllerNode(Node):
 
     def _svc_start(self, req, res):
         if self.follower is None and self.waypoints:
-            self.follower = PathFollower(
+            self.follower = ProjectedPathFollower(
                 self.waypoints,
                 self.arrival_px,
                 self.lookahead_px
@@ -1010,6 +1176,11 @@ class ControllerNode(Node):
             res.success = False
             res.message = "No path loaded — call /path/draw first"
             return res
+
+        if self.board_M_inv is None:
+            self.get_logger().warn(
+                "board_transform not received — marble position and path waypoints "
+                "may be in different spaces. Ensure estimator is calibrated.")
 
         if self.marble_pos is None:
             res.success = False
