@@ -49,10 +49,6 @@ PARAMS = [
     ("kalman_q_vel",      1.0,  500.0, 50.0,  1.0,    False),
     ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
 
-    # Danger zones
-    ("danger_zone_gain",   0.0,  100.0, 0.0,   1.0,   False),
-    ("danger_zone_radius", 10.0, 200.0, 80.0,  5.0,   False),
-
     # Timing / latency
     ("waypoint_pause_s",   0.0,  2.0,   0.3,   0.05,  False),
     ("predict_latency_s",  0.0,  1.0,   0.05,  0.005, False),
@@ -73,12 +69,8 @@ PARAMS = [
     ("ilc_enabled",       0,    1,     1,    1,     True),
     ("ilc_gain",          0.01, 0.5,   0.1,  0.01,  False),
 
-    # Speed ceiling
-    ("max_speed_px",     0.0,  500.0, 0.0,  5.0,   False),
-    ("speed_brake_gain", 0.0,  5.0,   0.5,  0.05,  False),
-
     # Physics model (Nokhbeh & Khashabi 2011) — set deg_per_unit>0 to enable
-    ("deg_per_unit", 0.0,  0.1,   0.0,   0.001, False),
+    ("deg_per_unit", 0.0,  0.5,   0.0,   0.001, False),
     ("omega_n_x",    0.5,  15.0,  3.0,   0.1,   False),
     ("omega_n_y",    0.5,  15.0,  2.0,   0.1,   False),
     ("zeta",         0.3,  2.0,   1.0,   0.05,  False),
@@ -91,14 +83,12 @@ GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
     "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
-    "── Danger Zones ──":  ["danger_zone_gain", "danger_zone_radius"],
     "── Timing ──":        ["waypoint_pause_s", "predict_latency_s"],
     "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
                             "corner_angle_thresh", "corner_preview_px"],
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
                             "settle_frames", "settle_timeout_s"],
     "── ILC ──":           ["ilc_enabled", "ilc_gain"],
-    "── Speed ──":         ["max_speed_px", "speed_brake_gain"],
     "── Misc ──":          ["cmd_time_ms", "ff_gain", "invert_x", "invert_y"],
     "── Physics Model ──": ["deg_per_unit", "omega_n_x", "omega_n_y", "zeta",
                             "friction_rho", "friction_eta"],
@@ -139,7 +129,6 @@ class TunerNode(Node):
         self._svc_stop       = self.create_client(Trigger, "/controller/stop")
         self._svc_calibrate  = self.create_client(Trigger, "/controller/calibrate")
         self._svc_reset_ilc  = self.create_client(Trigger, "/controller/reset_ilc")
-        self._svc_clear_dz   = self.create_client(Trigger, "/controller/clear_danger_zones")
         self._svc_draw       = self.create_client(Trigger, "/path/draw")
         self._svc_path_load  = self.create_client(Trigger, "/path/load")
         self._svc_path_save  = self.create_client(Trigger, "/path/save")
@@ -333,13 +322,6 @@ class TunerGUI:
             relief="flat", font=FONT, cursor="hand2",
             command=lambda: self.node.call_trigger(self.node._svc_reset_ilc, "reset_ilc"),
         ).pack(side="left", padx=(0, 4))
-
-        tk.Button(
-            ctrl_row, text="Clear DZ",
-            bg=BG2, fg=FG,
-            relief="flat", font=FONT, cursor="hand2",
-            command=lambda: self.node.call_trigger(self.node._svc_clear_dz, "clear_dz"),
-        ).pack(side="left")
 
         path_row = tk.Frame(inner, bg=BG)
         path_row.pack(fill="x", pady=(4, 2))

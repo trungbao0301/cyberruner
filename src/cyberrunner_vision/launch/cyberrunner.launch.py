@@ -7,6 +7,8 @@ Usage:
   ros2 launch cyberrunner_vision cyberrunner.launch.py
   ros2 launch cyberrunner_vision cyberrunner.launch.py device_path:=/dev/video2
   ros2 launch cyberrunner_vision cyberrunner.launch.py show_gui:=false
+  ros2 launch cyberrunner_vision cyberrunner.launch.py fps:=114 loop_hz:=114
+  ros2 launch cyberrunner_vision cyberrunner.launch.py fps:=114 loop_hz:=114 width:=1280 height:=720
 
 After launch:
   ros2 service call /path/draw       std_srvs/srv/Trigger {}   # open path GUI
@@ -22,6 +24,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
+from launch_ros.parameter_descriptions import ParameterValue
 
 
 def generate_launch_description():
@@ -35,6 +38,18 @@ def generate_launch_description():
         DeclareLaunchArgument(
             "camera_index", default_value="0",
             description="Camera index (used only if device_path is empty)."),
+        DeclareLaunchArgument(
+            "width", default_value="1920",
+            description="Requested camera capture width in pixels."),
+        DeclareLaunchArgument(
+            "height", default_value="1200",
+            description="Requested camera capture height in pixels."),
+        DeclareLaunchArgument(
+            "fps", default_value="114",
+            description="Requested camera capture and publish rate in Hz."),
+        DeclareLaunchArgument(
+            "loop_hz", default_value="114",
+            description="Requested loop rate in Hz for controller and camera-driven GUI timers."),
 
         # Board physical dimensions (mm) — inside the 4 blue calibration dots
         DeclareLaunchArgument(
@@ -60,6 +75,9 @@ def generate_launch_description():
             parameters=[{
                 "device_path":    LaunchConfiguration("device_path"),
                 "camera_index":   LaunchConfiguration("camera_index"),
+                "width":          LaunchConfiguration("width"),
+                "height":         LaunchConfiguration("height"),
+                "fps":            LaunchConfiguration("fps"),
                 "show_preview":   LaunchConfiguration("show_gui"),
             }],
         ),
@@ -77,6 +95,7 @@ def generate_launch_description():
             parameters=[{
                 "board_width_mm":  LaunchConfiguration("board_width_mm"),
                 "board_height_mm": LaunchConfiguration("board_height_mm"),
+                "loop_hz":         ParameterValue(LaunchConfiguration("loop_hz"), value_type=float),
                 "show_window":     LaunchConfiguration("show_gui"),
             }],
         ),
@@ -104,6 +123,9 @@ def generate_launch_description():
             executable="path_node",
             name="path_node",
             output="screen",
+            parameters=[{
+                "loop_hz": ParameterValue(LaunchConfiguration("loop_hz"), value_type=float),
+            }],
         ),
 
         # ── controller_node ───────────────────────────────────────────────────
@@ -117,8 +139,7 @@ def generate_launch_description():
             name="controller_node",
             output="screen",
             parameters=[{
-                "danger_zone_radius": 130.0,
-                "danger_zone_gain":   40.0,
+                "loop_hz": ParameterValue(LaunchConfiguration("loop_hz"), value_type=float),
             }],
         ),
 

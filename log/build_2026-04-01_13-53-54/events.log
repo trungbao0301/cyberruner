@@ -1,0 +1,678 @@
+[0.000000] (-) TimerEvent: {}
+[0.000129] (-) JobUnselected: {'identifier': 'cyberrunner_camera'}
+[0.000313] (-) JobUnselected: {'identifier': 'cyberrunner_dreamer'}
+[0.000377] (-) JobUnselected: {'identifier': 'cyberrunner_hiwonder'}
+[0.000440] (-) JobUnselected: {'identifier': 'cyberrunner_interfaces'}
+[0.000461] (-) JobUnselected: {'identifier': 'cyberrunner_pid'}
+[0.000481] (-) JobUnselected: {'identifier': 'cyberrunner_state_estimation'}
+[0.000499] (cyberrunner_vision) JobQueued: {'identifier': 'cyberrunner_vision', 'dependencies': OrderedDict()}
+[0.000631] (cyberrunner_vision) JobStarted: {'identifier': 'cyberrunner_vision'}
+[0.099892] (-) TimerEvent: {}
+[0.200159] (-) TimerEvent: {}
+[0.300545] (-) TimerEvent: {}
+[0.400690] (-) TimerEvent: {}
+[0.500887] (-) TimerEvent: {}
+[0.601093] (-) TimerEvent: {}
+[0.701345] (-) TimerEvent: {}
+[0.801567] (-) TimerEvent: {}
+[0.901736] (-) TimerEvent: {}
+[1.001902] (-) TimerEvent: {}
+[1.102144] (-) TimerEvent: {}
+[1.202405] (-) TimerEvent: {}
+[1.302630] (-) TimerEvent: {}
+[1.402867] (-) TimerEvent: {}
+[1.503122] (-) TimerEvent: {}
+[1.603340] (-) TimerEvent: {}
+[1.703581] (-) TimerEvent: {}
+[1.803718] (-) TimerEvent: {}
+[1.903910] (-) TimerEvent: {}
+[2.004055] (-) TimerEvent: {}
+[2.104318] (-) TimerEvent: {}
+[2.204465] (-) TimerEvent: {}
+[2.304616] (-) TimerEvent: {}
+[2.404776] (-) TimerEvent: {}
+[2.504957] (-) TimerEvent: {}
+[2.605102] (-) TimerEvent: {}
+[2.705252] (-) TimerEvent: {}
+[2.805439] (-) TimerEvent: {}
+[2.905588] (-) TimerEvent: {}
+[3.005723] (-) TimerEvent: {}
+[3.105938] (-) TimerEvent: {}
+[3.206102] (-) TimerEvent: {}
+[3.306367] (-) TimerEvent: {}
+[3.406607] (-) TimerEvent: {}
+[3.506750] (-) TimerEvent: {}
+[3.606916] (-) TimerEvent: {}
+[3.707115] (-) TimerEvent: {}
+[3.807351] (-) TimerEvent: {}
+[3.907574] (-) TimerEvent: {}
+[4.007718] (-) TimerEvent: {}
+[4.107883] (-) TimerEvent: {}
+[4.208025] (-) TimerEvent: {}
+[4.308230] (-) TimerEvent: {}
+[4.408381] (-) TimerEvent: {}
+[4.508511] (-) TimerEvent: {}
+[4.608676] (-) TimerEvent: {}
+[4.708834] (-) TimerEvent: {}
+[4.809024] (-) TimerEvent: {}
+[4.909174] (-) TimerEvent: {}
+[5.009388] (-) TimerEvent: {}
+[5.109537] (-) TimerEvent: {}
+[5.209681] (-) TimerEvent: {}
+[5.309855] (-) TimerEvent: {}
+[5.409996] (-) TimerEvent: {}
+[5.510226] (-) TimerEvent: {}
+[5.610477] (-) TimerEvent: {}
+[5.710630] (-) TimerEvent: {}
+[5.810832] (-) TimerEvent: {}
+[5.911081] (-) TimerEvent: {}
+[6.011271] (-) TimerEvent: {}
+[6.111426] (-) TimerEvent: {}
+[6.211651] (-) TimerEvent: {}
+[6.311794] (-) TimerEvent: {}
+[6.411929] (-) TimerEvent: {}
+[6.512073] (-) TimerEvent: {}
+[6.612248] (-) TimerEvent: {}
+[6.712440] (-) TimerEvent: {}
+[6.812578] (-) TimerEvent: {}
+[6.912743] (-) TimerEvent: {}
+[7.012933] (-) TimerEvent: {}
+[7.113083] (-) TimerEvent: {}
+[7.213318] (-) TimerEvent: {}
+[7.313460] (-) TimerEvent: {}
+[7.413673] (-) TimerEvent: {}
+[7.513936] (-) TimerEvent: {}
+[7.614167] (-) TimerEvent: {}
+[7.714312] (-) TimerEvent: {}
+[7.814445] (-) TimerEvent: {}
+[7.914574] (-) TimerEvent: {}
+[8.014759] (-) TimerEvent: {}
+[8.114914] (-) TimerEvent: {}
+[8.215099] (-) TimerEvent: {}
+[8.315232] (-) TimerEvent: {}
+[8.415350] (-) TimerEvent: {}
+[8.515492] (-) TimerEvent: {}
+[8.615639] (-) TimerEvent: {}
+[8.715815] (-) TimerEvent: {}
+[8.815943] (-) TimerEvent: {}
+[8.916121] (-) TimerEvent: {}
+[9.016308] (-) TimerEvent: {}
+[9.116439] (-) TimerEvent: {}
+[9.216572] (-) TimerEvent: {}
+[9.316736] (-) TimerEvent: {}
+[9.417003] (-) TimerEvent: {}
+[9.517203] (-) TimerEvent: {}
+[9.617354] (-) TimerEvent: {}
+[9.717487] (-) TimerEvent: {}
+[9.817662] (-) TimerEvent: {}
+[9.917915] (-) TimerEvent: {}
+[10.018049] (-) TimerEvent: {}
+[10.118315] (-) TimerEvent: {}
+[10.218564] (-) TimerEvent: {}
+[10.318719] (-) TimerEvent: {}
+[10.418969] (-) TimerEvent: {}
+[10.519208] (-) TimerEvent: {}
+[10.619416] (-) TimerEvent: {}
+[10.719636] (-) TimerEvent: {}
+[10.819804] (-) TimerEvent: {}
+[10.919968] (-) TimerEvent: {}
+[11.020192] (-) TimerEvent: {}
+[11.120408] (-) TimerEvent: {}
+[11.220545] (-) TimerEvent: {}
+[11.320685] (-) TimerEvent: {}
+[11.420887] (-) TimerEvent: {}
+[11.521039] (-) TimerEvent: {}
+[11.621362] (-) TimerEvent: {}
+[11.721630] (-) TimerEvent: {}
+[11.821820] (-) TimerEvent: {}
+[11.921964] (-) TimerEvent: {}
+[12.022200] (-) TimerEvent: {}
+[12.122331] (-) TimerEvent: {}
+[12.222468] (-) TimerEvent: {}
+[12.322720] (-) TimerEvent: {}
+[12.422911] (-) TimerEvent: {}
+[12.523151] (-) TimerEvent: {}
+[12.623437] (-) TimerEvent: {}
+[12.723629] (-) TimerEvent: {}
+[12.823764] (-) TimerEvent: {}
+[12.923945] (-) TimerEvent: {}
+[13.024122] (-) TimerEvent: {}
+[13.124314] (-) TimerEvent: {}
+[13.224669] (-) TimerEvent: {}
+[13.324813] (-) TimerEvent: {}
+[13.424942] (-) TimerEvent: {}
+[13.525078] (-) TimerEvent: {}
+[13.625235] (-) TimerEvent: {}
+[13.725378] (-) TimerEvent: {}
+[13.825510] (-) TimerEvent: {}
+[13.925645] (-) TimerEvent: {}
+[14.025830] (-) TimerEvent: {}
+[14.125994] (-) TimerEvent: {}
+[14.226124] (-) TimerEvent: {}
+[14.326253] (-) TimerEvent: {}
+[14.426423] (-) TimerEvent: {}
+[14.526556] (-) TimerEvent: {}
+[14.626726] (-) TimerEvent: {}
+[14.726892] (-) TimerEvent: {}
+[14.827047] (-) TimerEvent: {}
+[14.927185] (-) TimerEvent: {}
+[15.027406] (-) TimerEvent: {}
+[15.127536] (-) TimerEvent: {}
+[15.227669] (-) TimerEvent: {}
+[15.327871] (-) TimerEvent: {}
+[15.428105] (-) TimerEvent: {}
+[15.528262] (-) TimerEvent: {}
+[15.628439] (-) TimerEvent: {}
+[15.728579] (-) TimerEvent: {}
+[15.828767] (-) TimerEvent: {}
+[15.928954] (-) TimerEvent: {}
+[16.029151] (-) TimerEvent: {}
+[16.129381] (-) TimerEvent: {}
+[16.229522] (-) TimerEvent: {}
+[16.329657] (-) TimerEvent: {}
+[16.429794] (-) TimerEvent: {}
+[16.529984] (-) TimerEvent: {}
+[16.630151] (-) TimerEvent: {}
+[16.730337] (-) TimerEvent: {}
+[16.830493] (-) TimerEvent: {}
+[16.930640] (-) TimerEvent: {}
+[17.030907] (-) TimerEvent: {}
+[17.131169] (-) TimerEvent: {}
+[17.231324] (-) TimerEvent: {}
+[17.331470] (-) TimerEvent: {}
+[17.431624] (-) TimerEvent: {}
+[17.531765] (-) TimerEvent: {}
+[17.631906] (-) TimerEvent: {}
+[17.732112] (-) TimerEvent: {}
+[17.832311] (-) TimerEvent: {}
+[17.932437] (-) TimerEvent: {}
+[18.032566] (-) TimerEvent: {}
+[18.132762] (-) TimerEvent: {}
+[18.232888] (-) TimerEvent: {}
+[18.333020] (-) TimerEvent: {}
+[18.433220] (-) TimerEvent: {}
+[18.533329] (-) TimerEvent: {}
+[18.633498] (-) TimerEvent: {}
+[18.733631] (-) TimerEvent: {}
+[18.833770] (-) TimerEvent: {}
+[18.934055] (-) TimerEvent: {}
+[19.034238] (-) TimerEvent: {}
+[19.134395] (-) TimerEvent: {}
+[19.234523] (-) TimerEvent: {}
+[19.334657] (-) TimerEvent: {}
+[19.434819] (-) TimerEvent: {}
+[19.535003] (-) TimerEvent: {}
+[19.635151] (-) TimerEvent: {}
+[19.735295] (-) TimerEvent: {}
+[19.835450] (-) TimerEvent: {}
+[19.935583] (-) TimerEvent: {}
+[20.035743] (-) TimerEvent: {}
+[20.135878] (-) TimerEvent: {}
+[20.236058] (-) TimerEvent: {}
+[20.336212] (-) TimerEvent: {}
+[20.436323] (-) TimerEvent: {}
+[20.536453] (-) TimerEvent: {}
+[20.636583] (-) TimerEvent: {}
+[20.736740] (-) TimerEvent: {}
+[20.836905] (-) TimerEvent: {}
+[20.937040] (-) TimerEvent: {}
+[21.037172] (-) TimerEvent: {}
+[21.137303] (-) TimerEvent: {}
+[21.237462] (-) TimerEvent: {}
+[21.337653] (-) TimerEvent: {}
+[21.437855] (-) TimerEvent: {}
+[21.538158] (-) TimerEvent: {}
+[21.638424] (-) TimerEvent: {}
+[21.738564] (-) TimerEvent: {}
+[21.838719] (-) TimerEvent: {}
+[21.938854] (-) TimerEvent: {}
+[22.038994] (-) TimerEvent: {}
+[22.139159] (-) TimerEvent: {}
+[22.239365] (-) TimerEvent: {}
+[22.339573] (-) TimerEvent: {}
+[22.439829] (-) TimerEvent: {}
+[22.539991] (-) TimerEvent: {}
+[22.640159] (-) TimerEvent: {}
+[22.740322] (-) TimerEvent: {}
+[22.840456] (-) TimerEvent: {}
+[22.940602] (-) TimerEvent: {}
+[23.040760] (-) TimerEvent: {}
+[23.140910] (-) TimerEvent: {}
+[23.241051] (-) TimerEvent: {}
+[23.341220] (-) TimerEvent: {}
+[23.441324] (-) TimerEvent: {}
+[23.541469] (-) TimerEvent: {}
+[23.641650] (-) TimerEvent: {}
+[23.741815] (-) TimerEvent: {}
+[23.841991] (-) TimerEvent: {}
+[23.942241] (-) TimerEvent: {}
+[24.042499] (-) TimerEvent: {}
+[24.142675] (-) TimerEvent: {}
+[24.242977] (-) TimerEvent: {}
+[24.343139] (-) TimerEvent: {}
+[24.443409] (-) TimerEvent: {}
+[24.543567] (-) TimerEvent: {}
+[24.643845] (-) TimerEvent: {}
+[24.744116] (-) TimerEvent: {}
+[24.844410] (-) TimerEvent: {}
+[24.944871] (-) TimerEvent: {}
+[25.045116] (-) TimerEvent: {}
+[25.145339] (-) TimerEvent: {}
+[25.245565] (-) TimerEvent: {}
+[25.345817] (-) TimerEvent: {}
+[25.446060] (-) TimerEvent: {}
+[25.546312] (-) TimerEvent: {}
+[25.646560] (-) TimerEvent: {}
+[25.746822] (-) TimerEvent: {}
+[25.847075] (-) TimerEvent: {}
+[25.947295] (-) TimerEvent: {}
+[26.047533] (-) TimerEvent: {}
+[26.147669] (-) TimerEvent: {}
+[26.247834] (-) TimerEvent: {}
+[26.348028] (-) TimerEvent: {}
+[26.448242] (-) TimerEvent: {}
+[26.548492] (-) TimerEvent: {}
+[26.648720] (-) TimerEvent: {}
+[26.748937] (-) TimerEvent: {}
+[26.849179] (-) TimerEvent: {}
+[26.949435] (-) TimerEvent: {}
+[27.049610] (-) TimerEvent: {}
+[27.149749] (-) TimerEvent: {}
+[27.249938] (-) TimerEvent: {}
+[27.350172] (-) TimerEvent: {}
+[27.450423] (-) TimerEvent: {}
+[27.550568] (-) TimerEvent: {}
+[27.650746] (-) TimerEvent: {}
+[27.750946] (-) TimerEvent: {}
+[27.851224] (-) TimerEvent: {}
+[27.951440] (-) TimerEvent: {}
+[28.051578] (-) TimerEvent: {}
+[28.151716] (-) TimerEvent: {}
+[28.251902] (-) TimerEvent: {}
+[28.352112] (-) TimerEvent: {}
+[28.452338] (-) TimerEvent: {}
+[28.552557] (-) TimerEvent: {}
+[28.652696] (-) TimerEvent: {}
+[28.752833] (-) TimerEvent: {}
+[28.853003] (-) TimerEvent: {}
+[28.953231] (-) TimerEvent: {}
+[29.053322] (-) TimerEvent: {}
+[29.153466] (-) TimerEvent: {}
+[29.253616] (-) TimerEvent: {}
+[29.353746] (-) TimerEvent: {}
+[29.453907] (-) TimerEvent: {}
+[29.554154] (-) TimerEvent: {}
+[29.654412] (-) TimerEvent: {}
+[29.754554] (-) TimerEvent: {}
+[29.854723] (-) TimerEvent: {}
+[29.954857] (-) TimerEvent: {}
+[30.055019] (-) TimerEvent: {}
+[30.155243] (-) TimerEvent: {}
+[30.255375] (-) TimerEvent: {}
+[30.355505] (-) TimerEvent: {}
+[30.375499] (cyberrunner_vision) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'develop', '--uninstall', '--editable', '--build-directory', '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/trungbao', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'USER': 'trungbao', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'wayland', 'DEBUG': 'release', 'SHLVL': '0', 'LD_LIBRARY_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/trungbao', 'CHROME_DESKTOP': 'code.desktop', 'DESKTOP_SESSION': 'ubuntu', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-258834d3-1.10-main.sock', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'MANAGERPID': '1310', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '1491', 'IM_CONFIG_CHECK_ENV': '1', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': '', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '2159', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install', 'APPLICATION_INSIGHTS_NO_STATSBEAT': 'true', 'ROS_DISTRO': 'humble', 'LOGNAME': 'trungbao', 'JOURNAL_STREAM': '8:20622', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'RUST_LOG': 'warn', 'USERNAME': 'trungbao', 'TERM': 'dumb', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg0fCrNEO:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.325.31654-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/trungbao:@/tmp/.ICE-unix/1454,unix/trungbao:/tmp/.ICE-unix/1454', 'INVOCATION_ID': '8e72e08d15184635b2ca3e5a2f46a2fd', 'XDG_MENU_PREFIX': 'gnome-', 'ROS_DISABLE_LOANED_MESSAGES': '1', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'wayland', 'DISPLAY': ':0', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.HZ1YM3', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CODEX_THREAD_ID': '019d4a3c-e19f-7e12-bca6-315e040d582e', 'GJS_DEBUG_OUTPUT': 'stderr', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'VSCODE_CODE_CACHE_PATH': '/home/trungbao/.config/Code/CachedData/bdd88df003631aaa0bcbe057cb0a940b80a476fa', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera', 'VSCODE_PID': '2159'}, 'shell': False}
+[30.455581] (-) TimerEvent: {}
+[30.460614] (cyberrunner_vision) StderrLine: {'line': b"/home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'\n"}
+[30.460701] (cyberrunner_vision) StderrLine: {'line': b'  warnings.warn(msg)\n'}
+[30.525115] (cyberrunner_vision) StdoutLine: {'line': b'running develop\n'}
+[30.555664] (-) TimerEvent: {}
+[30.614793] (cyberrunner_vision) StdoutLine: {'line': b'Removing /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner-vision.egg-link (link to .)\n'}
+[30.655751] (-) TimerEvent: {}
+[30.755925] (-) TimerEvent: {}
+[30.856083] (-) TimerEvent: {}
+[30.956254] (-) TimerEvent: {}
+[31.056416] (-) TimerEvent: {}
+[31.156545] (-) TimerEvent: {}
+[31.256726] (-) TimerEvent: {}
+[31.356925] (-) TimerEvent: {}
+[31.457152] (-) TimerEvent: {}
+[31.557412] (-) TimerEvent: {}
+[31.657580] (-) TimerEvent: {}
+[31.757756] (-) TimerEvent: {}
+[31.857931] (-) TimerEvent: {}
+[31.958055] (-) TimerEvent: {}
+[32.058216] (-) TimerEvent: {}
+[32.158388] (-) TimerEvent: {}
+[32.258550] (-) TimerEvent: {}
+[32.358830] (-) TimerEvent: {}
+[32.459116] (-) TimerEvent: {}
+[32.559409] (-) TimerEvent: {}
+[32.659577] (-) TimerEvent: {}
+[32.759764] (-) TimerEvent: {}
+[32.859921] (-) TimerEvent: {}
+[32.960146] (-) TimerEvent: {}
+[33.060363] (-) TimerEvent: {}
+[33.160783] (-) TimerEvent: {}
+[33.261080] (-) TimerEvent: {}
+[33.361340] (-) TimerEvent: {}
+[33.461572] (-) TimerEvent: {}
+[33.561797] (-) TimerEvent: {}
+[33.661963] (-) TimerEvent: {}
+[33.762128] (-) TimerEvent: {}
+[33.862387] (-) TimerEvent: {}
+[33.962623] (-) TimerEvent: {}
+[34.062798] (-) TimerEvent: {}
+[34.163057] (-) TimerEvent: {}
+[34.263309] (-) TimerEvent: {}
+[34.363464] (-) TimerEvent: {}
+[34.463607] (-) TimerEvent: {}
+[34.563790] (-) TimerEvent: {}
+[34.663956] (-) TimerEvent: {}
+[34.764145] (-) TimerEvent: {}
+[34.864346] (-) TimerEvent: {}
+[34.964492] (-) TimerEvent: {}
+[35.064685] (-) TimerEvent: {}
+[35.164818] (-) TimerEvent: {}
+[35.265009] (-) TimerEvent: {}
+[35.365158] (-) TimerEvent: {}
+[35.465292] (-) TimerEvent: {}
+[35.565429] (-) TimerEvent: {}
+[35.665559] (-) TimerEvent: {}
+[35.765746] (-) TimerEvent: {}
+[35.865887] (-) TimerEvent: {}
+[35.966022] (-) TimerEvent: {}
+[36.066212] (-) TimerEvent: {}
+[36.166325] (-) TimerEvent: {}
+[36.266461] (-) TimerEvent: {}
+[36.366607] (-) TimerEvent: {}
+[36.466746] (-) TimerEvent: {}
+[36.566881] (-) TimerEvent: {}
+[36.667051] (-) TimerEvent: {}
+[36.767204] (-) TimerEvent: {}
+[36.867370] (-) TimerEvent: {}
+[36.967549] (-) TimerEvent: {}
+[37.067709] (-) TimerEvent: {}
+[37.167958] (-) TimerEvent: {}
+[37.268120] (-) TimerEvent: {}
+[37.368373] (-) TimerEvent: {}
+[37.468509] (-) TimerEvent: {}
+[37.568642] (-) TimerEvent: {}
+[37.668837] (-) TimerEvent: {}
+[37.769064] (-) TimerEvent: {}
+[37.869301] (-) TimerEvent: {}
+[37.969555] (-) TimerEvent: {}
+[38.069697] (-) TimerEvent: {}
+[38.169881] (-) TimerEvent: {}
+[38.270020] (-) TimerEvent: {}
+[38.370247] (-) TimerEvent: {}
+[38.470502] (-) TimerEvent: {}
+[38.570732] (-) TimerEvent: {}
+[38.670911] (-) TimerEvent: {}
+[38.771080] (-) TimerEvent: {}
+[38.871227] (-) TimerEvent: {}
+[38.971394] (-) TimerEvent: {}
+[39.071540] (-) TimerEvent: {}
+[39.171678] (-) TimerEvent: {}
+[39.271837] (-) TimerEvent: {}
+[39.372124] (-) TimerEvent: {}
+[39.472407] (-) TimerEvent: {}
+[39.572631] (-) TimerEvent: {}
+[39.672817] (-) TimerEvent: {}
+[39.773073] (-) TimerEvent: {}
+[39.873308] (-) TimerEvent: {}
+[39.973442] (-) TimerEvent: {}
+[40.073575] (-) TimerEvent: {}
+[40.173716] (-) TimerEvent: {}
+[40.273925] (-) TimerEvent: {}
+[40.374150] (-) TimerEvent: {}
+[40.474394] (-) TimerEvent: {}
+[40.574625] (-) TimerEvent: {}
+[40.674796] (-) TimerEvent: {}
+[40.774938] (-) TimerEvent: {}
+[40.875184] (-) TimerEvent: {}
+[40.975440] (-) TimerEvent: {}
+[41.075580] (-) TimerEvent: {}
+[41.175763] (-) TimerEvent: {}
+[41.275917] (-) TimerEvent: {}
+[41.376070] (-) TimerEvent: {}
+[41.476224] (-) TimerEvent: {}
+[41.576439] (-) TimerEvent: {}
+[41.676590] (-) TimerEvent: {}
+[41.776744] (-) TimerEvent: {}
+[41.876934] (-) TimerEvent: {}
+[41.977193] (-) TimerEvent: {}
+[42.077499] (-) TimerEvent: {}
+[42.177653] (-) TimerEvent: {}
+[42.277833] (-) TimerEvent: {}
+[42.377996] (-) TimerEvent: {}
+[42.478254] (-) TimerEvent: {}
+[42.578434] (-) TimerEvent: {}
+[42.678614] (-) TimerEvent: {}
+[42.778753] (-) TimerEvent: {}
+[42.878978] (-) TimerEvent: {}
+[42.979202] (-) TimerEvent: {}
+[43.079487] (-) TimerEvent: {}
+[43.179760] (-) TimerEvent: {}
+[43.279997] (-) TimerEvent: {}
+[43.380135] (-) TimerEvent: {}
+[43.480324] (-) TimerEvent: {}
+[43.580454] (-) TimerEvent: {}
+[43.680590] (-) TimerEvent: {}
+[43.780821] (-) TimerEvent: {}
+[43.880968] (-) TimerEvent: {}
+[43.981143] (-) TimerEvent: {}
+[44.081391] (-) TimerEvent: {}
+[44.181551] (-) TimerEvent: {}
+[44.281728] (-) TimerEvent: {}
+[44.381869] (-) TimerEvent: {}
+[44.482053] (-) TimerEvent: {}
+[44.582302] (-) TimerEvent: {}
+[44.682440] (-) TimerEvent: {}
+[44.782573] (-) TimerEvent: {}
+[44.882760] (-) TimerEvent: {}
+[44.982934] (-) TimerEvent: {}
+[45.083175] (-) TimerEvent: {}
+[45.183418] (-) TimerEvent: {}
+[45.283557] (-) TimerEvent: {}
+[45.383728] (-) TimerEvent: {}
+[45.483879] (-) TimerEvent: {}
+[45.584028] (-) TimerEvent: {}
+[45.684224] (-) TimerEvent: {}
+[45.784355] (-) TimerEvent: {}
+[45.884501] (-) TimerEvent: {}
+[45.984645] (-) TimerEvent: {}
+[46.084817] (-) TimerEvent: {}
+[46.184986] (-) TimerEvent: {}
+[46.285131] (-) TimerEvent: {}
+[46.385292] (-) TimerEvent: {}
+[46.485431] (-) TimerEvent: {}
+[46.585570] (-) TimerEvent: {}
+[46.685732] (-) TimerEvent: {}
+[46.785878] (-) TimerEvent: {}
+[46.886052] (-) TimerEvent: {}
+[46.986215] (-) TimerEvent: {}
+[47.086325] (-) TimerEvent: {}
+[47.186593] (-) TimerEvent: {}
+[47.286785] (-) TimerEvent: {}
+[47.387038] (-) TimerEvent: {}
+[47.487180] (-) TimerEvent: {}
+[47.587330] (-) TimerEvent: {}
+[47.687475] (-) TimerEvent: {}
+[47.787665] (-) TimerEvent: {}
+[47.887827] (-) TimerEvent: {}
+[47.987990] (-) TimerEvent: {}
+[48.088170] (-) TimerEvent: {}
+[48.188395] (-) TimerEvent: {}
+[48.288540] (-) TimerEvent: {}
+[48.388758] (-) TimerEvent: {}
+[48.488937] (-) TimerEvent: {}
+[48.589184] (-) TimerEvent: {}
+[48.689387] (-) TimerEvent: {}
+[48.789654] (-) TimerEvent: {}
+[48.889815] (-) TimerEvent: {}
+[48.989978] (-) TimerEvent: {}
+[49.090234] (-) TimerEvent: {}
+[49.190364] (-) TimerEvent: {}
+[49.290499] (-) TimerEvent: {}
+[49.390635] (-) TimerEvent: {}
+[49.490803] (-) TimerEvent: {}
+[49.590980] (-) TimerEvent: {}
+[49.691148] (-) TimerEvent: {}
+[49.791315] (-) TimerEvent: {}
+[49.891463] (-) TimerEvent: {}
+[49.991692] (-) TimerEvent: {}
+[50.091866] (-) TimerEvent: {}
+[50.192062] (-) TimerEvent: {}
+[50.292224] (-) TimerEvent: {}
+[50.392446] (-) TimerEvent: {}
+[50.492582] (-) TimerEvent: {}
+[50.592776] (-) TimerEvent: {}
+[50.692922] (-) TimerEvent: {}
+[50.793072] (-) TimerEvent: {}
+[50.893205] (-) TimerEvent: {}
+[50.993387] (-) TimerEvent: {}
+[51.093750] (-) TimerEvent: {}
+[51.193895] (-) TimerEvent: {}
+[51.294035] (-) TimerEvent: {}
+[51.394273] (-) TimerEvent: {}
+[51.494421] (-) TimerEvent: {}
+[51.594551] (-) TimerEvent: {}
+[51.694732] (-) TimerEvent: {}
+[51.794903] (-) TimerEvent: {}
+[51.895032] (-) TimerEvent: {}
+[51.995203] (-) TimerEvent: {}
+[52.095350] (-) TimerEvent: {}
+[52.195487] (-) TimerEvent: {}
+[52.295628] (-) TimerEvent: {}
+[52.395797] (-) TimerEvent: {}
+[52.496024] (-) TimerEvent: {}
+[52.596242] (-) TimerEvent: {}
+[52.696438] (-) TimerEvent: {}
+[52.796576] (-) TimerEvent: {}
+[52.896731] (-) TimerEvent: {}
+[52.996913] (-) TimerEvent: {}
+[53.097055] (-) TimerEvent: {}
+[53.197347] (-) TimerEvent: {}
+[53.297507] (-) TimerEvent: {}
+[53.397688] (-) TimerEvent: {}
+[53.497924] (-) TimerEvent: {}
+[53.598180] (-) TimerEvent: {}
+[53.698429] (-) TimerEvent: {}
+[53.798559] (-) TimerEvent: {}
+[53.898696] (-) TimerEvent: {}
+[53.998823] (-) TimerEvent: {}
+[54.099050] (-) TimerEvent: {}
+[54.199272] (-) TimerEvent: {}
+[54.299425] (-) TimerEvent: {}
+[54.399568] (-) TimerEvent: {}
+[54.499703] (-) TimerEvent: {}
+[54.599871] (-) TimerEvent: {}
+[54.700008] (-) TimerEvent: {}
+[54.800209] (-) TimerEvent: {}
+[54.900324] (-) TimerEvent: {}
+[55.000470] (-) TimerEvent: {}
+[55.100623] (-) TimerEvent: {}
+[55.200787] (-) TimerEvent: {}
+[55.300959] (-) TimerEvent: {}
+[55.401097] (-) TimerEvent: {}
+[55.501261] (-) TimerEvent: {}
+[55.601420] (-) TimerEvent: {}
+[55.701587] (-) TimerEvent: {}
+[55.801710] (-) TimerEvent: {}
+[55.901852] (-) TimerEvent: {}
+[56.002065] (-) TimerEvent: {}
+[56.102218] (-) TimerEvent: {}
+[56.202412] (-) TimerEvent: {}
+[56.302544] (-) TimerEvent: {}
+[56.402676] (-) TimerEvent: {}
+[56.502870] (-) TimerEvent: {}
+[56.603026] (-) TimerEvent: {}
+[56.703211] (-) TimerEvent: {}
+[56.803362] (-) TimerEvent: {}
+[56.903505] (-) TimerEvent: {}
+[57.003634] (-) TimerEvent: {}
+[57.103883] (-) TimerEvent: {}
+[57.204073] (-) TimerEvent: {}
+[57.304199] (-) TimerEvent: {}
+[57.404322] (-) TimerEvent: {}
+[57.504463] (-) TimerEvent: {}
+[57.604711] (-) TimerEvent: {}
+[57.704915] (-) TimerEvent: {}
+[57.805079] (-) TimerEvent: {}
+[57.905263] (-) TimerEvent: {}
+[58.005429] (-) TimerEvent: {}
+[58.105566] (-) TimerEvent: {}
+[58.205728] (-) TimerEvent: {}
+[58.305910] (-) TimerEvent: {}
+[58.406060] (-) TimerEvent: {}
+[58.506242] (-) TimerEvent: {}
+[58.606410] (-) TimerEvent: {}
+[58.706647] (-) TimerEvent: {}
+[58.806835] (-) TimerEvent: {}
+[58.906964] (-) TimerEvent: {}
+[59.007153] (-) TimerEvent: {}
+[59.107356] (-) TimerEvent: {}
+[59.207491] (-) TimerEvent: {}
+[59.307649] (-) TimerEvent: {}
+[59.407787] (-) TimerEvent: {}
+[59.507948] (-) TimerEvent: {}
+[59.608105] (-) TimerEvent: {}
+[59.708250] (-) TimerEvent: {}
+[59.808389] (-) TimerEvent: {}
+[59.908535] (-) TimerEvent: {}
+[60.008724] (-) TimerEvent: {}
+[60.062165] (cyberrunner_vision) CommandEnded: {'returncode': 0}
+[60.062863] (cyberrunner_vision) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/cyberrunner_vision', 'build', '--build-base', '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build', 'install', '--record', '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/install.log', '--single-version-externally-managed', 'install_data', '--force'], 'cwd': '/home/trungbao/cyberrunner_ws/src/cyberrunner_vision', 'env': {'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'VSCODE_CWD': '/home/trungbao', 'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess', 'CODEX_CI': '1', 'USER': 'trungbao', 'CODEX_INTERNAL_ORIGINATOR_OVERRIDE': 'codex_vscode', 'VSCODE_NLS_CONFIG': '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}', 'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true', 'XDG_SESSION_TYPE': 'wayland', 'DEBUG': 'release', 'SHLVL': '0', 'LD_LIBRARY_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/trungbao', 'CHROME_DESKTOP': 'code.desktop', 'DESKTOP_SESSION': 'ubuntu', 'VSCODE_IPC_HOOK': '/run/user/1000/vscode-258834d3-1.10-main.sock', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/code.desktop', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'PAGER': 'cat', 'MANAGERPID': '1310', 'LC_CTYPE': 'C.UTF-8', 'SYSTEMD_EXEC_PID': '1491', 'IM_CONFIG_CHECK_ENV': '1', 'NO_COLOR': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': '', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '2159', 'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost', 'IM_CONFIG_PHASE': '1', 'WAYLAND_DISPLAY': 'wayland-0', 'COLCON_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install', 'APPLICATION_INSIGHTS_NO_STATSBEAT': 'true', 'ROS_DISTRO': 'humble', 'LOGNAME': 'trungbao', 'JOURNAL_STREAM': '8:20622', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'RUST_LOG': 'warn', 'USERNAME': 'trungbao', 'TERM': 'dumb', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'FC_FONTATIONS': '1', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg0fCrNEO:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.325.31654-linux-x64/bin/linux-x86_64', 'SESSION_MANAGER': 'local/trungbao:@/tmp/.ICE-unix/1454,unix/trungbao:/tmp/.ICE-unix/1454', 'INVOCATION_ID': '8e72e08d15184635b2ca3e5a2f46a2fd', 'XDG_MENU_PREFIX': 'gnome-', 'ROS_DISABLE_LOANED_MESSAGES': '1', 'GNOME_SETUP_DISPLAY': ':1', 'XDG_RUNTIME_DIR': '/run/user/1000', 'GDK_BACKEND': 'wayland', 'DISPLAY': ':0', 'CODEX_SANDBOX_NETWORK_DISABLED': '1', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'GH_PAGER': 'cat', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/.mutter-Xwaylandauth.HZ1YM3', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'ELECTRON_RUN_AS_NODE': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'CODEX_THREAD_ID': '019d4a3c-e19f-7e12-bca6-315e040d582e', 'GJS_DEBUG_OUTPUT': 'stderr', 'GIT_PAGER': 'cat', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision', 'LC_ALL': 'C.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'VSCODE_CODE_CACHE_PATH': '/home/trungbao/.config/Code/CachedData/bdd88df003631aaa0bcbe057cb0a940b80a476fa', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera', 'VSCODE_PID': '2159'}, 'shell': False}
+[60.108816] (-) TimerEvent: {}
+[60.145652] (cyberrunner_vision) StderrLine: {'line': b"/home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'\n"}
+[60.145760] (cyberrunner_vision) StderrLine: {'line': b'  warnings.warn(msg)\n'}
+[60.187210] (cyberrunner_vision) StdoutLine: {'line': b'running egg_info\n'}
+[60.194134] (cyberrunner_vision) StdoutLine: {'line': b'writing ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/PKG-INFO\n'}
+[60.194321] (cyberrunner_vision) StdoutLine: {'line': b'writing dependency_links to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/dependency_links.txt\n'}
+[60.194492] (cyberrunner_vision) StdoutLine: {'line': b'writing entry points to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/entry_points.txt\n'}
+[60.194552] (cyberrunner_vision) StdoutLine: {'line': b'writing requirements to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/requires.txt\n'}
+[60.194606] (cyberrunner_vision) StdoutLine: {'line': b'writing top-level names to ../../build/cyberrunner_vision/cyberrunner_vision.egg-info/top_level.txt\n'}
+[60.208964] (-) TimerEvent: {}
+[60.210862] (cyberrunner_vision) StdoutLine: {'line': b"reading manifest file '../../build/cyberrunner_vision/cyberrunner_vision.egg-info/SOURCES.txt'\n"}
+[60.211481] (cyberrunner_vision) StdoutLine: {'line': b"writing manifest file '../../build/cyberrunner_vision/cyberrunner_vision.egg-info/SOURCES.txt'\n"}
+[60.211651] (cyberrunner_vision) StdoutLine: {'line': b'running build\n'}
+[60.211732] (cyberrunner_vision) StdoutLine: {'line': b'running build_py\n'}
+[60.211891] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/ocam_params.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212046] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/controller_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212131] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212227] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/path_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212283] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/estimator_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212344] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/camera_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212421] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/tuner_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212487] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/marble_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212539] (cyberrunner_vision) StdoutLine: {'line': b'copying cyberrunner_vision/calibration_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision\n'}
+[60.212589] (cyberrunner_vision) StdoutLine: {'line': b'running install\n'}
+[60.214553] (cyberrunner_vision) StdoutLine: {'line': b'running install_lib\n'}
+[60.221655] (cyberrunner_vision) StdoutLine: {'line': b'creating /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.221850] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/ocam_params.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.221929] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/controller_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222073] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/__init__.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222128] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/path_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222182] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/estimator_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222235] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/camera_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222296] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/tuner_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222355] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/marble_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222422] (cyberrunner_vision) StdoutLine: {'line': b'copying /home/trungbao/cyberrunner_ws/build/cyberrunner_vision/build/lib/cyberrunner_vision/calibration_node.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision\n'}
+[60.222540] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/ocam_params.py to ocam_params.cpython-310.pyc\n'}
+[60.222591] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/controller_node.py to controller_node.cpython-310.pyc\n'}
+[60.225978] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/__init__.py to __init__.cpython-310.pyc\n'}
+[60.226040] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/path_node.py to path_node.cpython-310.pyc\n'}
+[60.227116] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/estimator_node.py to estimator_node.cpython-310.pyc\n'}
+[60.228758] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/camera_node.py to camera_node.cpython-310.pyc\n'}
+[60.229289] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/tuner_node.py to tuner_node.cpython-310.pyc\n'}
+[60.231104] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/marble_node.py to marble_node.cpython-310.pyc\n'}
+[60.231918] (cyberrunner_vision) StdoutLine: {'line': b'byte-compiling /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision/calibration_node.py to calibration_node.cpython-310.pyc\n'}
+[60.232678] (cyberrunner_vision) StdoutLine: {'line': b'running install_data\n'}
+[60.232884] (cyberrunner_vision) StdoutLine: {'line': b'copying resource/cyberrunner_vision -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/ament_index/resource_index/packages\n'}
+[60.232986] (cyberrunner_vision) StdoutLine: {'line': b'copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision\n'}
+[60.233043] (cyberrunner_vision) StdoutLine: {'line': b'copying launch/cyberrunner.launch.py -> /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/share/cyberrunner_vision/launch\n'}
+[60.233095] (cyberrunner_vision) StdoutLine: {'line': b'running install_egg_info\n'}
+[60.240946] (cyberrunner_vision) StdoutLine: {'line': b'Copying ../../build/cyberrunner_vision/cyberrunner_vision.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages/cyberrunner_vision-0.1.0-py3.10.egg-info\n'}
+[60.241213] (cyberrunner_vision) StdoutLine: {'line': b'running install_scripts\n'}
+[60.295199] (cyberrunner_vision) StdoutLine: {'line': b'Installing calibration_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295444] (cyberrunner_vision) StdoutLine: {'line': b'Installing camera_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295482] (cyberrunner_vision) StdoutLine: {'line': b'Installing controller_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295511] (cyberrunner_vision) StdoutLine: {'line': b'Installing estimator_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295534] (cyberrunner_vision) StdoutLine: {'line': b'Installing marble_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295556] (cyberrunner_vision) StdoutLine: {'line': b'Installing path_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295576] (cyberrunner_vision) StdoutLine: {'line': b'Installing tuner_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/cyberrunner_vision\n'}
+[60.295721] (cyberrunner_vision) StdoutLine: {'line': b"writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision/install.log'\n"}
+[60.309231] (cyberrunner_vision) CommandEnded: {'returncode': 0}
+[60.309557] (-) TimerEvent: {}
+[60.314389] (cyberrunner_vision) JobEnded: {'identifier': 'cyberrunner_vision', 'rc': 0}
+[60.314573] (-) EventReactorShutdown: {}

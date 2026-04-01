@@ -18,6 +18,7 @@ Keys in GUI window:
 
 Parameters
   path_file   str   default ~/cyberrunner_path.json
+  loop_hz     float default 114.0
 """
 import os
 import json
@@ -37,7 +38,9 @@ class PathNode(Node):
         super().__init__("path_node")
         self.declare_parameter("path_file",
                                os.path.expanduser("~/cyberrunner_path.json"))
+        self.declare_parameter("loop_hz", 114.0)
         self.path_file = self.get_parameter("path_file").value
+        self.loop_hz = max(float(self.get_parameter("loop_hz").value), 1.0)
 
         self.bridge         = CvBridge()
         self.last_td        = None
@@ -68,7 +71,7 @@ class PathNode(Node):
         self.create_service(Trigger, "/path/draw",  self._svc_draw)
         self.create_service(Trigger, "/path/clear", self._svc_clear)
 
-        self.timer = self.create_timer(0.033, self._tick)
+        self.timer = self.create_timer(1.0 / self.loop_hz, self._tick)
 
         # Auto-load
         if os.path.exists(self.path_file):

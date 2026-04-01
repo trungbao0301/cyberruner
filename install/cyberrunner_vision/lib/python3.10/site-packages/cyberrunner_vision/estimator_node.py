@@ -28,6 +28,7 @@ Parameters
   board_height_mm   float  400.0
   topdown_size      int    1000
   show_window       bool   true
+  loop_hz           float  114.0   GUI refresh rate
 """
 import os
 import json
@@ -52,6 +53,7 @@ class EstimatorNode(Node):
         self.declare_parameter("board_height_mm", 295.0)
         self.declare_parameter("topdown_size",    1000)
         self.declare_parameter("show_window",     True)
+        self.declare_parameter("loop_hz",         114.0)
         self.declare_parameter("blue_lo",         "90,80,50")
         self.declare_parameter("blue_hi",         "130,255,255")
         self.declare_parameter("min_dot_radius",  4)
@@ -62,6 +64,7 @@ class EstimatorNode(Node):
         self.bh           = self.get_parameter("board_height_mm").value
         self.TOP          = self.get_parameter("topdown_size").value
         self.show_window  = self.get_parameter("show_window").value
+        self.loop_hz      = max(float(self.get_parameter("loop_hz").value), 1.0)
         self._reload_blue_params()
 
         self.bridge       = CvBridge()
@@ -112,7 +115,7 @@ class EstimatorNode(Node):
         self.create_service(Trigger, "/estimator/load_config", self._svc_load)
 
         # Timer drives the GUI
-        self.timer = self.create_timer(0.033, self._tick)
+        self.timer = self.create_timer(1.0 / self.loop_hz, self._tick)
 
         # Auto-load saved config
         if os.path.exists(self.config_path):

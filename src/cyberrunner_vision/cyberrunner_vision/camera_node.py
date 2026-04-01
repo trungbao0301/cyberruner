@@ -8,7 +8,7 @@ Parameters
   fy            float   default 750.0
   width         int     default 1920
   height        int     default 1200
-  fps           int     default 30
+  fps           int     default 114
 """
 import sys
 import rclpy
@@ -57,23 +57,30 @@ def open_camera(index: int, device_path: str, width: int, height: int, fps: int)
     source = device_path if device_path else index
 
     # Build explicit GStreamer pipeline (most reliable for this camera).
-    # Do NOT hard-code framerate in the caps — some cameras (e.g. this one at
-    # 1920×1200) only support 60/114 fps at full resolution, so requesting
-    # framerate=30/1 causes a caps-negotiation failure.  Let v4l2src negotiate.
+    # Try the requested framerate first so high-rate modes such as 120 Hz can
+    # be selected when the camera supports them. If that fails, retry without
+    # a framerate cap and let v4l2src negotiate a supported mode.
     dev = source if isinstance(source, str) else f"/dev/video{source}"
-    gst = (
-        f"v4l2src device={dev} "
-        f"! image/jpeg,width={width},height={height} "
-        f"! jpegdec ! videoconvert ! appsink"
-    )
-    cap = cv2.VideoCapture(gst, cv2.CAP_GSTREAMER)
-    if cap.isOpened():
-        for _ in range(3):
-            cap.grab()
-        ok, _ = cap.read()
-        if ok:
-            return cap, "gstreamer-pipeline"
-        cap.release()
+    gst_caps = [f"image/jpeg,width={width},height={height}"]
+    if fps > 0:
+        gst_caps.insert(0, f"image/jpeg,width={width},height={height},framerate={fps}/1")
+    for caps in gst_caps:
+        gst = (
+            f"v4l2src device={dev} "
+            f"! {caps} "
+            f"! jpegdec ! videoconvert ! appsink drop=true max-buffers=1 sync=false"
+        )
+        cap = cv2.VideoCapture(gst, cv2.CAP_GSTREAMER)
+        if cap.isOpened():
+            for _ in range(3):
+                cap.grab()
+            ok, _ = cap.read()
+            if ok:
+                backend = "gstreamer-pipeline"
+                if caps != gst_caps[-1]:
+                    backend += f"@{fps}fps"
+                return cap, backend
+            cap.release()
 
     # Fallback: V4L2 with MJPG
     cap = cv2.VideoCapture(source, cv2.CAP_V4L2)
@@ -102,7 +109,7 @@ class CameraNode(Node):
         self.declare_parameter("fy",      750.0)
         self.declare_parameter("width",   OCAM["width"])
         self.declare_parameter("height",  OCAM["height"])
-        self.declare_parameter("fps",     30)
+        self.declare_parameter("fps",     114)
         self.declare_parameter("show_preview", True)    # set False on headless machines
 
         idx    = self.get_parameter("camera_index").value
@@ -126,11 +133,14 @@ class CameraNode(Node):
 
         actual_w = int(self.cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         actual_h = int(self.cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        actual_fps = float(self.cap.get(cv2.CAP_PROP_FPS))
         src_str = dpath if dpath else str(idx)
         self.get_logger().info(
             f"Camera opened  source={src_str}"
             f"  backend={backend}"
             f"  resolution={actual_w}x{actual_h}"
+            f"  requested_fps={fps}"
+            f"  actual_fps={actual_fps:.1f}"
             f"  fx={fx}  fy={fy}")
 
         self.show_preview = bool(self.get_parameter("show_preview").value)

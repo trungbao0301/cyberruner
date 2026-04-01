@@ -9,7 +9,6 @@ Control idea:
 - Kalman filter estimates marble position + velocity from noisy detections
 - Follow path segments with lookahead; PD error in filtered position space
 - Kd acts on Kalman velocity directly (no noisy finite-difference needed)
-- Danger zones repel the target away from positions where marble was lost
 - Latency prediction shifts the error target by predict_latency_s seconds
 - Auto-restarts when marble is reacquired after being lost mid-run
 
@@ -28,9 +27,6 @@ Parameters:
   invert_x              bool
   invert_y              bool
   waypoint_pause_s      float   pause duration (s) after each waypoint advance
-  danger_zone_gain      float   repulsion strength from danger zones
-  danger_zone_radius    float   influence radius (px) of each danger zone
-  danger_zone_path      str     JSON file to persist danger zones
   predict_latency_s     float   latency compensation — advance error target by this many s
   kalman_q_pos          float   process noise — position (lower = trust model more)
   kalman_q_vel          float   process noise — velocity (higher = track fast moves)
@@ -48,7 +44,6 @@ Services:
   /controller/start             Trigger
   /controller/stop              Trigger
   /controller/calibrate         Trigger
-  /controller/clear_danger_zones Trigger
 """
 
 import hashlib
@@ -323,11 +318,8 @@ class ControllerNode(Node):
         self.declare_parameter("ff_board_scale", 10.0)  # est_state board-angle → servo unit scale
         self.declare_parameter("invert_x", False)
         self.declare_parameter("invert_y", True)
+        self.declare_parameter("loop_hz", 114.0)
         self.declare_parameter("waypoint_pause_s",    0.3)
-        self.declare_parameter("danger_zone_gain",   0.0)
-        self.declare_parameter("danger_zone_radius", 80.0)
-        self.declare_parameter("danger_zone_path",
-                               os.path.expanduser("~/cyberrunner_danger_zones.json"))
         self.declare_parameter("predict_latency_s",  0.05)
         self.declare_parameter("kalman_q_pos",  1.0)
         self.declare_parameter("kalman_q_vel",  50.0)
@@ -354,10 +346,6 @@ class ControllerNode(Node):
         self.declare_parameter("settle_frames",     10)     # consecutive frames required
         self.declare_parameter("settle_timeout_s",  5.0)    # give up if marble hasn't settled
         self.declare_parameter("recovery_wait_s",   3.0)    # seconds to wait at start pos before running
-
-        # Speed ceiling — active braking when marble exceeds max speed
-        self.declare_parameter("max_speed_px",    0.0)   # px/s  (0 = disabled)
-        self.declare_parameter("speed_brake_gain", 0.5)  # brake strength per px/s over limit
 
         # ILC — iterative learning control
         self.declare_parameter("ilc_enabled", True)
@@ -400,13 +388,8 @@ class ControllerNode(Node):
 
         self.board_M_inv  = None  # inverse of flat→current board homography
 
-        # Danger zones — positions where marble was lost while controller active
-        self.danger_zones     = []   # list of [x, y] in topdown px
-        self._dz_path         = self.get_parameter("danger_zone_path").value
-        self._load_danger_zones()
-
-        # Lock protecting marble_pos and danger_zones — written from subscription
-        # callbacks and read from the timer tick (different threads in rclpy)
+        # Lock protecting shared state written from subscriptions and read from
+        # the timer tick when a MultiThreadedExecutor is used.
         self._state_lock = threading.Lock()
 
         self.t_last = time.time()
@@ -441,10 +424,10 @@ class ControllerNode(Node):
         self.create_service(Trigger, "/controller/start",              self._svc_start)
         self.create_service(Trigger, "/controller/stop",               self._svc_stop)
         self.create_service(Trigger, "/controller/calibrate",          self._svc_calibrate)
-        self.create_service(Trigger, "/controller/clear_danger_zones", self._svc_clear_dz)
         self.create_service(Trigger, "/controller/reset_ilc",          self._svc_reset_ilc)
 
-        self.timer = self.create_timer(0.033, self._tick)
+        loop_hz = max(float(self.get_parameter("loop_hz").value), 1.0)
+        self.timer = self.create_timer(1.0 / loop_hz, self._tick)
 
         self.get_logger().info(
             "\n=== ControllerNode ready ===\n"
@@ -469,8 +452,6 @@ class ControllerNode(Node):
         self.invert_x = bool(self.get_parameter("invert_x").value)
         self.invert_y = bool(self.get_parameter("invert_y").value)
         self.waypoint_pause_s  = float(self.get_parameter("waypoint_pause_s").value)
-        self.danger_zone_gain  = float(self.get_parameter("danger_zone_gain").value)
-        self.danger_zone_radius= float(self.get_parameter("danger_zone_radius").value)
         self.predict_latency_s = float(self.get_parameter("predict_latency_s").value)
 
         self.kalman.q_pos  = float(self.get_parameter("kalman_q_pos").value)
@@ -487,9 +468,6 @@ class ControllerNode(Node):
         self.settle_frames    = int(self.get_parameter("settle_frames").value)
         self.settle_timeout_s = float(self.get_parameter("settle_timeout_s").value)
         self.recovery_wait_s  = float(self.get_parameter("recovery_wait_s").value)
-
-        self.max_speed_px    = float(self.get_parameter("max_speed_px").value)
-        self.speed_brake_gain = float(self.get_parameter("speed_brake_gain").value)
 
         self.ilc_enabled = bool(self.get_parameter("ilc_enabled").value)
         self.ilc_gain    = float(self.get_parameter("ilc_gain").value)
@@ -611,17 +589,6 @@ class ControllerNode(Node):
             self.marble_lost_frames += 1
             if self.marble_lost_frames >= self.marble_lost_threshold and not was_none:
                 self._was_active = self.active
-                # Save last known position as a danger zone if we were active
-                if self.active and self.marble_pos is not None:
-                    # Always store in topdown (camera) space so zones from
-                    # different sessions are comparable regardless of whether
-                    # board_M_inv was available at save time.
-                    dz = list(self.marble_pos)
-                    self.danger_zones.append(dz)
-                    self._save_danger_zones()
-                    self.get_logger().warn(
-                        f"Danger zone saved at {self.marble_pos} "
-                        f"(total: {len(self.danger_zones)})")
                 self.marble_pos  = None
                 self.active      = False
                 self._levelling  = True
@@ -644,21 +611,6 @@ class ControllerNode(Node):
             self.marble_lost_frames = 0
             self._levelling = False
             self.marble_pos = new_pos
-
-    def _load_danger_zones(self):
-        if os.path.exists(self._dz_path):
-            with open(self._dz_path) as f:
-                self.danger_zones = json.load(f)
-            self.get_logger().info(
-                f"Loaded {len(self.danger_zones)} danger zones from {self._dz_path}")
-        else:
-            self.danger_zones = []
-
-    def _save_danger_zones(self):
-        tmp = self._dz_path + ".tmp"
-        with open(tmp, "w") as f:
-            json.dump(self.danger_zones, f, indent=2)
-        os.replace(tmp, self._dz_path)
 
     def _on_board_transform(self, msg):
         """Receive flat→current board homography from estimator.
@@ -729,7 +681,6 @@ class ControllerNode(Node):
 
         with self._state_lock:
             marble_pos_snap        = self.marble_pos
-            danger_zones_snap      = list(self.danger_zones)
             pending_kalman_reset   = self._pending_kalman_reset
             self._pending_kalman_reset = False
 
@@ -745,12 +696,9 @@ class ControllerNode(Node):
                     "Waiting for marble...", throttle_duration_sec=1.0)
             return
 
-        # Keep topdown position for repulsion (danger zones are in topdown space)
-        mx_td, my_td = marble_pos_snap
-
         # Map marble from current topdown space → flat board space so that
         # path waypoints (drawn when board was flat) stay aligned with the maze.
-        mx_raw, my_raw = mx_td, my_td
+        mx_raw, my_raw = marble_pos_snap
         if self.board_M_inv is not None:
             ph = self.board_M_inv @ np.array([mx_raw, my_raw, 1.0])
             mx_raw, my_raw = float(ph[0] / ph[2]), float(ph[1] / ph[2])
@@ -857,24 +805,9 @@ class ControllerNode(Node):
                 float(target[1]) - ky,
             ))
 
-        # Danger zone repulsion — shift the TARGET away from known loss positions.
-        # Done before PD so repulsion works within the same error budget and
-        # cannot be cancelled out by output clipping.
         tx, ty = float(target[0]), float(target[1])
-        for dz_x, dz_y in danger_zones_snap:
-            # Danger zones are stored in topdown space — compare against mx_td/my_td.
-            dx   = mx_td - dz_x
-            dy   = my_td - dz_y
-            dist = math.sqrt(dx * dx + dy * dy) + 1e-9
-            if dist < self.danger_zone_radius:
-                push = (self.danger_zone_gain
-                        * (1.0 - dist / self.danger_zone_radius)
-                        / dist)
-                tx += dx * push
-                ty += dy * push
 
         # ILC feedforward — pre-correct systematic error learned from past runs.
-        # Applied after danger zone so both shifts stack on the target.
         if (self.ilc_enabled
                 and self._ilc_ff is not None
                 and seg_idx < len(self._ilc_ff)):
@@ -911,15 +844,6 @@ class ControllerNode(Node):
         out_x = self.pid_x.update(err_x, vx, kp_scale, kd_scale)
         out_y = self.pid_y.update(err_y, vy, kp_scale, kd_scale)
 
-        # Speed ceiling — brake actively when marble exceeds max_speed_px
-        if self.max_speed_px > 0.0:
-            speed = math.sqrt(vx * vx + vy * vy)
-            excess = speed - self.max_speed_px
-            if excess > 0.0:
-                brake = self.speed_brake_gain * excess / speed
-                out_x -= brake * vx
-                out_y -= brake * vy
-
         mx = float(self.pid_x.hi)
 
         # Feed-forward
@@ -944,8 +868,7 @@ class ControllerNode(Node):
             f"  err=({round(err_x,1)},{round(err_y,1)})"
             f"  vel=({round(vx,1)},{round(vy,1)})"
             f"  out=({round(out_x,1)},{round(out_y,1)})"
-            f"  kp_scale={round(kp_scale,2)}"
-            f"  dz={len(danger_zones_snap)}",
+            f"  kp_scale={round(kp_scale,2)}",
             throttle_duration_sec=0.2,
         )
 
@@ -1032,16 +955,6 @@ class ControllerNode(Node):
         res.success = True
         self.get_logger().info(res.message)
         return res
-
-    def _svc_clear_dz(self, req, res):
-        n = len(self.danger_zones)
-        self.danger_zones = []
-        self._save_danger_zones()
-        res.success = True
-        res.message = f"Cleared {n} danger zones"
-        self.get_logger().info(res.message)
-        return res
-
 
     # ── ILC helpers ───────────────────────────────────────────────────────────
     @staticmethod
