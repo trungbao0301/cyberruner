@@ -83,12 +83,16 @@ class PathNode(Node):
     def _on_board_transform(self, msg):
         M = np.array(msg.data, dtype=np.float64).reshape(3, 3)
         try:
-            if np.linalg.cond(M) > 1e10:
+            if (not np.all(np.isfinite(M))
+                    or np.linalg.cond(M) > 1e10):
+                self.board_M = None
+                self.board_M_inv = None
                 return
             self.board_M     = M
             self.board_M_inv = np.linalg.inv(M)
         except np.linalg.LinAlgError:
-            pass
+            self.board_M = None
+            self.board_M_inv = None
 
     def _to_flat(self, x, y):
         """Current topdown → flat (board-relative) space."""

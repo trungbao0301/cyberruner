@@ -130,7 +130,7 @@ def generate_launch_description():
 
         # ── controller_node ───────────────────────────────────────────────────
         # Consumes /marble/position + /path/waypoints + /estimator/state.
-        # PD + Kalman filter, segment-following lookahead.
+        # PD + Kalman filter with path projection + lookahead.
         # Publishes /hiwonder/cmd.
         # Trigger /controller/start to begin, /controller/stop to level board.
         Node(
