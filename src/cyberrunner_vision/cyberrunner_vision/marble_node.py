@@ -31,8 +31,8 @@ class MarbleNode(Node):
         super().__init__("marble_node")
         self.declare_parameter("hsv_lo",       "40,80,20")
         self.declare_parameter("hsv_hi",       "85,255,255")
-        self.declare_parameter("min_radius",   15)   # marble ⌀12.77 mm → ~23 px
-        self.declare_parameter("max_radius",   29)
+        self.declare_parameter("min_radius",   14)   # marble ⌀12.77 mm → ~20 px
+        self.declare_parameter("max_radius",   26)
         self.declare_parameter("hough_param2", 18)
         self.declare_parameter("smooth_alpha", 0.4)
         self.declare_parameter("lost_frames",  8)
