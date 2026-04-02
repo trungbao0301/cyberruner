@@ -26,6 +26,7 @@ setup(
             "path_node       = cyberrunner_vision.path_node:main",
             "marble_node     = cyberrunner_vision.marble_node:main",
             "controller_node = cyberrunner_vision.controller_node:main",
+            "controller_waypoint_hold_node = cyberrunner_vision.controller_waypoint_hold_node:main",
             "tuner_node        = cyberrunner_vision.tuner_node:main",
             "calibration_node  = cyberrunner_vision.calibration_node:main",
         ],

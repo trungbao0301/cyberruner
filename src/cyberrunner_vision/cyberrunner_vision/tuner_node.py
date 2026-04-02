@@ -28,15 +28,20 @@ PARAMS_FILE = os.path.expanduser("~/cyberrunner_tuner_params.json")
 # (name, min, max, default, step, is_bool)
 PARAMS = [
     # PD gains
-    ("kp_x",        0.0,  20.0,  0.3,  0.01,  False),
-    ("kp_y",        0.0,  20.0,  0.3,  0.01,  False),
-    ("kd_x",        0.0,  1.0,   0.08, 0.005, False),
-    ("kd_y",        0.0,  1.0,   0.08, 0.005, False),
+    ("kp_x",        0.0,  20.0,  0.32, 0.01,  False),
+    ("kp_y",        0.0,  20.0,  0.32, 0.01,  False),
+    ("kd_x",        0.0,  1.0,   0.10, 0.005, False),
+    ("kd_y",        0.0,  1.0,   0.10, 0.005, False),
+    ("hold_kp_scale", 0.1, 2.0,  0.55, 0.05,  False),
+    ("hold_kd_scale", 0.5, 3.0,  1.20, 0.05,  False),
 
     # Output / path
     ("max_output",   10,   300,   80,   1,     False),
     ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
     ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
+    ("balance_each_waypoint", 0, 1,     1,     1,     True),
+    ("waypoint_balance_speed_px", 2.0, 100.0, 18.0, 1.0, False),
+    ("deadzone_px",  0.0,  30.0,  5.0,  0.5,   False),
 
     # Misc
     ("cmd_time_ms",       5,    200,   20,    1,      False),
@@ -54,6 +59,8 @@ PARAMS = [
     ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
 
     # Timing / latency
+    ("vel_lpf_alpha",     0.0,  0.95,  0.70,  0.01,  False),
+    ("waypoint_pause_s",   0.0,  2.0,   1.0,   0.05,  False),
     ("predict_latency_s",  0.0,  1.0,   0.05,  0.005, False),
 
     # Corner gain scheduling
@@ -74,10 +81,13 @@ PARAMS = [
 ]
 
 GROUPS = {
-    "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y"],
-    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px"],
+    "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y",
+                            "hold_kp_scale", "hold_kd_scale"],
+    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px",
+                            "balance_each_waypoint", "waypoint_balance_speed_px",
+                            "deadzone_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
-    "── Timing ──":        ["predict_latency_s"],
+    "── Timing ──":        ["vel_lpf_alpha", "waypoint_pause_s", "predict_latency_s"],
     "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
                             "corner_angle_thresh", "corner_preview_px"],
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",

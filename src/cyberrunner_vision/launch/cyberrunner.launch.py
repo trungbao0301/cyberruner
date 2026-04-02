@@ -130,12 +130,12 @@ def generate_launch_description():
 
         # ── controller_node ───────────────────────────────────────────────────
         # Consumes /marble/position + /path/waypoints + /estimator/state.
-        # PD + Kalman filter with path projection + lookahead.
+        # Simple MOVE/HOLD waypoint controller with filtered velocity PD.
         # Publishes /hiwonder/cmd.
         # Trigger /controller/start to begin, /controller/stop to level board.
         Node(
             package="cyberrunner_vision",
-            executable="controller_node",
+            executable="controller_waypoint_hold_node",
             name="controller_node",
             output="screen",
             parameters=[{
