@@ -32,16 +32,14 @@ PARAMS = [
     ("kp_y",        0.0,  20.0,  0.32, 0.01,  False),
     ("kd_x",        0.0,  1.0,   0.10, 0.005, False),
     ("kd_y",        0.0,  1.0,   0.10, 0.005, False),
-    ("hold_kp_scale", 0.1, 2.0,  0.55, 0.05,  False),
-    ("hold_kd_scale", 0.5, 3.0,  1.20, 0.05,  False),
+    ("hold_kp_scale", 0.1, 2.0,  0.70, 0.05,  False),
+    ("hold_kd_scale", 0.5, 3.0,  1.15, 0.05,  False),
 
     # Output / path
     ("max_output",   10,   300,   80,   1,     False),
     ("arrival_px",   5.0,  150.0, 35.0, 1.0,   False),
-    ("lookahead_px", 5.0,  150.0, 25.0, 1.0,   False),
-    ("balance_each_waypoint", 0, 1,     1,     1,     True),
-    ("waypoint_balance_speed_px", 2.0, 100.0, 18.0, 1.0, False),
-    ("deadzone_px",  0.0,  30.0,  5.0,  0.5,   False),
+    ("balance_window_px", 2.0, 100.0, 18.0, 1.0, False),
+    ("waypoint_balance_speed_px", 2.0, 100.0, 15.0, 1.0, False),
 
     # Misc
     ("cmd_time_ms",       5,    200,   20,    1,      False),
@@ -58,41 +56,29 @@ PARAMS = [
     ("kalman_q_vel",      1.0,  500.0, 50.0,  1.0,    False),
     ("kalman_r_meas",     1.0,  200.0, 10.0,  1.0,    False),
 
-    # Timing / latency
-    ("vel_lpf_alpha",     0.0,  0.95,  0.70,  0.01,  False),
-    ("waypoint_pause_s",   0.0,  2.0,   1.0,   0.05,  False),
-    ("predict_latency_s",  0.0,  1.0,   0.05,  0.005, False),
-
-    # Corner gain scheduling
-    ("corner_kp_scale",     1.0,  5.0,  2.0,  0.1,   False),
-    ("corner_kd_scale",     1.0,  8.0,  2.5,  0.1,   False),
-    ("corner_angle_thresh", 5.0, 90.0, 25.0,  5.0,   False),
-    ("corner_preview_px",  20.0, 300.0, 100.0, 5.0,   False),
+    # Timing
+    ("derivative_alpha",  0.1,  1.0,   0.85,  0.01,  False),
+    ("balance_hold_s",     0.0,  2.0,   0.3,   0.05,  False),
 
     # Auto-start / settling
     ("auto_start",        0,    1,     0,    1,     True),
     ("settle_speed_px",   2.0,  100.0, 15.0, 1.0,   False),
     ("settle_frames",     3,    60,    10,   1,     False),
     ("settle_timeout_s",  1.0,  15.0,  5.0,  0.5,   False),
-
-    # ILC
-    ("ilc_enabled",       0,    1,     1,    1,     True),
-    ("ilc_gain",          0.01, 0.5,   0.1,  0.01,  False),
+    ("recovery_wait_s",   0.0,  10.0,  3.0,  0.1,   False),
 ]
 
 GROUPS = {
     "── PD Gains ──":      ["kp_x", "kp_y", "kd_x", "kd_y",
                             "hold_kp_scale", "hold_kd_scale"],
-    "── Output / Path ──": ["max_output", "arrival_px", "lookahead_px",
-                            "balance_each_waypoint", "waypoint_balance_speed_px",
-                            "deadzone_px"],
+    "── Output / Path ──": ["max_output", "arrival_px",
+                            "balance_window_px",
+                            "waypoint_balance_speed_px"],
     "── Kalman ──":        ["kalman_q_pos", "kalman_q_vel", "kalman_r_meas"],
-    "── Timing ──":        ["vel_lpf_alpha", "waypoint_pause_s", "predict_latency_s"],
-    "── Corners ──":       ["corner_kp_scale", "corner_kd_scale",
-                            "corner_angle_thresh", "corner_preview_px"],
+    "── Timing ──":        ["derivative_alpha", "balance_hold_s"],
     "── Auto-Start ──":    ["auto_start", "settle_speed_px",
-                            "settle_frames", "settle_timeout_s"],
-    "── ILC ──":           ["ilc_enabled", "ilc_gain"],
+                            "settle_frames", "settle_timeout_s",
+                            "recovery_wait_s"],
     "── Misc ──":          ["cmd_time_ms", "invert_x", "invert_y",
                             "tilt_balance_enabled", "tilt_balance_kp",
                             "tilt_balance_ki", "tilt_balance_deadband",
@@ -133,7 +119,6 @@ class TunerNode(Node):
         self._svc_start      = self.create_client(Trigger, "/controller/start")
         self._svc_stop       = self.create_client(Trigger, "/controller/stop")
         self._svc_calibrate  = self.create_client(Trigger, "/controller/calibrate")
-        self._svc_reset_ilc  = self.create_client(Trigger, "/controller/reset_ilc")
         self._svc_draw       = self.create_client(Trigger, "/path/draw")
         self._svc_path_load  = self.create_client(Trigger, "/path/load")
         self._svc_path_save  = self.create_client(Trigger, "/path/save")
@@ -331,13 +316,6 @@ class TunerGUI:
             bg=BG2, fg=FG,
             relief="flat", font=FONT, cursor="hand2",
             command=lambda: self.node.call_trigger(self.node._svc_calibrate, "calibrate"),
-        ).pack(side="left", padx=(0, 4))
-
-        tk.Button(
-            ctrl_row, text="Reset ILC",
-            bg=BG2, fg=FG,
-            relief="flat", font=FONT, cursor="hand2",
-            command=lambda: self.node.call_trigger(self.node._svc_reset_ilc, "reset_ilc"),
         ).pack(side="left", padx=(0, 4))
 
         path_row = tk.Frame(inner, bg=BG)
