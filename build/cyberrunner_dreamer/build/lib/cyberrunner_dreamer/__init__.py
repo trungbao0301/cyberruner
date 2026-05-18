@@ -7,6 +7,12 @@ register(
     # max_episode_steps=6000,
 )
 
+register(
+    id="cyberrunner-pixel-ros-v0",
+    entry_point="cyberrunner_dreamer.env_pixel:CyberrunnerPixelGym",
+    # max_episode_steps=6000,
+)
+
 # register(
 #    id='cyberrunner-ros-v1',
 #    entry_point='cyberrunner_dreamer.env:CyberrunnerGymV2',

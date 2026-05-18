@@ -1,0 +1,103 @@
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp: In member function ‘void PathProgressNode::loadParams()’:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: error: no matching function for call to ‘max(int64_t, int)’
+   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: ‘template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)’
+  254 |     max(const _Tp& __a, const _Tp& __b)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   deduced conflicting types for parameter ‘const _Tp’ (‘long int’ and ‘int’)
+   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)’
+  300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   deduced conflicting types for parameter ‘const _Tp’ (‘long int’ and ‘int’)
+   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: ‘template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)’
+ 3461 |     max(initializer_list<_Tp> __l)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘long int’
+   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)’
+ 3467 |     max(initializer_list<_Tp> __l, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘long int’
+   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: error: no matching function for call to ‘max(int64_t, int)’
+   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);
+      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: ‘template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)’
+  254 |     max(const _Tp& __a, const _Tp& __b)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   deduced conflicting types for parameter ‘const _Tp’ (‘long int’ and ‘int’)
+   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);
+      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/memory:63,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)’
+  300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   deduced conflicting types for parameter ‘const _Tp’ (‘long int’ and ‘int’)
+   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);
+      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: ‘template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)’
+ 3461 |     max(initializer_list<_Tp> __l)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘long int’
+   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);
+      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/11/algorithm:62,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,
+                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: ‘template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)’
+ 3467 |     max(initializer_list<_Tp> __l, _Compare __comp)
+      |     ^~~
+/usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   mismatched types ‘std::initializer_list<_Tp>’ and ‘long int’
+   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);
+      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/path_progress_node.dir/build.make:76: CMakeFiles/path_progress_node.dir/src/path_progress_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:255: CMakeFiles/path_progress_node.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+gmake: *** [Makefile:146: all] Error 2

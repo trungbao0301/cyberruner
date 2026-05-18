@@ -1,0 +1,124 @@
+[0.000000] (-) TimerEvent: {}
+[0.000092] (-) JobUnselected: {'identifier': 'cyberrunner_camera'}
+[0.000117] (-) JobUnselected: {'identifier': 'cyberrunner_dreamer'}
+[0.000142] (-) JobUnselected: {'identifier': 'cyberrunner_hiwonder'}
+[0.000280] (-) JobUnselected: {'identifier': 'cyberrunner_interfaces'}
+[0.000296] (-) JobUnselected: {'identifier': 'cyberrunner_pid'}
+[0.000311] (-) JobUnselected: {'identifier': 'cyberrunner_state_estimation'}
+[0.000326] (-) JobUnselected: {'identifier': 'cyberrunner_vision'}
+[0.000353] (cyberrunner_cpp) JobQueued: {'identifier': 'cyberrunner_cpp', 'dependencies': OrderedDict()}
+[0.000436] (cyberrunner_cpp) JobStarted: {'identifier': 'cyberrunner_cpp'}
+[0.005879] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'cmake'}
+[0.006463] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'build'}
+[0.007239] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', '--', '-j24', '-l24'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('SNAP_COMMON', '/var/snap/code/common'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/240/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('FONTCONFIG_PATH', '/etc/fonts'), ('GIO_MODULE_DIR', '/home/trungbao/snap/code/common/.cache/gio-modules'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SNAP_UID', '1000'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/trungbao/snap/code/240'), ('GTK_PATH', '/snap/code/240/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GTK_IM_MODULE_FILE', '/home/trungbao/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1327'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1867'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '240'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4217'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('SNAP_CONTEXT', 'Y1z08hDid39BJwA9KvDLAUYupmshu6VjsrVaeqoxxBN__cLGxbdS'), ('JOURNAL_STREAM', '8:8526'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '0958016b'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'code'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg04jeJaT:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1837,unix/trungbao:/tmp/.ICE-unix/1837'), ('GTK_EXE_PREFIX', '/snap/code/240/usr'), ('INVOCATION_ID', 'cf1fc7bbdcb947bea4e6f3b5c7298699'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/code/240'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/240/usr/lib/locale'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XDG_DATA_HOME', '/home/trungbao/snap/code/240/.local/share'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.SOQ5O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/trungbao/snap/code/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/trungbao/snap/code/240/.local/share/glib-2.0/schemas'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SNAP_COOKIE', 'Y1z08hDid39BJwA9KvDLAUYupmshu6VjsrVaeqoxxBN__cLGxbdS'), ('SHELL', '/bin/bash'), ('GDK_PIXBUF_MODULEDIR', '/snap/code/240/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'code'), ('FONTCONFIG_FILE', '/etc/fonts/fonts.conf'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GDK_PIXBUF_MODULE_FILE', '/home/trungbao/snap/code/common/.cache/gdk-pixbuf-loaders.cache'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('SNAP_LAUNCHER_ARCH_TRIPLET', 'x86_64-linux-gnu'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('VSCODE_CLI', '1'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/trungbao'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/home/trungbao/snap/code/240/.local/share:/home/trungbao/snap/code/240:/snap/code/240/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/code/240'), ('COLCON', '1'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '4275')]), 'shell': False}
+[0.040577] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target ri_node\n'}
+[0.045626] (cyberrunner_cpp) StdoutLine: {'line': b'[  5%] Building CXX object CMakeFiles/tuner_node.dir/src/tuner_node.cpp.o\n'}
+[0.045832] (cyberrunner_cpp) StdoutLine: {'line': b'[ 16%] Built target hiwonder_node\n'}
+[0.045865] (cyberrunner_cpp) StdoutLine: {'line': b'[ 27%] Built target path_progress_node\n'}
+[0.046433] (cyberrunner_cpp) StdoutLine: {'line': b'[ 38%] Built target controller_node\n'}
+[0.046651] (cyberrunner_cpp) StdoutLine: {'line': b'[ 50%] Built target estimator_node\n'}
+[0.049101] (cyberrunner_cpp) StdoutLine: {'line': b'[ 61%] Built target ri_node\n'}
+[0.050510] (cyberrunner_cpp) StdoutLine: {'line': b'[ 72%] Built target camera_node\n'}
+[0.050636] (cyberrunner_cpp) StdoutLine: {'line': b'[ 83%] Built target marble_node\n'}
+[0.052695] (cyberrunner_cpp) StdoutLine: {'line': b'[ 94%] Built target path_node\n'}
+[0.099512] (-) TimerEvent: {}
+[0.199663] (-) TimerEvent: {}
+[0.299962] (-) TimerEvent: {}
+[0.400156] (-) TimerEvent: {}
+[0.500370] (-) TimerEvent: {}
+[0.600561] (-) TimerEvent: {}
+[0.700762] (-) TimerEvent: {}
+[0.800949] (-) TimerEvent: {}
+[0.901241] (-) TimerEvent: {}
+[1.001445] (-) TimerEvent: {}
+[1.101647] (-) TimerEvent: {}
+[1.201880] (-) TimerEvent: {}
+[1.302064] (-) TimerEvent: {}
+[1.402387] (-) TimerEvent: {}
+[1.502566] (-) TimerEvent: {}
+[1.602793] (-) TimerEvent: {}
+[1.703015] (-) TimerEvent: {}
+[1.803279] (-) TimerEvent: {}
+[1.903461] (-) TimerEvent: {}
+[2.003635] (-) TimerEvent: {}
+[2.103817] (-) TimerEvent: {}
+[2.204034] (-) TimerEvent: {}
+[2.304334] (-) TimerEvent: {}
+[2.404603] (-) TimerEvent: {}
+[2.504755] (-) TimerEvent: {}
+[2.604927] (-) TimerEvent: {}
+[2.705105] (-) TimerEvent: {}
+[2.805319] (-) TimerEvent: {}
+[2.905500] (-) TimerEvent: {}
+[3.005649] (-) TimerEvent: {}
+[3.105827] (-) TimerEvent: {}
+[3.205991] (-) TimerEvent: {}
+[3.306174] (-) TimerEvent: {}
+[3.406384] (-) TimerEvent: {}
+[3.506660] (-) TimerEvent: {}
+[3.606887] (-) TimerEvent: {}
+[3.707069] (-) TimerEvent: {}
+[3.807294] (-) TimerEvent: {}
+[3.907500] (-) TimerEvent: {}
+[4.007746] (-) TimerEvent: {}
+[4.107965] (-) TimerEvent: {}
+[4.208257] (-) TimerEvent: {}
+[4.308489] (-) TimerEvent: {}
+[4.408656] (-) TimerEvent: {}
+[4.508925] (-) TimerEvent: {}
+[4.609128] (-) TimerEvent: {}
+[4.709350] (-) TimerEvent: {}
+[4.809503] (-) TimerEvent: {}
+[4.909702] (-) TimerEvent: {}
+[5.009898] (-) TimerEvent: {}
+[5.110102] (-) TimerEvent: {}
+[5.210287] (-) TimerEvent: {}
+[5.310474] (-) TimerEvent: {}
+[5.410667] (-) TimerEvent: {}
+[5.510875] (-) TimerEvent: {}
+[5.611051] (-) TimerEvent: {}
+[5.711312] (-) TimerEvent: {}
+[5.811486] (-) TimerEvent: {}
+[5.844650] (cyberrunner_cpp) StdoutLine: {'line': b'[100%] Linking CXX executable tuner_node\n'}
+[5.911591] (-) TimerEvent: {}
+[6.011837] (-) TimerEvent: {}
+[6.105551] (cyberrunner_cpp) StdoutLine: {'line': b'[100%] Built target tuner_node\n'}
+[6.111944] (-) TimerEvent: {}
+[6.115466] (cyberrunner_cpp) CommandEnded: {'returncode': 0}
+[6.116406] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'install'}
+[6.122247] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('SNAP_COMMON', '/var/snap/code/common'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/240/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('FONTCONFIG_PATH', '/etc/fonts'), ('GIO_MODULE_DIR', '/home/trungbao/snap/code/common/.cache/gio-modules'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SNAP_UID', '1000'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/trungbao/snap/code/240'), ('GTK_PATH', '/snap/code/240/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GTK_IM_MODULE_FILE', '/home/trungbao/snap/code/common/.cache/immodules/immodules.cache'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1327'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1867'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '240'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4217'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('SNAP_CONTEXT', 'Y1z08hDid39BJwA9KvDLAUYupmshu6VjsrVaeqoxxBN__cLGxbdS'), ('JOURNAL_STREAM', '8:8526'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '0958016b'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'code'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg04jeJaT:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1837,unix/trungbao:/tmp/.ICE-unix/1837'), ('GTK_EXE_PREFIX', '/snap/code/240/usr'), ('INVOCATION_ID', 'cf1fc7bbdcb947bea4e6f3b5c7298699'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/code/240'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/240/usr/lib/locale'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XDG_DATA_HOME', '/home/trungbao/snap/code/240/.local/share'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.SOQ5O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/trungbao/snap/code/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/trungbao/snap/code/240/.local/share/glib-2.0/schemas'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SNAP_COOKIE', 'Y1z08hDid39BJwA9KvDLAUYupmshu6VjsrVaeqoxxBN__cLGxbdS'), ('SHELL', '/bin/bash'), ('GDK_PIXBUF_MODULEDIR', '/snap/code/240/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'code'), ('FONTCONFIG_FILE', '/etc/fonts/fonts.conf'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GDK_PIXBUF_MODULE_FILE', '/home/trungbao/snap/code/common/.cache/gdk-pixbuf-loaders.cache'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('SNAP_LAUNCHER_ARCH_TRIPLET', 'x86_64-linux-gnu'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('VSCODE_CLI', '1'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/trungbao'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/home/trungbao/snap/code/240/.local/share:/home/trungbao/snap/code/240:/snap/code/240/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/code/240'), ('COLCON', '1'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '4275')]), 'shell': False}
+[6.127536] (cyberrunner_cpp) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[6.127667] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/camera_node\n'}
+[6.127703] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/estimator_node\n'}
+[6.127763] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/marble_node\n'}
+[6.127881] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_node\n'}
+[6.127999] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_progress_node\n'}
+[6.128855] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/ri_node\n'}
+[6.129000] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/controller_node\n'}
+[6.129027] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/hiwonder_node\n'}
+[6.129051] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/tuner_node\n'}
+[6.129074] (cyberrunner_cpp) StdoutLine: {'line': b'-- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/tuner_node" to ""\n'}
+[6.129098] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch\n'}
+[6.129177] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch/cyberrunner.launch.py\n'}
+[6.129200] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include\n'}
+[6.129249] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner\n'}
+[6.129273] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/linear_path.hpp\n'}
+[6.129296] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/ocam_model.hpp\n'}
+[6.129318] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/package_run_dependencies/cyberrunner_cpp\n'}
+[6.129390] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/parent_prefix_path/cyberrunner_cpp\n'}
+[6.129413] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.sh\n'}
+[6.129435] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.dsv\n'}
+[6.129456] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.sh\n'}
+[6.129476] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.dsv\n'}
+[6.129497] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.bash\n'}
+[6.129517] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.sh\n'}
+[6.129538] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.zsh\n'}
+[6.129558] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.dsv\n'}
+[6.129578] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.dsv\n'}
+[6.129598] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/packages/cyberrunner_cpp\n'}
+[6.129619] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig.cmake\n'}
+[6.129639] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig-version.cmake\n'}
+[6.129659] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.xml\n'}
+[6.130350] (cyberrunner_cpp) CommandEnded: {'returncode': 0}
+[6.138959] (cyberrunner_cpp) JobEnded: {'identifier': 'cyberrunner_cpp', 'rc': 0}
+[6.139412] (-) EventReactorShutdown: {}

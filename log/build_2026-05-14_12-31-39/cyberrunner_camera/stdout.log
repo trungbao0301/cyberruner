@@ -1,0 +1,19 @@
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/cyberrunner_camera/video_publisher.py
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/lib/cyberrunner_camera/cam_publisher.py
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/package_run_dependencies/cyberrunner_camera
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/parent_prefix_path/cyberrunner_camera
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/path.sh
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/environment/path.dsv
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.bash
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.sh
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.zsh
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/local_setup.dsv
+-- Symlinking: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.dsv
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/ament_index/resource_index/packages/cyberrunner_camera
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/cmake/cyberrunner_cameraConfig.cmake
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/cmake/cyberrunner_cameraConfig-version.cmake
+-- Up-to-date symlink: /home/trungbao/cyberrunner_ws/install/cyberrunner_camera/share/cyberrunner_camera/package.xml

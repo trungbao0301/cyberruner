@@ -22,6 +22,7 @@ setup(
     entry_points={
         "console_scripts": [
             "train = cyberrunner_dreamer.train:main",
+            "train_pixel = cyberrunner_dreamer.train_pixel:main",
             "train_parallel = cyberrunner_dreamer.train_parallel:main",
             "test = cyberrunner_dreamer.test_motors:main",
             "eval = cyberrunner_dreamer.eval:main",

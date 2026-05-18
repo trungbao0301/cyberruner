@@ -1,0 +1,60 @@
+[0.005s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp -- -j24 -l24
+[0.031s] Consolidate compiler generated dependencies of target path_progress_node
+[0.032s] Consolidate compiler generated dependencies of target hiwonder_node
+[0.032s] Consolidate compiler generated dependencies of target camera_node
+[0.032s] Consolidate compiler generated dependencies of target marble_node
+[0.032s] Consolidate compiler generated dependencies of target controller_node
+[0.033s] Consolidate compiler generated dependencies of target tuner_node
+[0.034s] Consolidate compiler generated dependencies of target path_node
+[0.034s] Consolidate compiler generated dependencies of target estimator_node
+[0.038s] [  6%] Building CXX object CMakeFiles/path_progress_node.dir/src/path_progress_node.cpp.o
+[0.039s] [ 18%] Built target controller_node
+[0.039s] [ 31%] Built target camera_node
+[0.041s] [ 43%] Built target marble_node
+[0.041s] [ 56%] Built target hiwonder_node
+[0.042s] [ 68%] Built target estimator_node
+[0.042s] [ 81%] Built target path_node
+[0.042s] [ 93%] Built target tuner_node
+[7.513s] [100%] Linking CXX executable path_progress_node
+[7.615s] [100%] Built target path_progress_node
+[7.621s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp -- -j24 -l24
+[7.628s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp
+[7.631s] -- Install configuration: "Release"
+[7.633s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/camera_node
+[7.633s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/camera_node" to ""
+[7.634s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/estimator_node
+[7.635s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/estimator_node" to ""
+[7.635s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/marble_node
+[7.635s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/marble_node" to ""
+[7.636s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_node
+[7.637s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_node" to ""
+[7.637s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_progress_node
+[7.637s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_progress_node" to ""
+[7.638s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/controller_node
+[7.639s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/controller_node" to ""
+[7.639s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/hiwonder_node
+[7.640s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/hiwonder_node" to ""
+[7.640s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/tuner_node
+[7.641s] -- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/tuner_node" to ""
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch/cyberrunner.launch.py
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/linear_path.hpp
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/ocam_model.hpp
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/package_run_dependencies/cyberrunner_cpp
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/parent_prefix_path/cyberrunner_cpp
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.sh
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.dsv
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.sh
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.dsv
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.bash
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.sh
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.zsh
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.dsv
+[7.641s] -- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.dsv
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/packages/cyberrunner_cpp
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig.cmake
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig-version.cmake
+[7.641s] -- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.xml
+[7.642s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --install /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp

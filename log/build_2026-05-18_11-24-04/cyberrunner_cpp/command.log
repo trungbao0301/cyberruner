@@ -1,0 +1,2 @@
+Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp': /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp
+Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp' returned '1': /usr/bin/cmake /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp -DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp

@@ -1,0 +1,11 @@
+[ 38%] Built target controller_node
+[ 38%] Built target hiwonder_node
+[ 38%] Built target path_node
+[ 44%] Building CXX object CMakeFiles/estimator_node.dir/src/estimator_node.cpp.o
+[ 44%] Building CXX object CMakeFiles/ri_node.dir/src/ri_node.cpp.o
+[ 55%] Built target tuner_node
+[ 66%] Built target camera_node
+[ 77%] Built target path_progress_node
+[ 88%] Built target marble_node
+[ 94%] Linking CXX executable estimator_node
+[ 94%] Built target estimator_node

@@ -1,0 +1,330 @@
+[0.000000] (-) TimerEvent: {}
+[0.000090] (-) JobUnselected: {'identifier': 'cyberrunner_camera'}
+[0.000114] (-) JobUnselected: {'identifier': 'cyberrunner_dreamer'}
+[0.000131] (-) JobUnselected: {'identifier': 'cyberrunner_hiwonder'}
+[0.000152] (-) JobUnselected: {'identifier': 'cyberrunner_interfaces'}
+[0.000167] (-) JobUnselected: {'identifier': 'cyberrunner_pid'}
+[0.000181] (-) JobUnselected: {'identifier': 'cyberrunner_state_estimation'}
+[0.000194] (-) JobUnselected: {'identifier': 'cyberrunner_vision'}
+[0.000215] (cyberrunner_cpp) JobQueued: {'identifier': 'cyberrunner_cpp', 'dependencies': OrderedDict()}
+[0.000234] (cyberrunner_cpp) JobStarted: {'identifier': 'cyberrunner_cpp'}
+[0.006125] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'cmake'}
+[0.007323] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'build'}
+[0.007441] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', '--', '-j24', '-l24'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1280'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1462'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '57880'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('JOURNAL_STREAM', '8:10574'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg04zM6O5:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.506.31421-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1424,unix/trungbao:/tmp/.ICE-unix/1424'), ('INVOCATION_ID', '4d7559e5d6a2433987c1f872294031fc'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.C5B9O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '57880')]), 'shell': False}
+[0.048969] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099614] (-) TimerEvent: {}
+[0.142534] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.166693] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.168515] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.173742] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.181391] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.190201] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.199707] (-) TimerEvent: {}
+[0.215450] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.217122] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.281340] (cyberrunner_cpp) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.299875] (-) TimerEvent: {}
+[0.327301] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)\n'}
+[0.334407] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.355698] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.399968] (-) TimerEvent: {}
+[0.436146] (cyberrunner_cpp) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.465102] (cyberrunner_cpp) StdoutLine: {'line': b'-- Generating done\n'}
+[0.475307] (cyberrunner_cpp) StdoutLine: {'line': b'-- Build files have been written to: /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp\n'}
+[0.495181] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target camera_node\n'}
+[0.495349] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target controller_node\n'}
+[0.497070] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target marble_node\n'}
+[0.497386] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target hiwonder_node\n'}
+[0.497879] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target path_node\n'}
+[0.497978] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target tuner_node\n'}
+[0.498989] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target estimator_node\n'}
+[0.500032] (-) TimerEvent: {}
+[0.500163] (cyberrunner_cpp) StdoutLine: {'line': b'[  6%] Building CXX object CMakeFiles/path_progress_node.dir/src/path_progress_node.cpp.o\n'}
+[0.511961] (cyberrunner_cpp) StdoutLine: {'line': b'[ 18%] Building CXX object CMakeFiles/hiwonder_node.dir/src/hiwonder_node.cpp.o\n'}
+[0.512095] (cyberrunner_cpp) StdoutLine: {'line': b'[ 18%] Building CXX object CMakeFiles/tuner_node.dir/src/tuner_node.cpp.o\n'}
+[0.512125] (cyberrunner_cpp) StdoutLine: {'line': b'[ 25%] Building CXX object CMakeFiles/camera_node.dir/src/camera_node.cpp.o\n'}
+[0.512263] (cyberrunner_cpp) StdoutLine: {'line': b'[ 31%] Building CXX object CMakeFiles/marble_node.dir/src/marble_node.cpp.o\n'}
+[0.513342] (cyberrunner_cpp) StdoutLine: {'line': b'[ 37%] Building CXX object CMakeFiles/controller_node.dir/src/controller_node.cpp.o\n'}
+[0.514041] (cyberrunner_cpp) StdoutLine: {'line': b'[ 43%] Building CXX object CMakeFiles/estimator_node.dir/src/estimator_node.cpp.o\n'}
+[0.514337] (cyberrunner_cpp) StdoutLine: {'line': b'[ 50%] Building CXX object CMakeFiles/path_node.dir/src/path_node.cpp.o\n'}
+[0.600227] (-) TimerEvent: {}
+[0.700399] (-) TimerEvent: {}
+[0.800587] (-) TimerEvent: {}
+[0.900787] (-) TimerEvent: {}
+[1.000983] (-) TimerEvent: {}
+[1.101183] (-) TimerEvent: {}
+[1.201392] (-) TimerEvent: {}
+[1.301583] (-) TimerEvent: {}
+[1.401772] (-) TimerEvent: {}
+[1.501965] (-) TimerEvent: {}
+[1.602155] (-) TimerEvent: {}
+[1.702353] (-) TimerEvent: {}
+[1.802544] (-) TimerEvent: {}
+[1.902737] (-) TimerEvent: {}
+[2.002928] (-) TimerEvent: {}
+[2.103126] (-) TimerEvent: {}
+[2.203332] (-) TimerEvent: {}
+[2.242500] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp: In member function \xe2\x80\x98void PathProgressNode::loadParams()\xe2\x80\x99:\n'}
+[2.242698] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: error: no matching function for call to \xe2\x80\x98max(int64_t, int)\xe2\x80\x99\n'}
+[2.242772] (cyberrunner_cpp) StderrLine: {'line': b'   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);\n'}
+[2.242831] (cyberrunner_cpp) StderrLine: {'line': b'      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.244414] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:63,\n'}
+[2.245016] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[2.245098] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.245161] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: \xe2\x80\x98template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)\xe2\x80\x99\n'}
+[2.245347] (cyberrunner_cpp) StderrLine: {'line': b'  254 |     max(const _Tp& __a, const _Tp& __b)\n'}
+[2.245448] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.245525] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:\n'}
+[2.245608] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   deduced conflicting types for parameter \xe2\x80\x98const _Tp\xe2\x80\x99 (\xe2\x80\x98long int\xe2\x80\x99 and \xe2\x80\x98int\xe2\x80\x99)\n'}
+[2.245684] (cyberrunner_cpp) StderrLine: {'line': b'   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);\n'}
+[2.245756] (cyberrunner_cpp) StderrLine: {'line': b'      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.245828] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:63,\n'}
+[2.245899] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[2.245970] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.246040] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: \xe2\x80\x98template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)\xe2\x80\x99\n'}
+[2.246112] (cyberrunner_cpp) StderrLine: {'line': b'  300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)\n'}
+[2.246189] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.246273] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:\n'}
+[2.246346] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   deduced conflicting types for parameter \xe2\x80\x98const _Tp\xe2\x80\x99 (\xe2\x80\x98long int\xe2\x80\x99 and \xe2\x80\x98int\xe2\x80\x99)\n'}
+[2.246417] (cyberrunner_cpp) StderrLine: {'line': b'   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);\n'}
+[2.246487] (cyberrunner_cpp) StderrLine: {'line': b'      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.246558] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/algorithm:62,\n'}
+[2.246629] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,\n'}
+[2.246700] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[2.246772] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[2.246845] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[2.246918] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.246990] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: \xe2\x80\x98template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)\xe2\x80\x99\n'}
+[2.247062] (cyberrunner_cpp) StderrLine: {'line': b' 3461 |     max(initializer_list<_Tp> __l)\n'}
+[2.247133] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.247204] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:\n'}
+[2.247290] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   mismatched types \xe2\x80\x98std::initializer_list<_Tp>\xe2\x80\x99 and \xe2\x80\x98long int\xe2\x80\x99\n'}
+[2.247369] (cyberrunner_cpp) StderrLine: {'line': b'   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);\n'}
+[2.247441] (cyberrunner_cpp) StderrLine: {'line': b'      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.247512] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/algorithm:62,\n'}
+[2.247585] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,\n'}
+[2.247659] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[2.247731] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[2.247804] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[2.247877] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.247949] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: \xe2\x80\x98template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)\xe2\x80\x99\n'}
+[2.248028] (cyberrunner_cpp) StderrLine: {'line': b' 3467 |     max(initializer_list<_Tp> __l, _Compare __comp)\n'}
+[2.248101] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.248171] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:\n'}
+[2.248254] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:59:35: note:   mismatched types \xe2\x80\x98std::initializer_list<_Tp>\xe2\x80\x99 and \xe2\x80\x98long int\xe2\x80\x99\n'}
+[2.248331] (cyberrunner_cpp) StderrLine: {'line': b'   59 |         rel_path_count_ = std::max(this->get_parameter("rel_path_count").as_int(), 1);\n'}
+[2.248406] (cyberrunner_cpp) StderrLine: {'line': b'      |                           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.248479] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: error: no matching function for call to \xe2\x80\x98max(int64_t, int)\xe2\x80\x99\n'}
+[2.248561] (cyberrunner_cpp) StderrLine: {'line': b'   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);\n'}
+[2.248633] (cyberrunner_cpp) StderrLine: {'line': b'      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.248706] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:63,\n'}
+[2.248780] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[2.248853] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.248926] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:254:5: note: candidate: \xe2\x80\x98template<class _Tp> constexpr const _Tp& std::max(const _Tp&, const _Tp&)\xe2\x80\x99\n'}
+[2.249003] (cyberrunner_cpp) StderrLine: {'line': b'  254 |     max(const _Tp& __a, const _Tp& __b)\n'}
+[2.249077] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.249154] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:254:5: note:   template argument deduction/substitution failed:\n'}
+[2.249237] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   deduced conflicting types for parameter \xe2\x80\x98const _Tp\xe2\x80\x99 (\xe2\x80\x98long int\xe2\x80\x99 and \xe2\x80\x98int\xe2\x80\x99)\n'}
+[2.249321] (cyberrunner_cpp) StderrLine: {'line': b'   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);\n'}
+[2.249396] (cyberrunner_cpp) StderrLine: {'line': b'      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.249469] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/memory:63,\n'}
+[2.249550] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,\n'}
+[2.249623] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.249695] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:300:5: note: candidate: \xe2\x80\x98template<class _Tp, class _Compare> constexpr const _Tp& std::max(const _Tp&, const _Tp&, _Compare)\xe2\x80\x99\n'}
+[2.249770] (cyberrunner_cpp) StderrLine: {'line': b'  300 |     max(const _Tp& __a, const _Tp& __b, _Compare __comp)\n'}
+[2.249842] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.249914] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algobase.h:300:5: note:   template argument deduction/substitution failed:\n'}
+[2.249988] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   deduced conflicting types for parameter \xe2\x80\x98const _Tp\xe2\x80\x99 (\xe2\x80\x98long int\xe2\x80\x99 and \xe2\x80\x98int\xe2\x80\x99)\n'}
+[2.250063] (cyberrunner_cpp) StderrLine: {'line': b'   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);\n'}
+[2.250136] (cyberrunner_cpp) StderrLine: {'line': b'      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.250213] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/algorithm:62,\n'}
+[2.250294] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,\n'}
+[2.250367] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[2.250439] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[2.250512] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[2.250582] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.250654] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3461:5: note: candidate: \xe2\x80\x98template<class _Tp> constexpr _Tp std::max(std::initializer_list<_Tp>)\xe2\x80\x99\n'}
+[2.250728] (cyberrunner_cpp) StderrLine: {'line': b' 3461 |     max(initializer_list<_Tp> __l)\n'}
+[2.250801] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.250871] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3461:5: note:   template argument deduction/substitution failed:\n'}
+[2.250942] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   mismatched types \xe2\x80\x98std::initializer_list<_Tp>\xe2\x80\x99 and \xe2\x80\x98long int\xe2\x80\x99\n'}
+[2.251013] (cyberrunner_cpp) StderrLine: {'line': b'   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);\n'}
+[2.251085] (cyberrunner_cpp) StderrLine: {'line': b'      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.251154] (cyberrunner_cpp) StderrLine: {'line': b'In file included from /usr/include/c++/11/algorithm:62,\n'}
+[2.251236] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:18,\n'}
+[2.251320] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25,\n'}
+[2.251396] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21,\n'}
+[2.251469] (cyberrunner_cpp) StderrLine: {'line': b'                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155,\n'}
+[2.251541] (cyberrunner_cpp) StderrLine: {'line': b'                 from /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:14:\n'}
+[2.251617] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3467:5: note: candidate: \xe2\x80\x98template<class _Tp, class _Compare> constexpr _Tp std::max(std::initializer_list<_Tp>, _Compare)\xe2\x80\x99\n'}
+[2.251689] (cyberrunner_cpp) StderrLine: {'line': b' 3467 |     max(initializer_list<_Tp> __l, _Compare __comp)\n'}
+[2.251760] (cyberrunner_cpp) StderrLine: {'line': b'      |     ^~~\n'}
+[2.251830] (cyberrunner_cpp) StderrLine: {'line': b'/usr/include/c++/11/bits/stl_algo.h:3467:5: note:   template argument deduction/substitution failed:\n'}
+[2.251900] (cyberrunner_cpp) StderrLine: {'line': b'/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/path_progress_node.cpp:60:34: note:   mismatched types \xe2\x80\x98std::initializer_list<_Tp>\xe2\x80\x99 and \xe2\x80\x98long int\xe2\x80\x99\n'}
+[2.251970] (cyberrunner_cpp) StderrLine: {'line': b'   60 |         rel_path_step_ = std::max(this->get_parameter("rel_path_step").as_int(), 1);\n'}
+[2.252041] (cyberrunner_cpp) StderrLine: {'line': b'      |                          ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n'}
+[2.303434] (-) TimerEvent: {}
+[2.403627] (-) TimerEvent: {}
+[2.503819] (-) TimerEvent: {}
+[2.604044] (-) TimerEvent: {}
+[2.704244] (-) TimerEvent: {}
+[2.804439] (-) TimerEvent: {}
+[2.904633] (-) TimerEvent: {}
+[3.004859] (-) TimerEvent: {}
+[3.105086] (-) TimerEvent: {}
+[3.205324] (-) TimerEvent: {}
+[3.305521] (-) TimerEvent: {}
+[3.405712] (-) TimerEvent: {}
+[3.505910] (-) TimerEvent: {}
+[3.606242] (-) TimerEvent: {}
+[3.706448] (-) TimerEvent: {}
+[3.806663] (-) TimerEvent: {}
+[3.906873] (-) TimerEvent: {}
+[4.007083] (-) TimerEvent: {}
+[4.107305] (-) TimerEvent: {}
+[4.207524] (-) TimerEvent: {}
+[4.307755] (-) TimerEvent: {}
+[4.408000] (-) TimerEvent: {}
+[4.508233] (-) TimerEvent: {}
+[4.608450] (-) TimerEvent: {}
+[4.708654] (-) TimerEvent: {}
+[4.723686] (cyberrunner_cpp) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/path_progress_node.dir/build.make:76: CMakeFiles/path_progress_node.dir/src/path_progress_node.cpp.o] Error 1\n'}
+[4.724007] (cyberrunner_cpp) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:255: CMakeFiles/path_progress_node.dir/all] Error 2\n'}
+[4.724095] (cyberrunner_cpp) StderrLine: {'line': b'gmake[1]: *** Waiting for unfinished jobs....\n'}
+[4.808762] (-) TimerEvent: {}
+[4.909005] (-) TimerEvent: {}
+[5.009279] (-) TimerEvent: {}
+[5.109461] (-) TimerEvent: {}
+[5.209645] (-) TimerEvent: {}
+[5.309852] (-) TimerEvent: {}
+[5.410149] (-) TimerEvent: {}
+[5.510405] (-) TimerEvent: {}
+[5.610609] (-) TimerEvent: {}
+[5.710819] (-) TimerEvent: {}
+[5.811073] (-) TimerEvent: {}
+[5.911266] (-) TimerEvent: {}
+[6.011453] (-) TimerEvent: {}
+[6.038139] (cyberrunner_cpp) StdoutLine: {'line': b'[ 56%] Linking CXX executable camera_node\n'}
+[6.111546] (-) TimerEvent: {}
+[6.211718] (-) TimerEvent: {}
+[6.311932] (-) TimerEvent: {}
+[6.412172] (-) TimerEvent: {}
+[6.434201] (cyberrunner_cpp) StdoutLine: {'line': b'[ 56%] Built target camera_node\n'}
+[6.512328] (-) TimerEvent: {}
+[6.612546] (-) TimerEvent: {}
+[6.712745] (-) TimerEvent: {}
+[6.812931] (-) TimerEvent: {}
+[6.913142] (-) TimerEvent: {}
+[7.013348] (-) TimerEvent: {}
+[7.113544] (-) TimerEvent: {}
+[7.213742] (-) TimerEvent: {}
+[7.313932] (-) TimerEvent: {}
+[7.414153] (-) TimerEvent: {}
+[7.514332] (-) TimerEvent: {}
+[7.614560] (-) TimerEvent: {}
+[7.714742] (-) TimerEvent: {}
+[7.814922] (-) TimerEvent: {}
+[7.854935] (cyberrunner_cpp) StdoutLine: {'line': b'[ 62%] Linking CXX executable tuner_node\n'}
+[7.915037] (-) TimerEvent: {}
+[8.015317] (-) TimerEvent: {}
+[8.115505] (-) TimerEvent: {}
+[8.151716] (cyberrunner_cpp) StdoutLine: {'line': b'[ 62%] Built target tuner_node\n'}
+[8.215605] (-) TimerEvent: {}
+[8.315785] (-) TimerEvent: {}
+[8.416107] (-) TimerEvent: {}
+[8.516389] (-) TimerEvent: {}
+[8.616562] (-) TimerEvent: {}
+[8.716766] (-) TimerEvent: {}
+[8.750345] (cyberrunner_cpp) StdoutLine: {'line': b'[ 68%] Linking CXX executable hiwonder_node\n'}
+[8.816919] (-) TimerEvent: {}
+[8.858972] (cyberrunner_cpp) StdoutLine: {'line': b'[ 68%] Built target hiwonder_node\n'}
+[8.917020] (-) TimerEvent: {}
+[9.017363] (-) TimerEvent: {}
+[9.117517] (-) TimerEvent: {}
+[9.217663] (-) TimerEvent: {}
+[9.218242] (cyberrunner_cpp) StdoutLine: {'line': b'[ 75%] Linking CXX executable marble_node\n'}
+[9.317758] (-) TimerEvent: {}
+[9.417924] (-) TimerEvent: {}
+[9.495338] (cyberrunner_cpp) StdoutLine: {'line': b'[ 75%] Built target marble_node\n'}
+[9.518025] (-) TimerEvent: {}
+[9.618275] (-) TimerEvent: {}
+[9.718424] (-) TimerEvent: {}
+[9.818634] (-) TimerEvent: {}
+[9.918807] (-) TimerEvent: {}
+[10.019027] (-) TimerEvent: {}
+[10.119265] (-) TimerEvent: {}
+[10.219409] (-) TimerEvent: {}
+[10.319551] (-) TimerEvent: {}
+[10.419697] (-) TimerEvent: {}
+[10.519878] (-) TimerEvent: {}
+[10.620192] (-) TimerEvent: {}
+[10.720386] (-) TimerEvent: {}
+[10.820557] (-) TimerEvent: {}
+[10.920729] (-) TimerEvent: {}
+[11.020971] (-) TimerEvent: {}
+[11.121244] (-) TimerEvent: {}
+[11.221464] (-) TimerEvent: {}
+[11.321706] (-) TimerEvent: {}
+[11.421952] (-) TimerEvent: {}
+[11.522182] (-) TimerEvent: {}
+[11.622420] (-) TimerEvent: {}
+[11.686800] (cyberrunner_cpp) StdoutLine: {'line': b'[ 81%] Linking CXX executable controller_node\n'}
+[11.722522] (-) TimerEvent: {}
+[11.822693] (-) TimerEvent: {}
+[11.824799] (cyberrunner_cpp) StdoutLine: {'line': b'[ 81%] Built target controller_node\n'}
+[11.922811] (-) TimerEvent: {}
+[12.023072] (-) TimerEvent: {}
+[12.123355] (-) TimerEvent: {}
+[12.223568] (-) TimerEvent: {}
+[12.323736] (-) TimerEvent: {}
+[12.423933] (-) TimerEvent: {}
+[12.524168] (-) TimerEvent: {}
+[12.624353] (-) TimerEvent: {}
+[12.724521] (-) TimerEvent: {}
+[12.824818] (-) TimerEvent: {}
+[12.925042] (-) TimerEvent: {}
+[13.015484] (cyberrunner_cpp) StdoutLine: {'line': b'[ 87%] Linking CXX executable estimator_node\n'}
+[13.025199] (-) TimerEvent: {}
+[13.125397] (-) TimerEvent: {}
+[13.225685] (-) TimerEvent: {}
+[13.269107] (cyberrunner_cpp) StdoutLine: {'line': b'[ 87%] Built target estimator_node\n'}
+[13.325878] (-) TimerEvent: {}
+[13.426147] (-) TimerEvent: {}
+[13.526377] (-) TimerEvent: {}
+[13.626542] (-) TimerEvent: {}
+[13.726706] (-) TimerEvent: {}
+[13.826971] (-) TimerEvent: {}
+[13.927256] (-) TimerEvent: {}
+[14.027521] (-) TimerEvent: {}
+[14.127692] (-) TimerEvent: {}
+[14.227957] (-) TimerEvent: {}
+[14.328248] (-) TimerEvent: {}
+[14.428415] (-) TimerEvent: {}
+[14.528616] (-) TimerEvent: {}
+[14.628818] (-) TimerEvent: {}
+[14.729043] (-) TimerEvent: {}
+[14.829337] (-) TimerEvent: {}
+[14.929609] (-) TimerEvent: {}
+[15.029886] (-) TimerEvent: {}
+[15.130082] (-) TimerEvent: {}
+[15.230346] (-) TimerEvent: {}
+[15.330518] (-) TimerEvent: {}
+[15.430764] (-) TimerEvent: {}
+[15.530993] (-) TimerEvent: {}
+[15.631230] (-) TimerEvent: {}
+[15.731373] (-) TimerEvent: {}
+[15.831514] (-) TimerEvent: {}
+[15.931682] (-) TimerEvent: {}
+[16.031854] (-) TimerEvent: {}
+[16.132087] (-) TimerEvent: {}
+[16.232418] (-) TimerEvent: {}
+[16.332565] (-) TimerEvent: {}
+[16.355772] (cyberrunner_cpp) StdoutLine: {'line': b'[ 93%] Linking CXX executable path_node\n'}
+[16.432649] (-) TimerEvent: {}
+[16.532784] (-) TimerEvent: {}
+[16.629032] (cyberrunner_cpp) StdoutLine: {'line': b'[ 93%] Built target path_node\n'}
+[16.629829] (cyberrunner_cpp) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[16.631107] (cyberrunner_cpp) CommandEnded: {'returncode': 2}
+[16.632868] (-) TimerEvent: {}
+[16.640349] (cyberrunner_cpp) JobEnded: {'identifier': 'cyberrunner_cpp', 'rc': 2}
+[16.650627] (-) EventReactorShutdown: {}

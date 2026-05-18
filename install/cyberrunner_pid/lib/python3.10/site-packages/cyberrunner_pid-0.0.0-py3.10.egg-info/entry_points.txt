@@ -1,0 +1,9 @@
+[console_scripts]
+click_target = cyberrunner_pid.click_target:main
+maze_planner = cyberrunner_pid.maze_planner:main
+orange_live_target_node = cyberrunner_pid.orange_live_target_node:main
+orange_track_mapper_node = cyberrunner_pid.orange_track_mapper_node:main
+path_follower_node = cyberrunner_pid.path_follower_node:main
+pid_controller = cyberrunner_pid.pid_controller:main
+route_wfocus_follow = cyberrunner_pid.route_wfocus_follow:main
+solve = cyberrunner_pid.solve:main

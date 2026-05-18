@@ -113,7 +113,7 @@ private:
         this->declare_parameter("max_pos", 600);
         this->declare_parameter("step_delta", 4.0);
         this->declare_parameter("action_span", 80.0);
-        this->declare_parameter("cmd_time_ms", 60);
+        this->declare_parameter("cmd_time_ms", 20);
         this->declare_parameter("invert_x", false);
         this->declare_parameter("invert_y", true);
         this->declare_parameter("reward_scale", 0.01);

@@ -1,0 +1,85 @@
+[0.000000] (-) TimerEvent: {}
+[0.000245] (-) JobUnselected: {'identifier': 'cyberrunner_camera'}
+[0.000273] (-) JobUnselected: {'identifier': 'cyberrunner_dreamer'}
+[0.000291] (-) JobUnselected: {'identifier': 'cyberrunner_hiwonder'}
+[0.000306] (-) JobUnselected: {'identifier': 'cyberrunner_interfaces'}
+[0.000320] (-) JobUnselected: {'identifier': 'cyberrunner_pid'}
+[0.000333] (-) JobUnselected: {'identifier': 'cyberrunner_state_estimation'}
+[0.000346] (-) JobUnselected: {'identifier': 'cyberrunner_vision'}
+[0.000361] (cyberrunner_cpp) JobQueued: {'identifier': 'cyberrunner_cpp', 'dependencies': OrderedDict()}
+[0.000378] (cyberrunner_cpp) JobStarted: {'identifier': 'cyberrunner_cpp'}
+[0.004911] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'cmake'}
+[0.005668] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp', '-DCMAKE_INSTALL_PREFIX=/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1327'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1867'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '335300'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('JOURNAL_STREAM', '8:8526'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg0zamuCq:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.513.21555-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1837,unix/trungbao:/tmp/.ICE-unix/1837'), ('INVOCATION_ID', 'cf1fc7bbdcb947bea4e6f3b5c7298699'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.SOQ5O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/build/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '335300')]), 'shell': False}
+[0.014660] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.091789] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.099836] (-) TimerEvent: {}
+[0.105461] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.106528] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.109540] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.114247] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.120136] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.135835] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.136460] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.195228] (cyberrunner_cpp) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.199961] (-) TimerEvent: {}
+[0.219475] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)\n'}
+[0.223624] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.237724] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.300087] (-) TimerEvent: {}
+[0.314743] (cyberrunner_cpp) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.315918] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:48 (add_executable):\n'}
+[0.316018] (cyberrunner_cpp) StderrLine: {'line': b'  Cannot find source file:\n'}
+[0.316239] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.316271] (cyberrunner_cpp) StderrLine: {'line': b'    src/camera_node.cpp\n'}
+[0.316294] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.316318] (cyberrunner_cpp) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[0.316343] (cyberrunner_cpp) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[0.316365] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.316389] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317012] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:60 (add_executable):\n'}
+[0.317076] (cyberrunner_cpp) StderrLine: {'line': b'  Cannot find source file:\n'}
+[0.317105] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317130] (cyberrunner_cpp) StderrLine: {'line': b'    src/marble_node.cpp\n'}
+[0.317154] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317176] (cyberrunner_cpp) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[0.317200] (cyberrunner_cpp) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[0.317362] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317392] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317416] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:80 (add_executable):\n'}
+[0.317439] (cyberrunner_cpp) StderrLine: {'line': b'  Cannot find source file:\n'}
+[0.317460] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317481] (cyberrunner_cpp) StderrLine: {'line': b'    src/controller_node.cpp\n'}
+[0.317501] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317521] (cyberrunner_cpp) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[0.317541] (cyberrunner_cpp) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[0.317562] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317583] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317604] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:85 (add_executable):\n'}
+[0.317624] (cyberrunner_cpp) StderrLine: {'line': b'  Cannot find source file:\n'}
+[0.317645] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317666] (cyberrunner_cpp) StderrLine: {'line': b'    src/hiwonder_node.cpp\n'}
+[0.317686] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317706] (cyberrunner_cpp) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[0.317726] (cyberrunner_cpp) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[0.317747] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.317767] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319192] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:48 (add_executable):\n'}
+[0.319253] (cyberrunner_cpp) StderrLine: {'line': b'  No SOURCES given to target: camera_node\n'}
+[0.319280] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319303] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319325] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:60 (add_executable):\n'}
+[0.319346] (cyberrunner_cpp) StderrLine: {'line': b'  No SOURCES given to target: marble_node\n'}
+[0.319366] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319386] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319407] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:80 (add_executable):\n'}
+[0.319428] (cyberrunner_cpp) StderrLine: {'line': b'  No SOURCES given to target: controller_node\n'}
+[0.319452] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319474] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319493] (cyberrunner_cpp) StderrLine: {'line': b'CMake Error at CMakeLists.txt:85 (add_executable):\n'}
+[0.319512] (cyberrunner_cpp) StderrLine: {'line': b'  No SOURCES given to target: hiwonder_node\n'}
+[0.319532] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319553] (cyberrunner_cpp) StderrLine: {'line': b'\n'}
+[0.319572] (cyberrunner_cpp) StderrLine: {'line': b'CMake Generate step failed.  Build files cannot be regenerated correctly.\n'}
+[0.323160] (cyberrunner_cpp) CommandEnded: {'returncode': 1}
+[0.327831] (cyberrunner_cpp) JobEnded: {'identifier': 'cyberrunner_cpp', 'rc': 1}
+[0.338213] (-) EventReactorShutdown: {}

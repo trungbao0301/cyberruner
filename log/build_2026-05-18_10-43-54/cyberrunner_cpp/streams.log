@@ -1,0 +1,31 @@
+[0.007s] Invoking command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp -- -j24 -l24
+[0.048s] [ 38%] Built target controller_node
+[0.048s] [ 38%] Built target hiwonder_node
+[0.048s] [ 38%] Built target path_node
+[0.048s] [ 44%] Building CXX object CMakeFiles/estimator_node.dir/src/estimator_node.cpp.o
+[0.048s] [ 44%] Building CXX object CMakeFiles/ri_node.dir/src/ri_node.cpp.o
+[0.049s] [ 55%] Built target tuner_node
+[0.049s] [ 66%] Built target camera_node
+[0.049s] [ 77%] Built target path_progress_node
+[0.051s] [ 88%] Built target marble_node
+[1.564s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp: In member function ‘void RINode::loadParams()’:
+[1.564s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:125:9: error: ‘servo_mode_’ was not declared in this scope
+[1.564s]   125 |         servo_mode_ = this->get_parameter("servo_mode").as_string();
+[1.564s]       |         ^~~~~~~~~~~
+[1.569s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:133:9: error: ‘action_span_’ was not declared in this scope
+[1.569s]   133 |         action_span_ = std::max(this->get_parameter("action_span").as_double(), 0.0);
+[1.569s]       |         ^~~~~~~~~~~~
+[1.582s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp: In member function ‘void RINode::applyAction(double, double)’:
+[1.582s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:357:13: error: ‘servo_mode_’ was not declared in this scope
+[1.582s]   357 |         if (servo_mode_ == "incremental") {
+[1.582s]       |             ^~~~~~~~~~~
+[1.587s] /home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:366:67: error: ‘action_span_’ was not declared in this scope
+[1.587s]   366 |                 home_pos_ + sx * static_cast<int>(std::round(ax * action_span_)),
+[1.587s]       |                                                                   ^~~~~~~~~~~~
+[4.548s] gmake[2]: *** [CMakeFiles/ri_node.dir/build.make:76: CMakeFiles/ri_node.dir/src/ri_node.cpp.o] Error 1
+[4.548s] gmake[1]: *** [CMakeFiles/Makefile2:283: CMakeFiles/ri_node.dir/all] Error 2
+[4.548s] gmake[1]: *** Waiting for unfinished jobs....
+[11.075s] [ 94%] Linking CXX executable estimator_node
+[11.414s] [ 94%] Built target estimator_node
+[11.415s] gmake: *** [Makefile:146: all] Error 2
+[11.416s] Invoked command in '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble /usr/bin/cmake --build /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp -- -j24 -l24

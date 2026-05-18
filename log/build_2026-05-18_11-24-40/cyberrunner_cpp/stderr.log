@@ -1,0 +1,53 @@
+CMake Error at CMakeLists.txt:48 (add_executable):
+  Cannot find source file:
+
+    src/camera_node.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:60 (add_executable):
+  Cannot find source file:
+
+    src/marble_node.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:80 (add_executable):
+  Cannot find source file:
+
+    src/controller_node.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:85 (add_executable):
+  Cannot find source file:
+
+    src/hiwonder_node.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h
+  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc
+
+
+CMake Error at CMakeLists.txt:48 (add_executable):
+  No SOURCES given to target: camera_node
+
+
+CMake Error at CMakeLists.txt:60 (add_executable):
+  No SOURCES given to target: marble_node
+
+
+CMake Error at CMakeLists.txt:80 (add_executable):
+  No SOURCES given to target: controller_node
+
+
+CMake Error at CMakeLists.txt:85 (add_executable):
+  No SOURCES given to target: hiwonder_node
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

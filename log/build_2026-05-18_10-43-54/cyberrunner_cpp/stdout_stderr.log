@@ -1,0 +1,29 @@
+[ 38%] Built target controller_node
+[ 38%] Built target hiwonder_node
+[ 38%] Built target path_node
+[ 44%] Building CXX object CMakeFiles/estimator_node.dir/src/estimator_node.cpp.o
+[ 44%] Building CXX object CMakeFiles/ri_node.dir/src/ri_node.cpp.o
+[ 55%] Built target tuner_node
+[ 66%] Built target camera_node
+[ 77%] Built target path_progress_node
+[ 88%] Built target marble_node
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp: In member function ‘void RINode::loadParams()’:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:125:9: error: ‘servo_mode_’ was not declared in this scope
+  125 |         servo_mode_ = this->get_parameter("servo_mode").as_string();
+      |         ^~~~~~~~~~~
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:133:9: error: ‘action_span_’ was not declared in this scope
+  133 |         action_span_ = std::max(this->get_parameter("action_span").as_double(), 0.0);
+      |         ^~~~~~~~~~~~
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp: In member function ‘void RINode::applyAction(double, double)’:
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:357:13: error: ‘servo_mode_’ was not declared in this scope
+  357 |         if (servo_mode_ == "incremental") {
+      |             ^~~~~~~~~~~
+/home/trungbao/cyberrunner_ws/src/cyberrunner_cpp/src/ri_node.cpp:366:67: error: ‘action_span_’ was not declared in this scope
+  366 |                 home_pos_ + sx * static_cast<int>(std::round(ax * action_span_)),
+      |                                                                   ^~~~~~~~~~~~
+gmake[2]: *** [CMakeFiles/ri_node.dir/build.make:76: CMakeFiles/ri_node.dir/src/ri_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:283: CMakeFiles/ri_node.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+[ 94%] Linking CXX executable estimator_node
+[ 94%] Built target estimator_node
+gmake: *** [Makefile:146: all] Error 2

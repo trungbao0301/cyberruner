@@ -1,0 +1,27 @@
+[0.808s] Invoking command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_hiwonder build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log --single-version-externally-managed install_data
+[0.928s] /home/trungbao/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.928s]   warnings.warn(msg)
+[1.004s] running egg_info
+[1.004s] writing ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/PKG-INFO
+[1.004s] writing dependency_links to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/dependency_links.txt
+[1.004s] writing entry points to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/entry_points.txt
+[1.004s] writing requirements to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/requires.txt
+[1.004s] writing top-level names to ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/top_level.txt
+[1.241s] reading manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.241s] writing manifest file '../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info/SOURCES.txt'
+[1.241s] running build
+[1.241s] running build_py
+[1.241s] copying cyberrunner_hiwonder/__init__.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+[1.241s] copying cyberrunner_hiwonder/hiwonder_node.py -> /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build/lib/cyberrunner_hiwonder
+[1.241s] running install
+[1.241s] running install_lib
+[1.241s] running install_data
+[1.241s] copying resource/cyberrunner_hiwonder -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/ament_index/resource_index/packages
+[1.241s] copying package.xml -> /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/share/cyberrunner_hiwonder
+[1.241s] running install_egg_info
+[1.242s] removing '/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder-0.0.0-py3.10.egg-info' (and everything under it)
+[1.242s] Copying ../../build/cyberrunner_hiwonder/cyberrunner_hiwonder.egg-info to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages/cyberrunner_hiwonder-0.0.0-py3.10.egg-info
+[1.242s] running install_scripts
+[1.242s] Installing hiwonder_node script to /home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/cyberrunner_hiwonder
+[1.242s] writing list of installed files to '/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log'
+[1.245s] Invoked command in '/home/trungbao/cyberrunner_ws/src/cyberrunner_hiwonder' returned '0': PYTHONPATH=/home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/cyberrunner_hiwonder build --build-base /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/build install --record /home/trungbao/cyberrunner_ws/build/cyberrunner_hiwonder/install.log --single-version-externally-managed install_data

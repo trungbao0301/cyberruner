@@ -116,4 +116,9 @@ install(DIRECTORY include/
   DESTINATION include
 )
 
+install(PROGRAMS
+  scripts/rl_policy_node.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 ament_package()

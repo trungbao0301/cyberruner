@@ -1,0 +1,224 @@
+[0.000000] (-) TimerEvent: {}
+[0.000374] (-) JobUnselected: {'identifier': 'cyberrunner_camera'}
+[0.000636] (-) JobUnselected: {'identifier': 'cyberrunner_dreamer'}
+[0.000721] (-) JobUnselected: {'identifier': 'cyberrunner_hiwonder'}
+[0.000739] (-) JobUnselected: {'identifier': 'cyberrunner_interfaces'}
+[0.000758] (-) JobUnselected: {'identifier': 'cyberrunner_pid'}
+[0.000781] (-) JobUnselected: {'identifier': 'cyberrunner_state_estimation'}
+[0.000798] (-) JobUnselected: {'identifier': 'cyberrunner_vision'}
+[0.000822] (cyberrunner_cpp) JobQueued: {'identifier': 'cyberrunner_cpp', 'dependencies': OrderedDict()}
+[0.000989] (cyberrunner_cpp) JobStarted: {'identifier': 'cyberrunner_cpp'}
+[0.006290] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'cmake'}
+[0.006609] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'build'}
+[0.007036] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', '--', '-j24', '-l24'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1280'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1462'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '57880'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('JOURNAL_STREAM', '8:10574'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg04zM6O5:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.506.31421-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1424,unix/trungbao:/tmp/.ICE-unix/1424'), ('INVOCATION_ID', '4d7559e5d6a2433987c1f872294031fc'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.C5B9O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '57880')]), 'shell': False}
+[0.023998] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.099903] (-) TimerEvent: {}
+[0.118040] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rclcpp: 16.0.17 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.136466] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.8 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.137856] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.8 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.143156] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.8 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.149171] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.157936] (cyberrunner_cpp) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.182001] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[0.183047] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[0.200021] (-) TimerEvent: {}
+[0.258766] (cyberrunner_cpp) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.295139] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found std_srvs: 4.9.0 (/opt/ros/humble/share/std_srvs/cmake)\n'}
+[0.300107] (-) TimerEvent: {}
+[0.301399] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found sensor_msgs: 4.9.0 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[0.324695] (cyberrunner_cpp) StdoutLine: {'line': b'-- Found cv_bridge: 3.2.1 (/opt/ros/humble/share/cv_bridge/cmake)\n'}
+[0.400205] (-) TimerEvent: {}
+[0.429661] (cyberrunner_cpp) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.461949] (cyberrunner_cpp) StdoutLine: {'line': b'-- Generating done\n'}
+[0.476951] (cyberrunner_cpp) StdoutLine: {'line': b'-- Build files have been written to: /home/trungbao/cyberrunner_ws/build/cyberrunner_cpp\n'}
+[0.500302] (-) TimerEvent: {}
+[0.501004] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target hiwonder_node\n'}
+[0.501772] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target controller_node\n'}
+[0.501947] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target camera_node\n'}
+[0.502255] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target estimator_node\n'}
+[0.503552] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target marble_node\n'}
+[0.504107] (cyberrunner_cpp) StdoutLine: {'line': b'[  5%] Building CXX object CMakeFiles/ri_node.dir/src/ri_node.cpp.o\n'}
+[0.504423] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target path_progress_node\n'}
+[0.505041] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target path_node\n'}
+[0.506082] (cyberrunner_cpp) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target tuner_node\n'}
+[0.511346] (cyberrunner_cpp) StdoutLine: {'line': b'[ 16%] Built target controller_node\n'}
+[0.511552] (cyberrunner_cpp) StdoutLine: {'line': b'[ 27%] Built target camera_node\n'}
+[0.512416] (cyberrunner_cpp) StdoutLine: {'line': b'[ 38%] Built target hiwonder_node\n'}
+[0.512825] (cyberrunner_cpp) StdoutLine: {'line': b'[ 50%] Built target marble_node\n'}
+[0.513895] (cyberrunner_cpp) StdoutLine: {'line': b'[ 61%] Built target estimator_node\n'}
+[0.514169] (cyberrunner_cpp) StdoutLine: {'line': b'[ 72%] Built target path_progress_node\n'}
+[0.515534] (cyberrunner_cpp) StdoutLine: {'line': b'[ 83%] Built target path_node\n'}
+[0.520996] (cyberrunner_cpp) StdoutLine: {'line': b'[ 94%] Built target tuner_node\n'}
+[0.600414] (-) TimerEvent: {}
+[0.700668] (-) TimerEvent: {}
+[0.800939] (-) TimerEvent: {}
+[0.901106] (-) TimerEvent: {}
+[1.001273] (-) TimerEvent: {}
+[1.101471] (-) TimerEvent: {}
+[1.201659] (-) TimerEvent: {}
+[1.301816] (-) TimerEvent: {}
+[1.401997] (-) TimerEvent: {}
+[1.502191] (-) TimerEvent: {}
+[1.602386] (-) TimerEvent: {}
+[1.702560] (-) TimerEvent: {}
+[1.802742] (-) TimerEvent: {}
+[1.902941] (-) TimerEvent: {}
+[2.003167] (-) TimerEvent: {}
+[2.103412] (-) TimerEvent: {}
+[2.203680] (-) TimerEvent: {}
+[2.303883] (-) TimerEvent: {}
+[2.404084] (-) TimerEvent: {}
+[2.504281] (-) TimerEvent: {}
+[2.604489] (-) TimerEvent: {}
+[2.704678] (-) TimerEvent: {}
+[2.804872] (-) TimerEvent: {}
+[2.905089] (-) TimerEvent: {}
+[3.005249] (-) TimerEvent: {}
+[3.105428] (-) TimerEvent: {}
+[3.205609] (-) TimerEvent: {}
+[3.305814] (-) TimerEvent: {}
+[3.405999] (-) TimerEvent: {}
+[3.506181] (-) TimerEvent: {}
+[3.606337] (-) TimerEvent: {}
+[3.706535] (-) TimerEvent: {}
+[3.806708] (-) TimerEvent: {}
+[3.906917] (-) TimerEvent: {}
+[4.007197] (-) TimerEvent: {}
+[4.107397] (-) TimerEvent: {}
+[4.207677] (-) TimerEvent: {}
+[4.308056] (-) TimerEvent: {}
+[4.408260] (-) TimerEvent: {}
+[4.508454] (-) TimerEvent: {}
+[4.608753] (-) TimerEvent: {}
+[4.708998] (-) TimerEvent: {}
+[4.809243] (-) TimerEvent: {}
+[4.909448] (-) TimerEvent: {}
+[5.009695] (-) TimerEvent: {}
+[5.109980] (-) TimerEvent: {}
+[5.210137] (-) TimerEvent: {}
+[5.310314] (-) TimerEvent: {}
+[5.410499] (-) TimerEvent: {}
+[5.510665] (-) TimerEvent: {}
+[5.610836] (-) TimerEvent: {}
+[5.711018] (-) TimerEvent: {}
+[5.811178] (-) TimerEvent: {}
+[5.911337] (-) TimerEvent: {}
+[6.011523] (-) TimerEvent: {}
+[6.111729] (-) TimerEvent: {}
+[6.211893] (-) TimerEvent: {}
+[6.312050] (-) TimerEvent: {}
+[6.412213] (-) TimerEvent: {}
+[6.512372] (-) TimerEvent: {}
+[6.612535] (-) TimerEvent: {}
+[6.712733] (-) TimerEvent: {}
+[6.812898] (-) TimerEvent: {}
+[6.913074] (-) TimerEvent: {}
+[7.013241] (-) TimerEvent: {}
+[7.113429] (-) TimerEvent: {}
+[7.213587] (-) TimerEvent: {}
+[7.313834] (-) TimerEvent: {}
+[7.414008] (-) TimerEvent: {}
+[7.514169] (-) TimerEvent: {}
+[7.614458] (-) TimerEvent: {}
+[7.714681] (-) TimerEvent: {}
+[7.814902] (-) TimerEvent: {}
+[7.915118] (-) TimerEvent: {}
+[8.015389] (-) TimerEvent: {}
+[8.115551] (-) TimerEvent: {}
+[8.215737] (-) TimerEvent: {}
+[8.315931] (-) TimerEvent: {}
+[8.416084] (-) TimerEvent: {}
+[8.516299] (-) TimerEvent: {}
+[8.616474] (-) TimerEvent: {}
+[8.716640] (-) TimerEvent: {}
+[8.816817] (-) TimerEvent: {}
+[8.916990] (-) TimerEvent: {}
+[9.017129] (-) TimerEvent: {}
+[9.117287] (-) TimerEvent: {}
+[9.217473] (-) TimerEvent: {}
+[9.317735] (-) TimerEvent: {}
+[9.418010] (-) TimerEvent: {}
+[9.518192] (-) TimerEvent: {}
+[9.618388] (-) TimerEvent: {}
+[9.718586] (-) TimerEvent: {}
+[9.818748] (-) TimerEvent: {}
+[9.918950] (-) TimerEvent: {}
+[10.019182] (-) TimerEvent: {}
+[10.119366] (-) TimerEvent: {}
+[10.219603] (-) TimerEvent: {}
+[10.319759] (-) TimerEvent: {}
+[10.419926] (-) TimerEvent: {}
+[10.520185] (-) TimerEvent: {}
+[10.620384] (-) TimerEvent: {}
+[10.720554] (-) TimerEvent: {}
+[10.820921] (-) TimerEvent: {}
+[10.921113] (-) TimerEvent: {}
+[11.021336] (-) TimerEvent: {}
+[11.121563] (-) TimerEvent: {}
+[11.221870] (-) TimerEvent: {}
+[11.322047] (-) TimerEvent: {}
+[11.422271] (-) TimerEvent: {}
+[11.522489] (-) TimerEvent: {}
+[11.622734] (-) TimerEvent: {}
+[11.722992] (-) TimerEvent: {}
+[11.823170] (-) TimerEvent: {}
+[11.923354] (-) TimerEvent: {}
+[12.023560] (-) TimerEvent: {}
+[12.123781] (-) TimerEvent: {}
+[12.224004] (-) TimerEvent: {}
+[12.324189] (-) TimerEvent: {}
+[12.424397] (-) TimerEvent: {}
+[12.524606] (-) TimerEvent: {}
+[12.624804] (-) TimerEvent: {}
+[12.725026] (-) TimerEvent: {}
+[12.825208] (-) TimerEvent: {}
+[12.925426] (-) TimerEvent: {}
+[13.025739] (-) TimerEvent: {}
+[13.126041] (-) TimerEvent: {}
+[13.226226] (-) TimerEvent: {}
+[13.326439] (-) TimerEvent: {}
+[13.426739] (-) TimerEvent: {}
+[13.527008] (-) TimerEvent: {}
+[13.627222] (-) TimerEvent: {}
+[13.718301] (cyberrunner_cpp) StdoutLine: {'line': b'[100%] Linking CXX executable ri_node\n'}
+[13.727351] (-) TimerEvent: {}
+[13.827548] (-) TimerEvent: {}
+[13.872739] (cyberrunner_cpp) StdoutLine: {'line': b'[100%] Built target ri_node\n'}
+[13.881955] (cyberrunner_cpp) CommandEnded: {'returncode': 0}
+[13.882506] (cyberrunner_cpp) JobProgress: {'identifier': 'cyberrunner_cpp', 'progress': 'install'}
+[13.888210] (cyberrunner_cpp) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'], 'cwd': '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/trungbao'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('USER', 'trungbao'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"en-us","osLocale":"en-us","resolvedLanguage":"en","defaultMessagesFile":"/usr/share/code/resources/app/out/nls.messages.json","locale":"en-us","availableLanguages":{}}'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SHLVL', '0'), ('LD_LIBRARY_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/trungbao'), ('CHROME_DESKTOP', 'code.desktop'), ('DESKTOP_SESSION', 'ubuntu'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-258834d3-1.12-main.sock'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/code.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1280'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '1462'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', ''), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '57880'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'trungbao'), ('JOURNAL_STREAM', '8:10574'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('RUST_LOG', 'warn'), ('USERNAME', 'trungbao'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/trungbao/.local/bin:/home/trungbao/.codex/tmp/arg0/codex-arg04zM6O5:/home/trungbao/.local/bin:/opt/ros/humble/bin:/home/trungbao/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/trungbao/.vscode/extensions/openai.chatgpt-26.506.31421-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/trungbao:@/tmp/.ICE-unix/1424,unix/trungbao:/tmp/.ICE-unix/1424'), ('INVOCATION_ID', '4d7559e5d6a2433987c1f872294031fc'), ('XDG_MENU_PREFIX', 'gnome-'), ('ROS_DISABLE_LOANED_MESSAGES', '1'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'wayland'), ('DISPLAY', ':0'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.C5B9O3'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('CODEX_THREAD_ID', '019e2758-dba5-7c22-ac50-75c4b422cfa0'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/trungbao/cyberrunner_ws/build/cyberrunner_cpp'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('VSCODE_CODE_CACHE_PATH', '/home/trungbao/.config/Code/CachedData/0958016b2af9f09bb4257e0df4a95e2f90590f9f'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_vision/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer/lib/python3.10/site-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces/local/lib/python3.10/dist-packages:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/home/trungbao/cyberrunner_ws/install/cyberrunner_interfaces:/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp:/home/trungbao/cyberrunner_ws/install/cyberrunner_camera:/home/trungbao/cyberrunner_ws/install/cyberrunner_vision:/home/trungbao/cyberrunner_ws/install/cyberrunner_state_estimation:/home/trungbao/cyberrunner_ws/install/cyberrunner_pid:/home/trungbao/cyberrunner_ws/install/cyberrunner_dreamer:/home/trungbao/cyberrunner_ws/install/cyberrunner_hiwonder:/opt/ros/humble'), ('VSCODE_PID', '57880')]), 'shell': False}
+[13.895125] (cyberrunner_cpp) StdoutLine: {'line': b'-- Install configuration: "Release"\n'}
+[13.895266] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/camera_node\n'}
+[13.895796] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/estimator_node\n'}
+[13.896083] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/marble_node\n'}
+[13.896154] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_node\n'}
+[13.896215] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/path_progress_node\n'}
+[13.896276] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/ri_node\n'}
+[13.897186] (cyberrunner_cpp) StdoutLine: {'line': b'-- Set runtime path of "/home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/ri_node" to ""\n'}
+[13.897353] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/controller_node\n'}
+[13.897416] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/hiwonder_node\n'}
+[13.897506] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/lib/cyberrunner_cpp/tuner_node\n'}
+[13.897614] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch\n'}
+[13.897740] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/launch/cyberrunner.launch.py\n'}
+[13.897888] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include\n'}
+[13.898003] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner\n'}
+[13.898135] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/linear_path.hpp\n'}
+[13.898216] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/include/cyberrunner/ocam_model.hpp\n'}
+[13.898275] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/package_run_dependencies/cyberrunner_cpp\n'}
+[13.898336] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/parent_prefix_path/cyberrunner_cpp\n'}
+[13.898398] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.sh\n'}
+[13.898477] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/ament_prefix_path.dsv\n'}
+[13.898538] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.sh\n'}
+[13.898600] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/environment/path.dsv\n'}
+[13.898659] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.bash\n'}
+[13.898722] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.sh\n'}
+[13.898783] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.zsh\n'}
+[13.898844] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/local_setup.dsv\n'}
+[13.899018] (cyberrunner_cpp) StdoutLine: {'line': b'-- Installing: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.dsv\n'}
+[13.899601] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/ament_index/resource_index/packages/cyberrunner_cpp\n'}
+[13.899795] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig.cmake\n'}
+[13.899880] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/cmake/cyberrunner_cppConfig-version.cmake\n'}
+[13.900016] (cyberrunner_cpp) StdoutLine: {'line': b'-- Up-to-date: /home/trungbao/cyberrunner_ws/install/cyberrunner_cpp/share/cyberrunner_cpp/package.xml\n'}
+[13.900114] (cyberrunner_cpp) CommandEnded: {'returncode': 0}
+[13.910352] (cyberrunner_cpp) JobEnded: {'identifier': 'cyberrunner_cpp', 'rc': 0}
+[13.910677] (-) EventReactorShutdown: {}

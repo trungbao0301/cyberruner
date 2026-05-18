@@ -176,12 +176,12 @@ std::string drawLabel(const ParamDef& def)
 std::vector<ParamDef> makeParamDefs()
 {
     return {
-        {"Gains",   "kp_x",                 ParamType::Double,  0.0,   1.0,    0.02,   0.001,   0.02},
-        {"Gains",   "kp_y",                 ParamType::Double,  0.0,   1.0,    0.02,   0.001,   0.02},
-        {"Gains",   "kd_x",                 ParamType::Double,  0.0,   0.1,    0.006,  0.0005,  0.006},
-        {"Gains",   "kd_y",                 ParamType::Double,  0.0,   0.1,    0.006,  0.0005,  0.006},
-        {"Gains",   "ki_x",                 ParamType::Double,  0.0,   0.01,   0.0005, 0.00005, 0.0005},
-        {"Gains",   "ki_y",                 ParamType::Double,  0.0,   0.01,   0.0005, 0.00005, 0.0005},
+        {"Gains",   "kp_x",                 ParamType::Double,  0.0,   20.0,  0.02,   0.001,   0.02},
+        {"Gains",   "kp_y",                 ParamType::Double,  0.0,  20.0,    0.02,   0.001,   0.02},
+        {"Gains",   "kd_x",                 ParamType::Double,  0.0,  20.1,    0.006,  0.0005,  0.006},
+        {"Gains",   "kd_y",                 ParamType::Double,  0.0,  20.1,    0.006,  0.0005,  0.006},
+        {"Gains",   "ki_x",                 ParamType::Double,  0.0,  20.01,   0.0005, 0.00005, 0.0005},
+        {"Gains",   "ki_y",                 ParamType::Double,  0.0,  20.01,   0.0005, 0.00005, 0.0005},
         {"Gains",   "integrator_max",       ParamType::Double,  0.1,   5.0,    2.0,    0.1,     2.0},
         {"Gains",   "hold_kp_scale",        ParamType::Double,  0.1,   3.0,    0.25,   0.01,    0.25},
         {"Gains",   "hold_kd_scale",        ParamType::Double,  0.1,   5.0,    2.5,    0.05,    2.5},
